@@ -1,0 +1,56 @@
+\glsdefs@newdocentry{maîtrise d’ouvrage}%
+{%
+name={Maîtrise d’ouvrage (MOA)},%
+sort={Maîtrise d’ouvrage (MOA)},%
+type={main},%
+first={Maîtrise d’ouvrage (MOA)},%
+firstplural={Maîtrise d’ouvrage (MOA)s},%
+text={Maîtrise d’ouvrage (MOA)},%
+plural={Maîtrise d’ouvrage (MOA)s},%
+description={ C’est le client ou le demandeur du projet. Il définit les besoins, fixe ou non les objectifs, le budget et les délais, puis valide le résultat final },%
+descriptionplural={ C’est le client ou le demandeur du projet. Il définit les besoins, fixe ou non les objectifs, le budget et les délais, puis valide le résultat final },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{maîtrise d’œuvre}%
+{%
+name={maîtrise d’œuvre (MOE)},%
+sort={maîtrise d’œuvre (MOE)},%
+type={main},%
+first={maîtrise d’œuvre (MOE)},%
+firstplural={maîtrise d’œuvre (MOE)s},%
+text={maîtrise d’œuvre (MOE)},%
+plural={maîtrise d’œuvre (MOE)s},%
+description={ C’est l’équipe qui réalise le projet. Elle conçoit, développe et met en œuvre les solutions demandées par la MOA, en respectant les contraintes définies },%
+descriptionplural={ C’est l’équipe qui réalise le projet. Elle conçoit, développe et met en œuvre les solutions demandées par la MOA, en respectant les contraintes définies },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
