@@ -11,5 +11,9 @@
 \contentsline {section}{\numberline {VI}Risques}{9}{section.6}%
 \contentsline {section}{\numberline {VII}Planning}{10}{section.7}%
 \contentsline {section}{\numberline {VIII}Gestion de projet}{11}{section.8}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Décomposition en work package}{11}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.1}Fonctionnalités principales}{11}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.2}Fonctionnalités secondaires}{11}{subsubsection.8.1.2}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Signatures du projet}{11}{subsection.8.2}%
 \contentsline {section}{IX{\hspace {1em}Glossaire}}{12}{section*.3}%
 \contentsline {section}{\numberline {X}Annexes}{13}{section.10}%

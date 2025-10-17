@@ -1,8 +1,8 @@
 \glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
 \begin{theglossary}\glossaryheader
 \glsgroupheading{M}\relax \glsresetentrylist %
-\glossentry{maîtrise d’ouvrage}{\glossaryentrynumbers{\relax 
+\glossentry{maîtrise d'ouvrage}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4}}}%
-\glossentry{maîtrise d’œuvre}{\glossaryentrynumbers{\relax 
+\glossentry{maîtrise d'œuvre}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4}}}%
 \end{theglossary}\glossarypostamble

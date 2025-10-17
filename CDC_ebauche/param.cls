@@ -18,6 +18,13 @@
 \RequirePackage{enumitem}
 \usepackage{bookmark}
 \RequirePackage{tabularx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1.5cm}
 
 
 %======================================================
@@ -156,10 +163,10 @@
 \titlespacing*{\section}{0pt}{50pt}{25pt}
 
 \titleformat{\subsection}{\fontsize{16}{20}\bfseries}{\thesubsection}{1em}{}
-\titlespacing*{\subsection}{0pt}{0pt}{10pt}
+\titlespacing*{\subsection}{0pt}{30pt}{10pt}
 
 \titleformat{\subsubsection}{\fontsize{14}{16}\bfseries}{\thesubsubsection}{1em}{}
-\titlespacing*{\subsubsection}{0pt}{0pt}{5pt}
+\titlespacing*{\subsubsection}{0pt}{30pt}{20pt}
 
 %======================================================
 % SOMMAIRE : TOCLOFT
@@ -297,6 +304,9 @@
   \end{figure}
 }
 \numberwithin{figure}{section}
+
+\renewcommand{\arraystretch}{1.3} % espace vertical entre lignes
+\setlength{\tabcolsep}{4pt}       % espace horizontal entre colonnes
 
 %======================================================
 % CADRES
