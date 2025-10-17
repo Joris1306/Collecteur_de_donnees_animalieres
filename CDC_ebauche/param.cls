@@ -11,7 +11,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage[section]{placeins}
-\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=3.5cm]{geometry}
+\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{url}
 \RequirePackage{lipsum}
@@ -24,7 +24,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{geometry}
-\geometry{margin=1.5cm}
+
 
 
 %======================================================
@@ -160,7 +160,7 @@
 
 % {⟨indent⟩}{⟨before⟩}{⟨after⟩} %
 \titleformat{\section}{\fontsize{20}{22}\bfseries}{\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{50pt}{25pt}
+\titlespacing*{\section}{0pt}{0pt}{25pt} 
 
 \titleformat{\subsection}{\fontsize{16}{20}\bfseries}{\thesubsection}{1em}{}
 \titlespacing*{\subsection}{0pt}{30pt}{10pt}
@@ -224,7 +224,8 @@
 \newcommand{\fairemargesintro}{
   \pagestyle{fancy}
   \fancyheadoffset{1cm}
-  \setlength{\headheight}{1cm}
+  \setlength{\headsep}{1.5cm}
+  % \setlength{\headheight}{1cm}
   \lhead{\includegraphics[scale=0.2]{images/logos/entete_deux_logos.png}}
   \rhead{\text{Septembre 2025}}
   \cfoot{}
@@ -235,7 +236,8 @@
 \newcommand{\fairemarges}{
   \pagestyle{fancy}
   \fancyheadoffset{1cm}
-  \setlength{\headheight}{1cm}
+  \setlength{\headsep}{1.5cm}
+  % \setlength{\headheight}{1.5cm}
   \lhead{\includegraphics[scale=0.2]{images/logos/entete_deux_logos.png}}
   \rhead{\text{Septembre 2025}}
   \cfoot{Page \thepage\ sur \pageref{LastPage}}
