@@ -290,7 +290,7 @@
       \vspace{6pt}
       {\small \centering 
         \textbf{Version du document :} \hspace{6pt} \textit{n°1} \hfill
-        \textbf{Date du document :} \hspace{6pt} \textit{16/10/2025} \\[2pt]
+        \textbf{Date du document :} \hspace{6pt} \textit{18/10/2025} \\[2pt]
         \textbf{Auteurs :} \textit{Joris, Nolan, Davy, Ewen, Jules et Xueying}
       }
     \end{HeaderBox}
