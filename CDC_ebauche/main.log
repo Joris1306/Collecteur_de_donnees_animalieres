@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.8.28)  18 OCT 2025 16:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.8.28)  18 OCT 2025 17:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1701,7 +1701,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
-<images/logos/entete_deux_logos.png, id=40, 501.37312pt x 96.36pt>
+<images/logos/entete_deux_logos.png, id=39, 501.37312pt x 96.36pt>
 File: images/logos/entete_deux_logos.png Graphic file (type png)
 <use images/logos/entete_deux_logos.png>
 Package pdftex.def Info: images/logos/entete_deux_logos.png  used on input line 28.
@@ -1881,41 +1881,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.6717pt}.
 
 [10] (./text/8_Gestion_de_Projet.tex
-LaTeX Font Info:    Calculating math sizes for size <16> on input line 5.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <16> on input line 5.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11.19995> on input line 5.
-
-
-LaTeX Font Warning: Font shape `U/matha/m/n' in size <16> not available
-(Font)              size <17.28> substituted on input line 5.
-
-
-LaTeX Font Warning: Font shape `U/mathb/m/n' in size <16> not available
-(Font)              size <17.28> substituted on input line 5.
-
-
-LaTeX Font Warning: Font shape `U/mathx/m/n' in size <16> not available
-(Font)              size <17.28> substituted on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gls' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 5.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 10--12
 
  []
@@ -1979,7 +1944,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [13] (./text/10_Annexes.tex
 
 pdfTeX warning: pdflatex (file ./images/bete_a_corne.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/bete_a_corne.pdf, id=171, 365.44528pt x 246.9225pt>
+<images/bete_a_corne.pdf, id=167, 365.44528pt x 246.9225pt>
 File: images/bete_a_corne.pdf Graphic file (type pdf)
 <use images/bete_a_corne.pdf>
 Package pdftex.def Info: images/bete_a_corne.pdf  used on input line 8.
@@ -1987,7 +1952,7 @@ Package pdftex.def Info: images/bete_a_corne.pdf  used on input line 8.
 
 
 pdfTeX warning: pdflatex (file ./images/schema_fonctionnel_principale.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/schema_fonctionnel_principale.pdf, id=172, 1013.70718pt x 391.4625pt>
+<images/schema_fonctionnel_principale.pdf, id=168, 1013.70718pt x 391.4625pt>
 File: images/schema_fonctionnel_principale.pdf Graphic file (type pdf)
 <use images/schema_fonctionnel_principale.pdf>
 Package pdftex.def Info: images/schema_fonctionnel_principale.pdf  used on input line 20.
@@ -1995,7 +1960,7 @@ Package pdftex.def Info: images/schema_fonctionnel_principale.pdf  used on input
 
 
 pdfTeX warning: pdflatex (file ./images/schema_fontionnel_global.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<images/schema_fontionnel_global.pdf, id=173, 1346.1492pt x 572.1375pt>
+<images/schema_fontionnel_global.pdf, id=169, 1346.1492pt x 572.1375pt>
 File: images/schema_fontionnel_global.pdf Graphic file (type pdf)
 <use images/schema_fontionnel_global.pdf>
 Package pdftex.def Info: images/schema_fontionnel_global.pdf  used on input line 30.
@@ -2770,25 +2735,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [19]) 
 AED: lastpage setting LastPage
-(./main.aux)
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 1.28pt have occurred.
-
- ) 
+(./main.aux) ) 
 Here is how much of TeX's memory you used:
- 59998 strings out of 476091
- 1363925 string characters out of 5794081
+ 59972 strings out of 476091
+ 1363516 string characters out of 5794081
  2152863 words of memory out of 5000000
- 79422 multiletter control sequences out of 15000+600000
- 592944 words of font info for 99 fonts, out of 8000000 for 9000
+ 79399 multiletter control sequences out of 15000+600000
+ 580850 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  125i,16n,131p,2286b,1015s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha12.pfb>
-Output written on main.pdf (19 pages, 431810 bytes).
+Output written on main.pdf (19 pages, 432029 bytes).
 PDF statistics:
- 379 PDF objects out of 1000 (max. 8388607)
- 312 compressed objects within 4 object streams
- 68 named destinations out of 1000 (max. 500000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 307 compressed objects within 4 object streams
+ 66 named destinations out of 1000 (max. 500000)
  187 words of extra memory for PDF output out of 10000 (max. 10000000)
 
