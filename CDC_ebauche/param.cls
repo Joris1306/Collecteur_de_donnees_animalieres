@@ -11,7 +11,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage[section]{placeins}
-\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2.5cm]{geometry}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{url}
 \RequirePackage{lipsum}
@@ -24,7 +24,10 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{geometry}
-
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{ltablex}
+\numberwithin{figure}{section}
 
 
 %======================================================
@@ -137,7 +140,10 @@
 
 % STYLE PERSONNALISÉ POUR LE GLOSSAIRE %
 \newglossarystyle{monglossairestyle}{%
-  \setglossarystyle{long} % Style de base
+  % Ne pas hériter du style 'long' (il produit des séparateurs d'alignement
+  % comme & dans le fichier .gls). Utiliser 'list' qui est compatible avec
+  % l'environnement 'description' défini ci-dessous.
+  \setglossarystyle{list} % Style de base (liste simple)
   \renewenvironment{theglossary}{%
     \begin{description}%
   }{%
@@ -146,7 +152,7 @@
   \renewcommand*{\glossentry}[2]{%
     \item[\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}]%
     \glossentrydesc{##1}\glspostdescription\space ##2%
-    \par\vspace{1\baselineskip} % Espace entre chaque définitions
+    \par\vspace{1.5\baselineskip} % Espace entre chaque définitions
   }%
 }
 

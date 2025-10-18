@@ -1,0 +1,9 @@
+Caméra,Capteur,Résolution max,Interface,Format vidéo / image,Points forts,Points faibles,Prix indicatif,Champ de vision,Energie (lorsque active),datasheet
+OV7670,CMOS VGA,640×480,Parallèle / SCCB,YUV / RGB,"Très bon marché, faible consommation",Résolution faible,5 €,25°,"0,06 W", https://web.mit.edu/6.111/www/f2016/tools/OV7670_2006.pdf
+OV2640,CMOS,1600×1200,SCCB / parallèle,JPEG / RGB,"JPEG intégré, bonne résolution",Débit limité,15 €,160°,"0,14 W",https://www.alldatasheet.fr/datasheet-pdf/pdf/312407/OMNIVISION/OV2640.html
+Raspberry Pi Camera V2,Sony IMX219,8 MP,CSI-2,MJPEG / H.264 / RAW,"Haute qualité vidéo, compatible Pi",Nécessite Pi,17 €,62°,"0,3 W",
+ESP32-CAM,OV2640,1600×1200,Wi-Fi / GPIO,JPEG / MJPEG,"Caméra + Wi-Fi intégré, compact",Streaming HD limité,13 €,160°,"0,14 W",
+Raspberry Pi HQ Camera,Sony IMX477R,12.3 MP,CSI-2,"RAW12/10/8, COMP8","Très haute qualité, objectifs interchangeables","Nécessite Pi, coûteux",58 €,75°,"0,3 W",
+Arducam 5MP / 8MP Mini Module,OV5640 / OV5647,5–8 MP,SPI / I²C,JPEG / RAW,"Compact, résolution suffisante, compatible Arduino / ESP","Configuration parfois complexe, Nécessite Pi",30 €,,"0,4 W",
+Pi NoIR Camera V2,Sony IMX219 (NoIR),8 MP,CSI-2,MJPEG / H.264 / RAW,"Vision nocturne IR, compatible Pi",Nécessite Pi,30 €,,"0,3 W",
+Arducam IMX219 NoIR,Sony IMX219 (NoIR),8 MP,SPI / I²C / CSI,JPEG / RAW,"Vision nocturne, module compatible Pi / Arduino","Plus cher que OV2640, Nécessite Pi",40 €,,"0,3 W",
