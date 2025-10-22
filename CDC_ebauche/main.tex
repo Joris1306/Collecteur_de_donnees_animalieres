@@ -2,6 +2,8 @@
 
 \begin{document}
 
+\numberwithin{table}{section}
+
 %======================================================
 % INFORMATIONS DU RAPPORT
 %======================================================
@@ -27,7 +29,7 @@
 %======================================================
 \newpage
 \pagestyle{fancy}  % idem pour la liste des figures
-\listoffigures  
+\listoffigures
 
 %======================================================
 % CORPS DU RAPPORT
@@ -54,7 +56,7 @@
 % GLOSSAIRE (optionnel)
 %======================================================
 \newpage
-\refstepcounter{section}               
+\refstepcounter{section}
 \vspace{-4.5em}
 \input{text/9_Glossaire.tex}
 \printglossary[title={\thesection{\hspace{1em}Glossaire}}, toctitle=\thesection{\hspace{1em}Glossaire}]

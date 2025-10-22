@@ -2,18 +2,18 @@
 \contentsline {section}{\numberline {I}Introduction}{4}{section.1}%
 \contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Contexte}{4}{subsection.1.1}%
 \contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Parties prenantes}{4}{subsection.1.2}%
-\contentsline {section}{\numberline {II}Besoins fonctionnels}{5}{section.2}%
-\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Fonctionnalités principales}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Fonctionnalités supplémentaires ou optionnelles}{5}{subsection.2.2}%
-\contentsline {section}{\numberline {III}Besoins non fonctionnels}{6}{section.3}%
-\contentsline {section}{\numberline {IV}Évolution potentielle des besoins}{7}{section.4}%
-\contentsline {section}{\numberline {V}Limites du projet}{8}{section.5}%
-\contentsline {section}{\numberline {VI}Risques}{9}{section.6}%
-\contentsline {section}{\numberline {VII}Planning}{10}{section.7}%
-\contentsline {section}{\numberline {VIII}Gestion de projet}{11}{section.8}%
-\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Décomposition en work packages WP}{11}{subsection.8.1}%
-\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.1}Fonctionnalités principales}{11}{subsubsection.8.1.1}%
-\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.2}Fonctionnalités secondaires}{11}{subsubsection.8.1.2}%
-\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Signatures du projet}{12}{subsection.8.2}%
-\contentsline {section}{IX{\hspace {1em}Glossaire}}{13}{section*.3}%
-\contentsline {section}{\numberline {X}Annexes}{14}{section.10}%
+\contentsline {section}{\numberline {II}Besoins fonctionnels}{6}{section.2}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Fonctionnalités principales}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Fonctionnalités supplémentaires ou optionnelles}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {III}Besoins non fonctionnels}{7}{section.3}%
+\contentsline {section}{\numberline {IV}Évolution potentielle des besoins}{8}{section.4}%
+\contentsline {section}{\numberline {V}Limites du projet}{9}{section.5}%
+\contentsline {section}{\numberline {VI}Risques}{10}{section.6}%
+\contentsline {section}{\numberline {VII}Planning}{11}{section.7}%
+\contentsline {section}{\numberline {VIII}Gestion de projet}{12}{section.8}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Décomposition en work packages WP}{12}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.1}Fonctionnalités principales}{12}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.2}Fonctionnalités secondaires}{12}{subsubsection.8.1.2}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Signatures du projet}{13}{subsection.8.2}%
+\contentsline {section}{IX{\hspace {1em}Glossaire}}{14}{section*.4}%
+\contentsline {section}{\numberline {X}Annexes}{15}{section.10}%

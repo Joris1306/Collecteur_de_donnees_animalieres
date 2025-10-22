@@ -28,6 +28,8 @@
 \usepackage{longtable}
 \usepackage{ltablex}
 \numberwithin{figure}{section}
+\usepackage{amsmath}
+
 
 
 %======================================================
@@ -56,10 +58,10 @@
 
 \lstdefinelanguage{VHDL}{
   morekeywords={
-    library,use,all,entity,is,port,in,out,end,architecture,of,begin,
-    and,or,signal,process,if,then,else,elsif,wait,until,rising_edge,
-    event,when,others,case,loop,while,for,generate,downto,to,with,select
-  },
+      library,use,all,entity,is,port,in,out,end,architecture,of,begin,
+      and,or,signal,process,if,then,else,elsif,wait,until,rising_edge,
+      event,when,others,case,loop,while,for,generate,downto,to,with,select
+    },
   sensitive=false,
   morecomment=[l]--,
   morestring=[b]"
@@ -132,7 +134,7 @@
 
 % Commande robuste pour un terme de glossaire avec indice
 \DeclareRobustCommand{\gloss}[1]{%
-    \gls{#1}\textsuperscript{\refstepcounter{glossnote}\theglossnote}%
+  \gls{#1}\textsuperscript{\refstepcounter{glossnote}\theglossnote}%
 }
 
 % Commande robuste pour le pluriel
@@ -146,7 +148,7 @@
   \setglossarystyle{list} % Style de base (liste simple)
   \renewenvironment{theglossary}{%
     \begin{description}%
-  }{%
+      }{%
     \end{description}%
   }%
   \renewcommand*{\glossentry}[2]{%
@@ -166,7 +168,7 @@
 
 % {⟨indent⟩}{⟨before⟩}{⟨after⟩} %
 \titleformat{\section}{\fontsize{20}{22}\bfseries}{\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{0pt}{25pt} 
+\titlespacing*{\section}{0pt}{0pt}{25pt}
 
 \titleformat{\subsection}{\fontsize{16}{20}\bfseries}{\thesubsection}{1em}{}
 \titlespacing*{\subsection}{0pt}{30pt}{10pt}
@@ -264,40 +266,49 @@
 
 \newcommand{\fairepagedegarde}{
   \begin{titlepage}
-    % Page de garde avec HeaderBox
     \begin{HeaderBox}
-      \begin{minipage}[t]{0.18\textwidth}
-        % Logo Polytech Nantes
-        \includegraphics[width=\linewidth,height=1.6cm,keepaspectratio]{images/logos/POLYTECH_NANTES.png}
-      \end{minipage}
-      \hfill
-      \begin{minipage}[t]{0.55\textwidth}
-        \centering
-        {\Large\bfseries Cahier Des Charges}\\[4pt]
-        {\normalsize \itshape \small \textbf{Nom du projet :} \hspace{6pt} \textit{Piège Caméra pour données animalières}}
-      \end{minipage}
-      \hfill
-      \begin{minipage}[t]{0.18\textwidth}
+      % Logos sur la même ligne
+      \begin{minipage}{0\textwidth}
         \raggedleft
-        % Logo mairie
-        \includegraphics[width=\linewidth,height=1.6cm,keepaspectratio]{images/logos/Logo_mairie_saint_mars_du_desert.png}
+        \includegraphics[height=1.5cm]{images/logos/POLYTECH_NANTES.png}
+      \end{minipage}%
+      \hfill
+      \begin{minipage}{0.14\textwidth}
+        \raggedright
+        \includegraphics[height=1.5cm]{images/logos/Logo_mairie_saint_mars_du_desert.png}
       \end{minipage}
 
-      \vspace{8pt}
-
-      % Ligne et infos supplémentaires
-      \hrule
-      \vspace{6pt}
-      {\small \centering 
-        \textbf{Version du document :} \hspace{6pt} \textit{n°1} \hfill
-        \textbf{Date du document :} \hspace{6pt} \textit{18/10/2025} \\[2pt]
-        \textbf{Auteurs :} \textit{Joris, Nolan, Davy, Ewen, Jules et Xueying}
-      }
+      \centering
+      \vspace{1cm} % espace entre les logos et le titre
+      {\huge\bfseries Cahier Des Charges}\\[5pt]
+      \vspace{10pt}
     \end{HeaderBox}
 
-    \thispagestyle{emptyfirstpage} % <-- page 1 : pas de pied ni d'en-tête
+    \thispagestyle{emptyfirstpage}
+    \centering
+    \vspace{90pt}
+    {\Huge \itshape \textbf{Nom du projet :} \\[10pt]
+      \textit{Collecteurs de données animalières}} \\[50pt]
+    \rule{0.7\textwidth}{0.4pt} \\[5pt]
+    {\normalsize
+    \textbf{Version du document :} \\[3pt]
+    \textit{n°1} \\[15pt]
+    \textbf{Date du document :} \\[3pt]
+    \textit{18/10/2025} \\[15pt]
+    \textbf{Client :} \\[3pt]
+    \textit{Xavier Leprevost} \\[15pt]
+    \textbf{Auteurs :} \\[3pt]
+    \textit{Ewen Le Callet} \\
+    \textit{Xueying Xu} \\
+    \textit{Davy Clark} \\
+    \textit{Jules Noumba} \\
+    \textit{Nolan Buchet} \\
+    \textit{Joris Menard} \\
+    }
+    \rule{0.7\textwidth}{0.4pt}
   \end{titlepage}
 }
+
 
 
 %======================================================
