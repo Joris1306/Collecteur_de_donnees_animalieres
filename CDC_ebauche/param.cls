@@ -31,7 +31,6 @@
 \usepackage{amsmath}
 
 
-
 %======================================================
 % POLICES ET TAILLES
 %======================================================
@@ -289,7 +288,7 @@
     \vspace{90pt}
     {\Huge \itshape \textbf{Nom du projet :} \\[10pt]
       \textit{Collecteurs de données animalières}} \\[50pt]
-    \rule{0.7\textwidth}{0.4pt} \\[5pt]
+    \rule{0.5\textwidth}{0.4pt} \\[5pt]
     {\normalsize
     \textbf{Version du document :} \\[3pt]
     \textit{n°1} \\[15pt]
@@ -305,7 +304,7 @@
     \textit{Nolan Buchet} \\
     \textit{Joris Menard} \\
     }
-    \rule{0.7\textwidth}{0.4pt}
+    \rule{0.5\textwidth}{0.4pt}
   \end{titlepage}
 }
 
