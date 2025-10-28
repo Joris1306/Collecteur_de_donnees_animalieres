@@ -1,0 +1,84 @@
+\documentclass{param}
+
+\begin{document}
+
+\numberwithin{table}{section}
+
+%======================================================
+% INFORMATIONS DU RAPPORT
+%======================================================
+\fairepagedegarde
+
+%======================================================
+% NUMÉROTATION DES SECTIONS
+%======================================================
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\hspace*{0.1cm} \arabic{subsection}}
+\renewcommand{\thesubsubsection}{\hspace*{0.2cm} \arabic{subsection}.\arabic{subsubsection}}
+
+%======================================================
+% TABLE DES MATIÈRES
+%======================================================
+\clearpage
+\setcounter{page}{2} % commence la numérotation à 2 (page de garde = page 1)
+\fairemargesintro % active le style Page X/Y
+\tableofcontents
+
+%======================================================
+% LISTE DES FIGURES
+%======================================================
+\newpage
+\pagestyle{fancy}  % idem pour la liste des figures
+\listoffigures
+
+%======================================================
+% CORPS DU RAPPORT
+%======================================================
+\fairemarges
+\newpage
+\input{text/1_Introduction.tex}
+\newpage
+\input{text/2_Besoins_Fonctionnels.tex}
+\newpage
+\input{text/3_Besoins_non_Fonctionnels.tex}
+\newpage
+\input{text/4_Evolution_Potentielle_des_Besoins.tex}
+\newpage
+\input{text/5_Limites_du_Porjet.tex}
+\newpage
+\input{text/6_Risques.tex}
+\newpage
+\input{text/7_Planning.tex}
+\newpage
+\input{text/8_Gestion_de_Projet.tex}
+
+%======================================================
+% GLOSSAIRE (optionnel)
+%======================================================
+\newpage
+\refstepcounter{section}
+\vspace{-4.5em}
+\input{text/9_Glossaire.tex}
+\printglossary[title={\thesection{\hspace{1em}Glossaire}}, toctitle=\thesection{\hspace{1em}Glossaire}]
+
+
+%======================================================
+% Annexes (optionnel)
+%======================================================
+\newpage
+\input{text/10_Annexes.tex}
+
+%======================================================
+% DERNIÈRE PAGE
+%======================================================
+\label{LastPage} % important pour que Page X/Y fonctionne
+
+
+%======================================================
+% BIBLIOGRAPHIE (optionnelle)
+%======================================================
+% \newpage
+% \bibliographystyle{unsrt}
+% \bibliography{bibs/export}
+
+\end{document}
