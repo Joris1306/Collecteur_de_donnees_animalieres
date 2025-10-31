@@ -22,6 +22,7 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{soul}
 \usepackage{hyperref}
 \usepackage{geometry}
 \usepackage{pdflscape}
@@ -29,7 +30,10 @@
 \usepackage{ltablex}
 \numberwithin{figure}{section}
 \usepackage{amsmath}
-
+\sethlcolor{red}
+\usepackage{makecell}
+\usepackage{ragged2e}
+\usepackage{changepage}
 
 %======================================================
 % POLICES ET TAILLES
@@ -293,9 +297,9 @@
     \textbf{Version du document :} \\[3pt]
     \textit{n°1} \\[15pt]
     \textbf{Date du document :} \\[3pt]
-    \textit{18/10/2025} \\[15pt]
+    \textit{\textbf{\textcolor{red}{Date du prochain rendu du CDC à modifier}}} \\[15pt]
     \textbf{Client :} \\[3pt]
-    \textit{Xavier Leprevost} \\[15pt]
+    \textit{Xavier Leprevost - élu de la mairie de Saint-Mars-du-Désert} \\[15pt]
     \textbf{Auteurs :} \\[3pt]
     \textit{Ewen Le Callet} \\
     \textit{Xueying Xu} \\
@@ -343,3 +347,4 @@
   linewidth=0.5pt, innertopmargin=8pt, innerbottommargin=8pt,
   innerleftmargin=10pt, innerrightmargin=10pt
 ]{NoteBox}
+

@@ -23,6 +23,7 @@
     "**/*.acn": true,
     "**/*.glo": true,
     "**/*.ist": true,
+    "**/*indent.log": true,
     "**/*.nlo": true,
     "**/*.exe": true,
     "**/*~": true,
@@ -47,5 +48,5 @@
     "PEIP",
     "Polytech",
     "Xueying"
-]
+  ]
 }
