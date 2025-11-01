@@ -1,0 +1,25 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {I}Retranscription du besoin client}{4}{section.1}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Contexte}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Parties prenantes}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {II}Besoins fonctionnels}{6}{section.2}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Fonctionnalités principales}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Fonctionnalités supplémentaires ou optionnelles}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 3}Spécifications techniques détaillées}{7}{subsection.2.3}%
+\contentsline {section}{\numberline {III}Besoins non fonctionnels}{13}{section.3}%
+\contentsline {section}{\numberline {IV}Évolution potentielle des besoins}{14}{section.4}%
+\contentsline {section}{\numberline {V}Limites du projet}{15}{section.5}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Fonctionnalités limitées à la détection et de la prise de vue}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Couverture géographique restreinte}{15}{subsection.5.2}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 3}Conditions d’installation contrôlées}{15}{subsection.5.3}%
+\contentsline {section}{\numberline {VI}Risques}{16}{section.6}%
+\contentsline {section}{\numberline {VII}Planning}{17}{section.7}%
+\contentsline {section}{\numberline {VIII}Gestion de projet}{19}{section.8}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 1}Décomposition en work packages WP}{19}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.1}Fonctionnalités principales}{19}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.2}Fonctionnalités secondaires}{19}{subsubsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {\hspace *{0.2cm} 1.3}Work packages transverses}{20}{subsubsection.8.1.3}%
+\contentsline {subsection}{\numberline {\hspace *{0.1cm} 2}Signatures du projet}{20}{subsection.8.2}%
+\contentsline {section}{\numberline {IX}Démarche de transition écologique}{21}{section.9}%
+\contentsline {section}{X{\hspace {1em}Glossaire}}{22}{section*.13}%
+\contentsline {section}{\numberline {XI}Annexes}{23}{section.11}%
