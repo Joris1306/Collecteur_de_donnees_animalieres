@@ -1,0 +1,150 @@
+# ===============================
+# SYSTEM FILES
+# ===============================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+
+# ===============================
+# IDE / EDITORS
+# ===============================
+# VSCode
+.vscode/
+.history/
+*.code-workspace
+
+# JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
+.idea/
+*.iml
+out/
+
+# ===============================
+# NODE / JAVASCRIPT
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+build/
+.cache/
+.next/
+out/
+coverage/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===============================
+# PYTHON
+# ===============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.egg
+*.egg-info/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+migrations/
+*.sqlite3
+instance/
+*.log
+
+# ===============================
+# JAVA
+# ===============================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.log
+*.ctxt
+hs_err_pid*
+.recommenders/
+target/
+build/
+
+# ===============================
+# C / C++
+# ===============================
+*.obj
+*.o
+*.a
+*.so
+*.exe
+*.out
+*.app
+*.dSYM/
+
+# ===============================
+# ANDROID / MOBILE
+# ===============================
+.gradle/
+local.properties
+*.iml
+build/
+.idea/
+captures/
+output.json
+*.apk
+*.aab
+
+# ===============================
+# DATABASES / BACKUPS
+# ===============================
+*.sql
+*.sqlite
+*.sqlite3
+*.bak
+*.backup
+
+# ===============================
+# LOGS / TEMP FILES
+# ===============================
+*.log
+*.tmp
+*.swp
+*.swo
+*.orig
+*~
+*.bak
+*.temp
+*.pid
+
+# ===============================
+# MISC
+# ===============================
+!.gitkeep
+*.lock
+*.DS_Store
+.env.*
+.vscode/
+.cache/
+logs/
+tmp/
+temp/
