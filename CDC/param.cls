@@ -200,6 +200,16 @@
 \setlength{\cftafterloftitleskip}{2em}
 
 %======================================================
+% TABLES DES TABLEAUX
+%======================================================
+\pagestyle{fancy}
+\setlength{\cftbeforetabskip}{0.5em}
+\setlength{\cfttabnumwidth}{3em}
+\renewcommand{\cfttableader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftafterlottitleskip}{2em}
+
+
+%======================================================
 % COMMANDES UTILISATEUR (rapport)
 %======================================================
 \newcommand{\espace}{\vspace{0.2cm}}
