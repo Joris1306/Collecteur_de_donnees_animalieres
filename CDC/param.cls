@@ -200,6 +200,16 @@
 \setlength{\cftafterloftitleskip}{2em}
 
 %======================================================
+% TABLES DES TABLEAUX
+%======================================================
+\pagestyle{fancy}
+\setlength{\cftbeforetabskip}{0.5em}
+\setlength{\cfttabnumwidth}{3em}
+\renewcommand{\cfttableader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftafterlottitleskip}{2em}
+
+
+%======================================================
 % COMMANDES UTILISATEUR (rapport)
 %======================================================
 \newcommand{\espace}{\vspace{0.2cm}}
@@ -295,7 +305,7 @@
     \rule{0.5\textwidth}{0.4pt} \\[5pt]
     {\normalsize
     \textbf{Version du document :} \\[3pt]
-    \textit{n°1} \\[15pt]
+    \textit{n°2} \\[15pt]
     \textbf{Date du document :} \\[3pt]
     \textit{\textbf{\textcolor{red}{Date du prochain rendu du CDC à modifier}}} \\[15pt]
     \textbf{Client :} \\[3pt]
