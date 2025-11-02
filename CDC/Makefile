@@ -44,7 +44,9 @@ clean:
 	      $(MAIN).fot $(MAIN).cb $(MAIN).cb2 $(MAIN).glo \
 	      $(MAIN).gls $(MAIN).glg $(MAIN).glsdefs $(MAIN).ist \
 	      $(MAIN).acn $(MAIN).acr $(MAIN).alg $(MAIN).bbl $(MAIN).blg \
-	      $(MAIN).run.xml $(MAIN).fdb_latexmk
+	      $(MAIN).run.xml $(MAIN).fdb_latexmk \
+		  $(MAIN).synctex.gz \ 
+		  indent.log 
 	@echo "✅ Nettoyage terminé."
 
 # ----------------------------
