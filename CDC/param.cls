@@ -11,7 +11,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage[section]{placeins}
-\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2.5cm]{geometry}
+\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{url}
 \RequirePackage{lipsum}
@@ -307,7 +307,8 @@
     \textbf{Version du document :} \\[3pt]
     \textit{n°2} \\[15pt]
     \textbf{Date du document :} \\[3pt]
-    \textit{\textbf{\textcolor{red}{Date du prochain rendu du CDC à modifier}}} \\[15pt]
+    \textit{\textit{03/11/2025}} \\[15pt]
+    % \textit{\textbf{\textcolor{red}{Date du prochain rendu du CDC à modifier}}} \\[15pt]
     \textbf{Client :} \\[3pt]
     \textit{Xavier Leprevost - élu de la mairie de Saint-Mars-du-Désert} \\[15pt]
     \textbf{Auteurs :} \\[3pt]
