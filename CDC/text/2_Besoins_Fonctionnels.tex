@@ -36,7 +36,7 @@ Le système d’observation de la faune devra répondre à plusieurs besoins ess
 \small
 \subsection{Fonctionnalités principales}
 \begin{itemize}
-   \item \textbf{Détection de mouvement animalier} : le dispositif doit détecter automatiquement la présence d’un animal dans son champ de vision.
+   \item \textbf{Détection de mouvement animalier} : Le dispositif repose sur la détection automatique de mouvements dans son champ de vision. Il doit cependant être optimisé afin de se déclencher principalement lors de la détection d’un animal.
    \item \textbf{Prise de vue automatique} : une photo doit être prise dès qu’un mouvement est détecté.
    \item \textbf{Enregistrement des images} : les clichés capturés sont enregistrés dans une mémoire locale avec leurs métadonnées (date, heure, température, position GPS).
    \item \textbf{Transmission des données} : les données collectées doivent être envoyées vers un stockage distant.
@@ -117,19 +117,19 @@ Cette formalisation permet d'établir des critères de validation clairs et d'as
       \hline
       Enregistrement de l'image & Qualité de l'images                  & > 480p                   & Une résolution supérieure à 480p garantit une identification correcte des espèces tout en limitant la taille des fichiers pour un stockage local efficace.        \\
       \hline
-      Nocturne                  & Prise de photo la nuits              & Oui                      & La capture nocturne est indispensable pour un piège caméra, car de nombreuses espèces sont actives la nuit                                                        \\
+      Nocturne                  & Prise de photo la nuit               & Oui                      & La capture nocturne est indispensable pour un piège caméra, car de nombreuses espèces sont actives la nuit                                                        \\
       \hline
       Température               & Témperature de fonctionnement        & -15 / +50                & Plage suffisante pour la majorité des zones tempérées; protège composants et batterie contre températures extrême                                                 \\
       \hline
       Rotation                  & Rotation de la caméra                & Non                      & L'absence de rotation réduit la consommation énergétique, le coût du dispositif et la complexité mécanique, tout en suffisant pour une zone de surveillance fixe. \\
       \hline
-      Connectivité              & Type de connectivité                 & Filaire                  & Une connexion filaire garantit la fiabilité du transfert et limite les interférences ou pertes de signal dans les environnements isolés.                          \\
+      Connectivité              & Type de connectivité                 & Filaire                  & Une connexion filaire de la caméra sur le microcontrolleur garantit la fiabilité du transfert.                                                                    \\
       \hline
       Etanchéité                & Norme Electronique                   & IP66                     & Assure une protection totale contre la poussière et les projections d'eau, adaptée à une installation extérieure permanente.                                      \\
       \hline
       Type de flux              & Flux interne                         & Photo                    & Le mode photo est prioritaire pour minimiser l'énergie consommée et maximiser la durée d'autonomie                                                                \\
       \hline
-      Capture d'image           & Format                               & JPEG/PNG                 & Ces formats standard assurent une compatibilité universelle et une bonne compression sans perte excessive de qualité.                                             \\
+      Capture d'image           & Format                               & JPEG/PNG                 & Ces formats standards assurent une compatibilité universelle et une bonne compression sans perte excessive de qualité.                                            \\
       \hline
    \end{tabularx}
    \caption{Prise de vue automatique}
@@ -143,7 +143,7 @@ Cette formalisation permet d'établir des critères de validation clairs et d'as
       \hline
       \textbf{Fonctionnalité} & \textbf{Données}             & \textbf{Valeurs nominales}                                           & \textbf{Justification}                                                                                                     \\
       \hline
-      Capture d'image         & Type de fichier image        & JPEG / PNG                                                           & Ces formats standard assurent une compatibilité universelle et une bonne compression sans perte excessive de qualité.      \\
+      Capture d'image         & Type de fichier image        & JPEG / PNG                                                           & Ces formats standards assurent une compatibilité universelle et une bonne compression sans perte excessive de qualité.     \\
       \hline
       Enregistrement local    & Support de stockage          & Mémoire interne (microSD 32 Go min.)                                 & Une carte microSD est peu coûteuse, facilement remplaçable et offre une capacité suffisante pour stocker plusieurs jours.  \\
       \hline
