@@ -1,7 +1,16 @@
 \babel@toc {french}{}\relax 
+<<<<<<< HEAD
 \contentsline {figure}{\numberline {II.1}{\ignorespaces Bête à corne\relax }}{7}{figure.caption.3}%
 \contentsline {figure}{\numberline {II.2}{\ignorespaces Décomposition en bloc fonctionnel principale\relax }}{8}{figure.caption.4}%
 \contentsline {figure}{\numberline {II.3}{\ignorespaces Décomposition en bloc fonctionnel principale et optionnelle\relax }}{9}{figure.caption.5}%
 \contentsline {figure}{\numberline {VII.1}{\ignorespaces Gantt des livrables de négociation et de suivi d’avancement du projet\relax }}{19}{figure.caption.12}%
 \contentsline {figure}{\numberline {VII.2}{\ignorespaces Diagramme de Gantt des livrables produits pour le client\relax }}{19}{figure.caption.13}%
 \contentsline {figure}{\numberline {VIII.1}{\ignorespaces Diagramme de répartition des workpages\relax }}{21}{figure.caption.14}%
+=======
+\contentsline {figure}{\numberline {II.1}{\ignorespaces Bête à corne}}{7}{figure.caption.3}%
+\contentsline {figure}{\numberline {VII.1}{\ignorespaces Gantt des livrables de négociation et de suivi d’avancement du projet}}{18}{figure.caption.10}%
+\contentsline {figure}{\numberline {VII.2}{\ignorespaces Diagramme de Gantt des livrables produits pour le client}}{18}{figure.caption.11}%
+\contentsline {figure}{\numberline {VIII.1}{\ignorespaces Diagramme de répartition des workpages}}{20}{figure.caption.12}%
+\contentsline {figure}{\numberline {XI.1}{\ignorespaces Décomposition en bloc fonctionnel principale}}{24}{figure.caption.14}%
+\contentsline {figure}{\numberline {XI.2}{\ignorespaces Décomposition en bloc fonctionnel principale et optionnelle}}{24}{figure.caption.15}%
+>>>>>>> origin/main
