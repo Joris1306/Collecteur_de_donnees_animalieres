@@ -118,6 +118,7 @@
 \RequirePackage{caption}
 \RequirePackage{subcaption}
 \RequirePackage{tocloft}
+\RequirePackage{datetime2}
 
 %======================================================
 % TIKZ & CIRCUITS
@@ -236,7 +237,7 @@
 \fancypagestyle{plain}{
   \fancyhf{}
   \lhead{\includegraphics[scale=0.2]{images/logos/entete_deux_logos.png}}
-  \rhead{\text{October 2025}}
+  \rhead{\monthnamefrench{\month} \the\year}
   \cfoot{Page \thepage\ sur \pageref{LastPage}}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0.4pt}
@@ -248,7 +249,7 @@
   \setlength{\headsep}{1.5cm}
   % \setlength{\headheight}{1cm}
   \lhead{\includegraphics[scale=0.2]{images/logos/entete_deux_logos.png}}
-  \rhead{\text{Septembre 2025}}
+  \rhead{\monthnamefrench{\month} \the\year}
   \cfoot{}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0.4pt}
@@ -258,13 +259,13 @@
   \pagestyle{fancy}
   \fancyheadoffset{1cm}
   \setlength{\headsep}{1.5cm}
-  % \setlength{\headheight}{1.5cm}
   \lhead{\includegraphics[scale=0.2]{images/logos/entete_deux_logos.png}}
-  \rhead{\text{Septembre 2025}}
+  \rhead{\monthnamefrench{\month} \the\year}
   \cfoot{Page \thepage\ sur \pageref{LastPage}}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0.4pt}
 }
+
 
 %======================================================
 % PAGE DE GARDE
@@ -307,7 +308,7 @@
     \textbf{Version du document :} \\[3pt]
     \textit{n°2} \\[15pt]
     \textbf{Date du document :} \\[3pt]
-    \textit{\textit{03/11/2025}} \\[15pt]
+    \textit{\the\day\,/\,\the\month\,/\,\the\year} \\[15pt]
     % \textit{\textbf{\textcolor{red}{Date du prochain rendu du CDC à modifier}}} \\[15pt]
     \textbf{Client :} \\[3pt]
     \textit{Xavier Leprevost - élu de la mairie de Saint-Mars-du-Désert} \\[15pt]
@@ -340,6 +341,26 @@
 
 \renewcommand{\arraystretch}{1.3} % espace vertical entre lignes
 \setlength{\tabcolsep}{4pt}       % espace horizontal entre colonnes
+
+%======================================================
+% MOIS
+%======================================================
+\newcommand{\monthnamefrench}[1]{%
+  \ifcase#1%
+  \or Janvier%
+  \or Février%
+  \or Mars%
+  \or Avril%
+  \or Mai%
+  \or Juin%
+  \or Juillet%
+  \or Août%
+  \or Septembre%
+  \or Octobre%
+  \or Novembre%
+  \or Décembre%
+  \fi
+}
 
 %======================================================
 % CADRES
