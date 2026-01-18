@@ -1,0 +1,62 @@
+{
+    "predictions": [
+        {
+            "filepath": "resized.jpg",
+            "classifications": {
+                "classes": [
+                    "696f42f4-7eb9-491c-a1fe-b1d5c78ebcba;mammalia;carnivora;mustelidae;mustela;erminea;stoat",
+                    "37b83705-ecdf-406d-923a-12a736fd56f3;mammalia;carnivora;herpestidae;ichneumia;albicauda;white-tailed mongoose",
+                    "80d82668-81f1-4ffe-96a5-2325ce78ecf1;mammalia;carnivora;mustelidae;;;weasel family",
+                    "32c0147f-1967-4644-b107-8133ae1f020a;mammalia;rodentia;cuniculidae;cuniculus;paca;spotted paca",
+                    "f2d233e3-80e3-433d-9687-e29ecc7a467a;mammalia;;;;;mammal"
+                ],
+                "scores": [
+                    0.13247689604759216,
+                    0.07484269887208939,
+                    0.05531499907374382,
+                    0.05447879433631897,
+                    0.048669639974832535
+                ]
+            },
+            "detections": [
+                {
+                    "category": "1",
+                    "label": "animal",
+                    "conf": 0.830734133720398,
+                    "bbox": [
+                        0.5197740197181702,
+                        0.3699999749660492,
+                        0.4689265489578247,
+                        0.4300000071525574
+                    ]
+                },
+                {
+                    "category": "2",
+                    "label": "human",
+                    "conf": 0.024008385837078094,
+                    "bbox": [
+                        0.0,
+                        0.0,
+                        0.06214689090847969,
+                        0.9800000190734863
+                    ]
+                },
+                {
+                    "category": "1",
+                    "label": "animal",
+                    "conf": 0.018153037875890732,
+                    "bbox": [
+                        0.0,
+                        0.0,
+                        0.06214689090847969,
+                        0.9700000286102295
+                    ]
+                }
+            ],
+            "prediction": "1f689929-883d-4dae-958c-3d57ab5b6c16;;;;;;animal",
+            "prediction_score": 0.830734133720398,
+            "prediction_source": "detector",
+            "model_version": "4.0.1a"
+        }
+    ]
+}

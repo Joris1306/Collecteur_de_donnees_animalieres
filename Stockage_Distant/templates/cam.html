@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Camera List</title>
+
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <div class="topbar">
+    <div class="title">
+      <h1>Registered Cameras</h1>
+      <div class="subtitle">
+        Wildlife Monitoring System — Active camera overview
+      </div>
+    </div>
+
+    <div class="actions">
+      <button onclick="history.back()" class="btn">Back to Images</button>
+      <button class="btn" id="btnToggle">Toggle Layout</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    {% for cam in cam_list %}
+      <article onclick="window.location.href='/battery/{{ cam.id }}/graph'" class="card">
+        <div class="content">
+          <div class="row">
+            <div class="badge">ID {{ cam.id }}</div>
+            <div class="pill">{{ cam.battery }}</div>
+          </div>
+
+          <div class="meta">
+            <div class="kv">
+              <div class="k">Name</div>
+              <div class="v">{{ cam.name }}</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">Location</div>
+              <div class="v">{{ cam.location }}</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

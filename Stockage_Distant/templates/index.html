@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latest Images</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <div class="topbar">
+    <div class="title">
+      <h1>Last {{ images|length }} Uploaded Images</h1>
+      <div class="subtitle">
+        Automatic Wildlife Monitoring System —
+        Camera-triggered images and environmental data
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick=window.location.reload() id="btnRefresh">Refresh</button>
+      <button class="btn" id="btnToggle">Toggle Layout</button>
+      <button class="btn" onclick="window.location.href='{{ url_for('map') }}'">Go to Map</button>
+      <button class="btn" onclick="window.location.href='{{ url_for('cam') }}'">Go to Cam</button>
+
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    {% for img in images %}
+      <article class="card">
+        <div class="thumb">
+          <img src="{{ url_for('static', filename=img['IMAGE_REPERTOIRE']) }}"
+               alt="Image {{ img['ID'] }}"
+               onclick="openLightbox('{{ url_for('static', filename=img['IMAGE_REPERTOIRE']) }}')">
+        </div>
+
+        <div class="content">
+          <div class="badge">ID {{ img['ID'] }}</div>
+
+          <div class="meta">
+            <div>
+              <div class="k">Temperature</div>
+              <div class="v">{{ "%.2f"|format(img['TEMPERATURE']) }} °C</div>
+            </div>
+
+            <div>
+              <div class="k">Humidity</div>
+              <div class="v">{{ img['HUMIDITE'] }}%</div>
+            </div>
+
+            <div style="grid-column:1/-1">
+              <div class="k">Date</div>
+              <div class="v">{{ img['DATE_SERVER'] }}</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img class="lightbox-img" id="lightboxImg">
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-left">
+            <strong>Camera Map</strong>
+            <span class="footer-muted">Live monitoring dashboard</span>
+        </div>
+
+        <div class="footer-center">
+            <span>© 2026 Polytech Nantes</span>
+        </div>
+
+        <div class="footer-right">
+            <a href="https://www.ouest-france.fr/pays-de-la-loire/saint-mars-du-desert-44850/un-projet-dappareil-automatise-pour-observer-la-faune-locale-dd8abcb1-8243-47c1-9907-adea759f5bd5" target="_blank" class="footer-link">Article</a>
+        </div>
+    </div>
+</footer>
+
+</html>

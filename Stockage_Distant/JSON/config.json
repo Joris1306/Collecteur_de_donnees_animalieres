@@ -1,0 +1,18 @@
+{
+    "IMG":"clé image",
+    "IMG.TYPE":"type image",
+    "IMG.WIDTH":"largeur image",
+    "IMG.HEIGHT":"hauteur image",
+    "WHEATER.TEMP":"temperature",
+    "WHEATER.HUM":"humidité",
+    "GPS.LONG":"longitude",
+    "GPS.LAT":"lattitude",
+    "DATE.YEAR":"annee",
+    "DATE.MONTH":"mois",
+    "DATE.DAY":"jours",
+    "DATE.HOUR":"heures",
+    "DATE.MINUTE":"minutes",
+    "DATE.SECOND":"secondes",
+    "CAM.BATTERY":"niveau batterie",
+    "CAM.ID":"identifiant de camera"
+}

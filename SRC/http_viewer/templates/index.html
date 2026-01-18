@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latest Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            border: 1px solid #ccc;
+            margin: 15px;
+            padding: 10px;
+            width: 300px;
+        }
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Last 5 Uploaded Images</h1>
+
+{% for img in images %}
+<div class="card">
+    <img src="{{ url_for('static', filename='images/' + img['filename']) }}">
+    <p><strong>ID:</strong> {{ img['id'] }}</p>
+    <p><strong>Description:</strong> {{ img['description'] }}</p>
+    <p><strong>Uploaded:</strong> {{ img['created_at'] }}</p>
+</div>
+{% endfor %}
+
+</body>
+</html>

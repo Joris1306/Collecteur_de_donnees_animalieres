@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Battery History</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Chart.js + time adapter -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1"></script>
+</head>
+<body>
+
+<div class="container">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="title">
+      <h1>Battery Level — Camera {{ cam_id }}</h1>
+      <div class="subtitle">
+        Battery evolution over time
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick="window.history.back()">⬅ Back</button>
+      <button class="btn" onclick="window.location.reload()">Refresh</button>
+      <button class="btn" onclick="window.location.href='{{ url_for('image', cam_id=cam_id) }}'">Go to Image</button>
+    </div>
+  </div>
+
+  <!-- Card container -->
+  <article class="card">
+    <div class="content">
+      <canvas id="batteryGraph" height="120"></canvas>
+    </div>
+  </article>
+</div>
+
+<script>
+fetch('/battery/{{ cam_id }}/data')
+  .then(res => res.json())
+  .then(data => {
+
+    const labels = data.map(d => d.UPDATE_DATE);
+    const values = data.map(d => d.BATTERY);
+
+    const ctx = document.getElementById('batteryGraph').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Battery (%)',
+          data: values,
+          fill: true,
+          tension: 0.25
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: 'rgba(255,255,255,.85)'
+            }
+          }
+        },
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              tooltipFormat: 'yyyy-MM-dd HH:mm:ss',
+              displayFormats: {
+                hour: 'HH:mm',
+                day: 'MMM dd'
+              }
+            },
+            ticks: {
+              color: 'rgba(255,255,255,.6)'
+            },
+            grid: {
+              color: 'rgba(255,255,255,.05)'
+            }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: 'rgba(255,255,255,.6)',
+              callback: v => v + '%'
+            },
+            grid: {
+              color: 'rgba(255,255,255,.05)'
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

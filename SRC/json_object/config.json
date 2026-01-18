@@ -1,0 +1,14 @@
+{
+    "IMG":"buffer image",
+    "WHEATER.TEMP":"temperature",
+    "WHEATER.PRESS":"pression",
+    "GPS.LONG":"longitude",
+    "GPS.LAT":"lattitude",
+    "DATE.YEAR":"annee",
+    "DATE.MONTH":"mois",
+    "DATE.DAY":"jours",
+    "DATE.HOUR":"heures",
+    "DATE.MINUTE":"minutes",
+    "DATE.SECOND":"secondes",
+    "CAM.BATTERY":"niveau batterie"
+}

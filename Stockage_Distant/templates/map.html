@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ca7ac683922b657858ff6fda0f197401 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ca7ac683922b657858ff6fda0f197401" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ca7ac683922b657858ff6fda0f197401 = L.map(
+                "map_ca7ac683922b657858ff6fda0f197401",
+                {
+                    center: [47.368, -1.386],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_74163f84d7875aaa5600dc8727d07576 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_74163f84d7875aaa5600dc8727d07576.addTo(map_ca7ac683922b657858ff6fda0f197401);
+        
+    
+            var marker_72b3c65bf441c2629a28f0c5bd49e2ce = L.marker(
+                [-1.515095, 47.281297],
+                {
+}
+            ).addTo(map_ca7ac683922b657858ff6fda0f197401);
+        
+    
+        var popup_c1331dcfc6bc8bc6fbe398bdfd768931 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4ac1f2170fd6f6475304c57e1016bdde = $(`<div id="html_4ac1f2170fd6f6475304c57e1016bdde" style="width: 100.0%; height: 100.0%;">             <h3>Camera 0</h3>             <a href="#" onclick="window.top.location.href='/battery/0/graph'; return false;">                 Open Battery             </a>             <a href="#" onclick="window.top.location.href='/image/0'; return false;">                 Open Image             </a>             </div>`)[0];
+                popup_c1331dcfc6bc8bc6fbe398bdfd768931.setContent(html_4ac1f2170fd6f6475304c57e1016bdde);
+            
+        
+
+        marker_72b3c65bf441c2629a28f0c5bd49e2ce.bindPopup(popup_c1331dcfc6bc8bc6fbe398bdfd768931)
+        ;
+
+        
+    
+    
+            var marker_2bf0ddbed622a673d2e3946b95d25140 = L.marker(
+                [47.282266, -1.516736],
+                {
+}
+            ).addTo(map_ca7ac683922b657858ff6fda0f197401);
+        
+    
+        var popup_2936b9994cfc03ad068bac6cc40d2044 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d79d8786f239a3156d9696159bc25b79 = $(`<div id="html_d79d8786f239a3156d9696159bc25b79" style="width: 100.0%; height: 100.0%;">             <h3>Camera 1</h3>             <a href="#" onclick="window.top.location.href='/battery/1/graph'; return false;">                 Open Battery             </a>             <a href="#" onclick="window.top.location.href='/image/1'; return false;">                 Open Image             </a>             </div>`)[0];
+                popup_2936b9994cfc03ad068bac6cc40d2044.setContent(html_d79d8786f239a3156d9696159bc25b79);
+            
+        
+
+        marker_2bf0ddbed622a673d2e3946b95d25140.bindPopup(popup_2936b9994cfc03ad068bac6cc40d2044)
+        ;
+
+        
+    
+    
+            var marker_8c6aeadac702145fd4f226efe61ad93e = L.marker(
+                [-1.515095, 47.281297],
+                {
+}
+            ).addTo(map_ca7ac683922b657858ff6fda0f197401);
+        
+    
+        var popup_266e422219ecc12ff51505de06f923c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4e8df8f9ed27a292c3e135f1d4697954 = $(`<div id="html_4e8df8f9ed27a292c3e135f1d4697954" style="width: 100.0%; height: 100.0%;">             <h3>Camera 2</h3>             <a href="#" onclick="window.top.location.href='/battery/2/graph'; return false;">                 Open Battery             </a>             <a href="#" onclick="window.top.location.href='/image/2'; return false;">                 Open Image             </a>             </div>`)[0];
+                popup_266e422219ecc12ff51505de06f923c6.setContent(html_4e8df8f9ed27a292c3e135f1d4697954);
+            
+        
+
+        marker_8c6aeadac702145fd4f226efe61ad93e.bindPopup(popup_266e422219ecc12ff51505de06f923c6)
+        ;
+
+        
+    
+</script>
+</html>
