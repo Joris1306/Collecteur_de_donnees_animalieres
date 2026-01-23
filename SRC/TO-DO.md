@@ -2,7 +2,7 @@
 
 ## sql_db
 
-- [ ] fonction de suppression image
+- [x] fonction de suppression image
 - [ ] fonction de drop table
 - [ ] pile de données ambigües (pile étant la table principale, ambigüe noté d'un champ 'flag')
 
@@ -13,10 +13,9 @@
 
 ## Webserver
 
-- [ ] fonction export sous forme tabulaire (excel)
-- [ ] ajouter une interface de login avant de visionner les données
-- [ ] fonction de suppressio d'image (lié à sql_db)
-- [ ] fonction de trie (sélection par date)
-- [ ] menu de suppression
+- [ ] bouton export sous forme tabulaire (excel)
+- [x] ajouter une interface de login avant de visionner les données
+- [ ] bouton de suppression d'image (lié à sql_db)
+- [ ] bouton de trie (sélection par date)
 - [ ] page des images suspect (<=> ambigüe)
 
