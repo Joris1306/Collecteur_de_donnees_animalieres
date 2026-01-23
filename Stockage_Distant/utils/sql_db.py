@@ -148,7 +148,7 @@ class sql_db:
                     data.get('GPS.LONG'), 
                     data.get('WHEATER.TEMP'), 
                     data.get('WHEATER.HUM'), 
-                    sql_db.path_from_buffer(data), 
+                    data.get('IMAGE_REPERTOIRE'), 
                     data.get('CAM.BATTERY'),
                     data.get('CAM.ID')
                 )
@@ -178,3 +178,50 @@ class sql_db:
             conn.commit()
             conn.close()
 
+    @staticmethod
+    def remove_img(img_id:str):
+        try:
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
+            cam_id = None
+            img_path = None
+            cursor.execute(f"""
+            SELECT * FROM {sql_db.MAIN_TABLE} WHERE ID=
+            ?""", (img_id,))
+            row = cursor.fetchone()
+            if row:
+                cam_id = row["CAMERA_ID"]
+                img_path = row["IMAGE_REPERTOIRE"]
+            else:
+                logging.error(f"Image with ID {img_id} not found.")
+                return
+            cursor.execute(f"""
+            DELETE FROM {sql_db.MAIN_TABLE} WHERE ID=?
+            """, (img_id,))
+            # if cam_id:
+            #     cursor.execute(f"""
+            #     DELETE FROM {sql_db.CAM_TABLE} WHERE CAM_ID=?
+            #     """, (cam_id,))
+            # also remove the image file from the filesystem
+            full_path = os.path.join(IMAGE_PATH, os.path.basename(img_path))
+            if os.path.exists(full_path):
+                os.remove(full_path)
+
+        except Exception as e:
+            logging.error(f"Error in remove_img : {e}")
+        finally:
+            conn.commit()
+            conn.close()
+
+
+def main():
+    sql_db.create_main_table()
+    sql_db.create_stat_table()
+    sql_db.create_camera_table()
+
+    sql_db.remove_img("396")
+
+
+
+if __name__ == "__main__":
+    main()

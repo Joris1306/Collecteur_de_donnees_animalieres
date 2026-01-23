@@ -111,6 +111,13 @@ class data_receiver:
                     
                     # store parsed metadata in the class-level data holder
                     data_receiver.data = metadata
+                    metadata['IMAGE_REPERTOIRE'] = sql_db.path_from_buffer(metadata)
+
+                    # 
+                    # AI_CLASSIFICATION
+                    # chemin de l'image reçu : metadata['IMAGE_REPERTOIRE']
+                    # défintion de l'état ('ETAT')
+                    #
 
                     sql_db.insert_img(metadata)
 
@@ -135,3 +142,4 @@ class data_receiver:
             finally:
                 logging.info("task done")
                 data_receiver._io_queue.task_done()
+

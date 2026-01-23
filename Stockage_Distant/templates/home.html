@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Data Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .home-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+            backdrop-filter: blur(6px);
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: var(--text);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-user {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .navbar-user strong {
+            color: var(--text);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 12px 0;
+            background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,255,255,.75));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .page-card {
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .page-card:hover {
+            border-color: rgba(255,255,255,.2);
+            background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,.3);
+        }
+
+        .page-card:hover::before {
+            opacity: 1;
+        }
+
+        .page-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .page-description {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .page-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: rgba(100, 200, 255, 0.8);
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .page-link:hover {
+            color: rgba(100, 200, 255, 1);
+        }
+
+        .page-card:hover .page-link {
+            gap: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .navbar-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="home-wrapper">
+    <!-- Navbar with Logout -->
+    <nav class="navbar">
+        <h2>Data Monitoring System</h2>
+        <div class="navbar-actions">
+            <span class="navbar-user">
+                Logged in as: <strong>{{ session.get('user', 'Unknown') }}</strong>
+            </span>
+            <a href="{{ url_for('logout') }}" style="padding:10px 16px; background:linear-gradient(180deg, var(--panel2), var(--panel)); color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.2s ease;">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="hero">
+                <h1>Welcome to Your Monitoring Dashboard</h1>
+                <p>Select a section below to navigate through your system</p>
+            </div>
+
+            <div class="pages-grid">
+                <!-- Images Page -->
+                <a href="{{ url_for('index') }}" class="page-card">
+                    <div class="page-icon">🖼️</div>
+                    <h3 class="page-title">Latest Images</h3>
+                    <p class="page-description">View and manage the most recent uploaded images from your monitoring system</p>
+                    <span class="page-link">View Images →</span>
+                </a>
+
+                <!-- Map Page -->
+                <a href="{{ url_for('map') }}" class="page-card">
+                    <div class="page-icon">🗺️</div>
+                    <h3 class="page-title">Map View</h3>
+                    <p class="page-description">Explore your monitoring locations on an interactive map</p>
+                    <span class="page-link">Open Map →</span>
+                </a>
+
+                <!-- Camera Page -->
+                <a href="{{ url_for('cam') }}" class="page-card">
+                    <div class="page-icon">📷</div>
+                    <h3 class="page-title">Camera Management</h3>
+                    <p class="page-description">Access and manage your camera devices and their settings</p>
+                    <span class="page-link">Manage Cameras →</span>
+                </a>
+
+                <!-- Battery Graph Page -->
+                <a href="{{ url_for('battery_graph', cam_id=1) }}" class="page-card">
+                    <div class="page-icon">🔋</div>
+                    <h3 class="page-title">Battery Status</h3>
+                    <p class="page-description">Monitor battery levels and performance metrics for your devices</p>
+                    <span class="page-link">View Battery →</span>
+                </a>
+
+                <!-- Hidden Images Page -->
+                <a href="{{ url_for('index_hidden') }}" class="page-card">
+                    <div class="page-icon">🗄️</div>
+                    <h3 class="page-title">Hidden Images</h3>
+                    <p class="page-description">Access images that have been marked as hidden from the main feed</p>
+                    <span class="page-link">View Hidden →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Data Monitoring System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

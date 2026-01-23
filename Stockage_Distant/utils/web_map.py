@@ -53,3 +53,16 @@ class web_map:
     @staticmethod
     def save_map():
         web_map.map_world.save(os.path.join(BASE_PATH, "templates", "map.html"))
+
+
+# Module-level wrappers for convenient imports
+def init_cam_list(cam_list: dict[str, list[float]]):
+    return web_map.init_cam_list(cam_list)
+
+
+def open_map():
+    return web_map.open_map()
+
+
+def save_map():
+    return web_map.save_map()

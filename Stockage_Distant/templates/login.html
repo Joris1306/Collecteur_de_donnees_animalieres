@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Data Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+        }
+
+        .login-card h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text);
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.06);
+            color: var(--text);
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus {
+            outline: none;
+            border-color: rgba(255,255,255,.2);
+            background: rgba(255,255,255,.1);
+            box-shadow: 0 0 0 3px rgba(255,255,255,.08);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .login-button:hover {
+            background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .message-box {
+            margin-bottom: 20px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .error {
+            background: rgba(255,0,0,.1);
+            color: rgba(255,100,100,.9);
+            border-color: rgba(255,0,0,.2);
+        }
+
+        .success {
+            background: rgba(0,255,150,.1);
+            color: rgba(100,255,180,.9);
+            border-color: rgba(0,255,150,.2);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .login-footer p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--text);
+        }
+
+        .form-group input[type="password"],
+        .form-group input[type="text"].password-input {
+            padding-right: 45px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 30px 20px;
+            }
+
+            .login-card h1 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1>Data Monitoring System</h1>
+            
+            {% if error %}
+                <div class="message-box error">{{ error }}</div>
+            {% endif %}
+            
+            {% if message %}
+                <div class="message-box success">{{ message }}</div>
+            {% endif %}
+            
+            <form method="POST" action="{{ url_for('login_page') }}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autofocus placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required placeholder="Enter your password" class="password-input">
+                        <button type="button" class="password-toggle" id="togglePassword" onclick="togglePasswordVisibility()">
+                            <span id="passwordIcon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Secure access to data monitoring system</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.getElementById('passwordIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.textContent = '👁️‍🗨️';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.textContent = '👁️';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+caractere spécial dans le nom des images : static/changement_nom.py

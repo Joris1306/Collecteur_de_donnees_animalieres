@@ -1,5 +1,5 @@
 import queue
-from flask import jsonify, render_template, Response, request
+from flask import jsonify, render_template, Response, request, redirect, url_for, session
 import sqlite3
 import datetime
 import json
@@ -8,6 +8,7 @@ from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
 from utlitaires import app, logging, get_properties
+from auth import login_required, verify_password, is_logged_in, block_user, unblock_user, is_user_blocked
 
 
 class webserver:
@@ -17,7 +18,43 @@ class webserver:
         sql_db.create_main_table()
         sql_db.create_camera_table()
 
+    # ====== LOGIN ROUTES ======
+    @app.route("/login", methods=['GET', 'POST'])
+    def login_page():
+        """Handle login page and authentication"""
+        if request.method == 'POST':
+            username = request.form.get('username', '').strip()
+            password = request.form.get('password', '')
+            
+            if verify_password(username, password):
+                session['user'] = username
+                logging.info(f"User '{username}' logged in successfully")
+                next_page = request.args.get('next')
+                # Validate next_page to prevent open redirect
+                if next_page and next_page.startswith('/'):
+                    return redirect(next_page)
+                return redirect(url_for('index'))
+            else:
+                logging.warning(f"Failed login attempt for user '{username}'")
+                return render_template('login.html', error='Invalid username or password'), 401
+        
+        if is_logged_in():
+            return redirect(url_for('index'))
+        
+        return render_template('login.html')
+    
+    @app.route("/logout")
+    def logout():
+        """Handle user logout"""
+        if 'user' in session:
+            username = session['user']
+            logging.info(f"User '{username}' logged out")
+        session.clear()
+        return redirect(url_for('login_page'))
+
+    # ====== PROTECTED PAGE ROUTES ======
     @app.route("/events")
+    @login_required
     def events():
         """Server-Sent Events endpoint for real-time updates"""
         def event_stream():
@@ -46,6 +83,12 @@ class webserver:
         return Response(event_stream(), mimetype="text/event-stream")
 
     @app.route("/")
+    @login_required
+    def home():
+        return render_template("home.html")
+
+    @app.route("/main")
+    @login_required
     def index():
         try:
             # Ensure DB tables exist before querying
@@ -56,8 +99,8 @@ class webserver:
 
             cursor.execute(f"""
                 SELECT * FROM {sql_db.MAIN_TABLE}
-                ORDER BY DATE_SERVER DESC
-                LIMIT 9
+                WHERE ETAT=0
+                ORDER BY DATE_SERVER DESC;
             """)
             rows = cursor.fetchall()
             conn.close()
@@ -88,7 +131,52 @@ class webserver:
             logging.error(e)
             return render_template("index.html", images=[])
     
+    @app.route("/main/hidden")
+    @login_required
+    def index_hidden():
+        try:
+            # Ensure DB tables exist before querying
+            webserver.init_sql_table()
+
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
+
+            cursor.execute(f"""
+                SELECT * FROM {sql_db.MAIN_TABLE}
+                WHERE ETAT<>0
+                ORDER BY DATE_SERVER DESC;
+            """)
+            rows = cursor.fetchall()
+            conn.close()
+            # logging.info(f"Fetched {len(rows)} hidden images")
+            # Convert sqlite3.Row objects to plain dicts and normalize types
+            images = []
+            for r in rows:
+                d = dict(r)
+                # Ensure numeric types for temperature and humidity
+                try:
+                    d['TEMPERATURE'] = float(d.get('TEMPERATURE')) if d.get('TEMPERATURE') is not None else None
+                except Exception:
+                    d['TEMPERATURE'] = None
+
+                try:
+                    d['HUMIDITE'] = float(d.get('HUMIDITE')) if d.get('HUMIDITE') is not None else None
+                except Exception:
+                    d['HUMIDITE'] = None
+
+                images.append(d)
+
+            # images.reverse()
+            return render_template("index.html", images=images)
+        except sqlite3.OperationalError as e:
+            logging.error(f"sqlite3.OperationalError : {e}")
+            return render_template("index.html", images=[])
+        except Exception as e:
+            logging.error(e)
+            return render_template("index.html", images=[])
+
     @app.route("/image/<int:cam_id>")
+    @login_required
     def image(cam_id):
         try:
             # Ensure DB tables exist before querying
@@ -134,10 +222,12 @@ class webserver:
             return render_template("index.html", images=[])
 
     @app.route("/map/submap")
+    @login_required
     def submap():
         return render_template("map.html")
     
     @app.route("/map")
+    @login_required
     def map():
         try:
             # Ensure DB tables exist before querying
@@ -171,6 +261,7 @@ class webserver:
             return render_template("error.html")
 
     @app.route("/cam")
+    @login_required
     def cam():
         webserver.init_sql_table()
         conn = sql_db.get_db()
@@ -216,10 +307,12 @@ class webserver:
         return battery_data
 
     @app.route('/battery/<int:cam_id>/graph')
+    @login_required
     def battery_graph(cam_id):
         return render_template('battery_graph.html', cam_id=cam_id)
 
     @app.route('/battery/<int:cam_id>/data')
+    @login_required
     def battery_data(cam_id):
         battery_data = webserver.get_battery_data(cam_id)
 
@@ -232,6 +325,61 @@ class webserver:
             }
             for entry in battery_data
         ])
+    
+    # ====== ADMIN ROUTES FOR FORCE LOGOUT ======
+    @app.route("/admin/block-user/<username>", methods=['POST'])
+    @login_required
+    def admin_block_user(username):
+        """Admin: Block a user (force logout)"""
+        current_user = session.get('user')
+        
+        # Only admin can block users
+        if current_user != 'admin':
+            logging.warning(f"Unauthorized block attempt by '{current_user}' on user '{username}'")
+            return jsonify({'error': 'Unauthorized'}), 403
+        
+        # Cannot block yourself
+        if username == current_user:
+            return jsonify({'error': 'Cannot block yourself'}), 400
+        
+        if block_user(username):
+            logging.critical(f"Admin '{current_user}' blocked user '{username}'")
+            return jsonify({'status': 'success', 'message': f'User {username} has been blocked'}), 200
+        else:
+            return jsonify({'error': f'User {username} not found'}), 404
+
+    @app.route("/admin/unblock-user/<username>", methods=['POST'])
+    @login_required
+    def admin_unblock_user(username):
+        """Admin: Unblock a user"""
+        current_user = session.get('user')
+        
+        if current_user != 'admin':
+            logging.warning(f"Unauthorized unblock attempt by '{current_user}' on user '{username}'")
+            return jsonify({'error': 'Unauthorized'}), 403
+        
+        if unblock_user(username):
+            logging.info(f"Admin '{current_user}' unblocked user '{username}'")
+            return jsonify({'status': 'success', 'message': f'User {username} has been unblocked'}), 200
+        else:
+            return jsonify({'error': f'User {username} not found'}), 404
+
+    @app.route("/admin/user-status/<username>", methods=['GET'])
+    @login_required
+    def admin_user_status(username):
+        """Admin: Check user status"""
+        current_user = session.get('user')
+        
+        if current_user != 'admin':
+            logging.warning(f"Unauthorized status check attempt by '{current_user}' on user '{username}'")
+            return jsonify({'error': 'Unauthorized'}), 403
+        
+        is_blocked = is_user_blocked(username)
+        return jsonify({
+            'username': username,
+            'blocked': is_blocked,
+            'status': 'blocked' if is_blocked else 'active'
+        }), 200
     
     # Data reception routes
     properties = get_properties()

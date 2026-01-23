@@ -1,0 +1,2 @@
+path service = /etc/systemd/system/app.service
+log = journalctl -u app.service (-f)
