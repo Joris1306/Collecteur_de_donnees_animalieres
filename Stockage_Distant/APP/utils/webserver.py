@@ -87,149 +87,147 @@ class webserver:
     def home():
         return render_template("home.html")
 
-    @app.route("/main")
-@login_required
-def index():
-    try:
-        webserver.init_sql_table()
-
-        # --- filters from query string ---
-        date_from = request.args.get("from", "")      # YYYY-MM-DD
-        date_to   = request.args.get("to", "")        # YYYY-MM-DD
-        sort      = request.args.get("sort", "desc")  # asc / desc
-        cam_id    = request.args.get("cam_id", "")    # optional
-
-        order = "DESC" if sort != "asc" else "ASC"
-
-        where = ["ETAT = 0"]
-        params = []
-
-        if cam_id:
-            where.append("CAMERA_ID = ?")
-            params.append(int(cam_id))
-
-        if date_from:
-            where.append("date(DATE_SERVER) >= date(?)")
-            params.append(date_from)
-
-        if date_to:
-            where.append("date(DATE_SERVER) <= date(?)")
-            params.append(date_to)
-
-        where_sql = " AND ".join(where)
-
-        conn = sql_db.get_db()
-        cursor = conn.cursor()
-
-        cursor.execute(f"""
-            SELECT * FROM {sql_db.MAIN_TABLE}
-            WHERE {where_sql}
-            ORDER BY DATE_SERVER {order};
-        """, params)
-
-        rows = cursor.fetchall()
-        conn.close()
-
-        images = []
-        for r in rows:
-            d = dict(r)
-            try:
-                d['TEMPERATURE'] = float(d.get('TEMPERATURE')) if d.get('TEMPERATURE') is not None else None
-            except Exception:
-                d['TEMPERATURE'] = None
-            try:
-                d['HUMIDITE'] = float(d.get('HUMIDITE')) if d.get('HUMIDITE') is not None else None
-            except Exception:
-                d['HUMIDITE'] = None
-            images.append(d)
-
-        return render_template(
-            "index.html",
-            images=images,
-            date_from=date_from,
-            date_to=date_to,
-            sort=sort,
-            cam_id=cam_id
-        )
-
-    except sqlite3.OperationalError as e:
-        logging.error(f"sqlite3.OperationalError : {e}")
-        return render_template("index.html", images=[])
-    except Exception as e:
-        logging.error(e)
-        return render_template("index.html", images=[])
-
     
- @app.route("/main/hidden")
-@login_required
-def index_hidden():
-    try:
-        webserver.init_sql_table()
+    @app.route("/main")
+    @login_required
+    def index():
+        try:
+            webserver.init_sql_table()
 
-        date_from = request.args.get("from", "")
-        date_to   = request.args.get("to", "")
-        sort      = request.args.get("sort", "desc")
-        cam_id    = request.args.get("cam_id", "")
+            date_from = request.args.get("from", "")
+            date_to   = request.args.get("to", "")
+            sort      = request.args.get("sort", "desc")
+            cam_id    = request.args.get("cam_id", "")
 
-        order = "DESC" if sort != "asc" else "ASC"
+            order = "DESC" if sort != "asc" else "ASC"
 
-        where = ["ETAT <> 0"]
-        params = []
+            where = ["ETAT = 0"]
+            params = []
 
-        if cam_id:
-            where.append("CAMERA_ID = ?")
-            params.append(int(cam_id))
+            if cam_id:
+                where.append("CAMERA_ID = ?")
+                params.append(int(cam_id))
 
-        if date_from:
-            where.append("date(DATE_SERVER) >= date(?)")
-            params.append(date_from)
+            if date_from:
+                where.append("date(DATE_SERVER) >= date(?)")
+                params.append(date_from)
 
-        if date_to:
-            where.append("date(DATE_SERVER) <= date(?)")
-            params.append(date_to)
+            if date_to:
+                where.append("date(DATE_SERVER) <= date(?)")
+                params.append(date_to)
 
-        where_sql = " AND ".join(where)
+            where_sql = " AND ".join(where)
 
-        conn = sql_db.get_db()
-        cursor = conn.cursor()
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
+            cursor.execute(f"""
+                SELECT * FROM {sql_db.MAIN_TABLE}
+                WHERE {where_sql}
+                ORDER BY DATE_SERVER {order};
+            """, params)
 
-        cursor.execute(f"""
-            SELECT * FROM {sql_db.MAIN_TABLE}
-            WHERE {where_sql}
-            ORDER BY DATE_SERVER {order};
-        """, params)
+            rows = cursor.fetchall()
+            conn.close()
 
-        rows = cursor.fetchall()
-        conn.close()
+            images = []
+            for r in rows:
+                d = dict(r)
+                try:
+                    d['TEMPERATURE'] = float(d.get('TEMPERATURE')) if d.get('TEMPERATURE') is not None else None
+                except Exception:
+                    d['TEMPERATURE'] = None
+                try:
+                    d['HUMIDITE'] = float(d.get('HUMIDITE')) if d.get('HUMIDITE') is not None else None
+                except Exception:
+                    d['HUMIDITE'] = None
+                images.append(d)
 
-        images = []
-        for r in rows:
-            d = dict(r)
-            try:
-                d['TEMPERATURE'] = float(d.get('TEMPERATURE')) if d.get('TEMPERATURE') is not None else None
-            except Exception:
-                d['TEMPERATURE'] = None
-            try:
-                d['HUMIDITE'] = float(d.get('HUMIDITE')) if d.get('HUMIDITE') is not None else None
-            except Exception:
-                d['HUMIDITE'] = None
-            images.append(d)
+            return render_template(
+                "index.html",
+                images=images,
+                date_from=date_from,
+                date_to=date_to,
+                sort=sort,
+                cam_id=cam_id
+            )
 
-        return render_template(
-            "index.html",
-            images=images,
-            date_from=date_from,
-            date_to=date_to,
-            sort=sort,
-            cam_id=cam_id
-        )
+        except sqlite3.OperationalError as e:
+            logging.error(f"sqlite3.OperationalError : {e}")
+            return render_template("index.html", images=[])
+        except Exception as e:
+            logging.error(e)
+            return render_template("index.html", images=[])
 
-    except sqlite3.OperationalError as e:
-        logging.error(f"sqlite3.OperationalError : {e}")
-        return render_template("index.html", images=[])
-    except Exception as e:
-        logging.error(e)
-        return render_template("index.html", images=[])
+
+    @app.route("/main/hidden")
+    @login_required
+    def index_hidden():
+        try:
+            webserver.init_sql_table()
+
+            date_from = request.args.get("from", "")
+            date_to   = request.args.get("to", "")
+            sort      = request.args.get("sort", "desc")
+            cam_id    = request.args.get("cam_id", "")
+
+            order = "DESC" if sort != "asc" else "ASC"
+
+            where = ["ETAT <> 0"]
+            params = []
+
+            if cam_id:
+                where.append("CAMERA_ID = ?")
+                params.append(int(cam_id))
+
+            if date_from:
+                where.append("date(DATE_SERVER) >= date(?)")
+                params.append(date_from)
+
+            if date_to:
+                where.append("date(DATE_SERVER) <= date(?)")
+                params.append(date_to)
+
+            where_sql = " AND ".join(where)
+
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
+            cursor.execute(f"""
+                SELECT * FROM {sql_db.MAIN_TABLE}
+                WHERE {where_sql}
+                ORDER BY DATE_SERVER {order};
+            """, params)
+
+            rows = cursor.fetchall()
+            conn.close()
+
+            images = []
+            for r in rows:
+                d = dict(r)
+                try:
+                    d['TEMPERATURE'] = float(d.get('TEMPERATURE')) if d.get('TEMPERATURE') is not None else None
+                except Exception:
+                    d['TEMPERATURE'] = None
+                try:
+                    d['HUMIDITE'] = float(d.get('HUMIDITE')) if d.get('HUMIDITE') is not None else None
+                except Exception:
+                    d['HUMIDITE'] = None
+                images.append(d)
+
+            return render_template(
+                "index.html",
+                images=images,
+                date_from=date_from,
+                date_to=date_to,
+                sort=sort,
+                cam_id=cam_id
+            )
+
+        except sqlite3.OperationalError as e:
+            logging.error(f"sqlite3.OperationalError : {e}")
+            return render_template("index.html", images=[])
+        except Exception as e:
+            logging.error(e)
+            return render_template("index.html", images=[])
 
 
     @app.route("/image/<int:cam_id>")
