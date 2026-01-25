@@ -123,7 +123,15 @@ class webserver:
                 images.append(d)
 
             # images.reverse()
-            return render_template("index.html", images=images)
+            return render_template(
+            "index.html",
+            images=images,
+            date_from=date_from,
+            date_to=date_to,
+            sort=sort,
+            cam_id=cam_id
+            )
+
         except sqlite3.OperationalError as e:
             logging.error(f"sqlite3.OperationalError : {e}")
             return render_template("index.html", images=[])
