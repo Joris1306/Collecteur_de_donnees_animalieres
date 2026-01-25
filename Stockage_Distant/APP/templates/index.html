@@ -36,7 +36,37 @@
     </div>
   </div>
 
+  <!-- Filters -->
+  <form method="get" style="margin:12px 0 18px; display:flex; gap:12px; flex-wrap:wrap; align-items:end;">
+    <label style="display:flex; flex-direction:column; gap:6px;">
+      Camera ID
+      <input type="number" name="cam_id" min="1" value="{{ cam_id|default('') }}" placeholder="e.g. 1">
+    </label>
+
+    <label style="display:flex; flex-direction:column; gap:6px;">
+      From
+      <input type="date" name="from" value="{{ date_from|default('') }}">
+    </label>
+
+    <label style="display:flex; flex-direction:column; gap:6px;">
+      To
+      <input type="date" name="to" value="{{ date_to|default('') }}">
+    </label>
+
+    <label style="display:flex; flex-direction:column; gap:6px;">
+      Sort
+      <select name="sort">
+        <option value="desc" {% if sort|default('desc') == 'desc' %}selected{% endif %}>Newest</option>
+        <option value="asc"  {% if sort|default('desc') == 'asc' %}selected{% endif %}>Oldest</option>
+      </select>
+    </label>
+
+    <button class="btn" type="submit">Apply</button>
+    <a class="btn" href="{{ url_for('index') }}">Reset</a>
+  </form>
+
   <div class="grid" id="grid">
+
     {% for img in images %}
       <article class="card">
         <div class="thumb">
