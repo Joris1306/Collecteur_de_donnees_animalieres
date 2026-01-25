@@ -141,11 +141,39 @@ class webserver:
             conn = sql_db.get_db()
             cursor = conn.cursor()
 
-            cursor.execute(f"""
-                SELECT * FROM {sql_db.MAIN_TABLE}
-                WHERE ETAT<>0
-                ORDER BY DATE_SERVER DESC;
-            """)
+# --- filters from query string ---
+date_from = request.args.get("from", "")      # YYYY-MM-DD
+date_to   = request.args.get("to", "")        # YYYY-MM-DD
+sort      = request.args.get("sort", "desc")  # asc / desc
+cam_id    = request.args.get("cam_id", "")    # optional
+
+order = "DESC" if sort != "asc" else "ASC"
+
+where = ["ETAT = 0"]
+params = []
+
+# optional camera filter
+if cam_id:
+    where.append("CAMERA_ID = ?")
+    params.append(int(cam_id))
+
+# date filters on DATE_SERVER (stored as "YYYY-MM-DD HH:MM:SS")
+if date_from:
+    where.append("date(DATE_SERVER) >= date(?)")
+    params.append(date_from)
+
+if date_to:
+    where.append("date(DATE_SERVER) <= date(?)")
+    params.append(date_to)
+
+where_sql = " AND ".join(where)
+
+cursor.execute(f"""
+    SELECT * FROM {sql_db.MAIN_TABLE}
+    WHERE {where_sql}
+    ORDER BY DATE_SERVER {order};
+""", params)
+
             rows = cursor.fetchall()
             conn.close()
             # logging.info(f"Fetched {len(rows)} hidden images")
@@ -167,7 +195,16 @@ class webserver:
                 images.append(d)
 
             # images.reverse()
-            return render_template("index.html", images=images)
+         return render_template(
+    "index.html",
+    images=images,
+    date_from=date_from,
+    date_to=date_to,
+    sort=sort,
+    cam_id=cam_id
+)
+
+
         except sqlite3.OperationalError as e:
             logging.error(f"sqlite3.OperationalError : {e}")
             return render_template("index.html", images=[])
