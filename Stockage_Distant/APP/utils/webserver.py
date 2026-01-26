@@ -3,7 +3,10 @@ from flask import jsonify, render_template, Response, request, redirect, url_for
 import sqlite3
 import datetime
 import json
+import csv
 
+
+from io import StringIO
 from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
@@ -157,6 +160,66 @@ class webserver:
         except Exception as e:
             logging.error(e)
             return render_template("index.html", images=[])
+            
+    @app.route("/export")
+    @login_required
+    def export_csv():
+        webserver.init_sql_table()
+
+        # reuse filters
+        date_from = request.args.get("from", "")
+        date_to   = request.args.get("to", "")
+        sort      = request.args.get("sort", "desc")
+        cam_id    = request.args.get("cam_id", "")
+
+        order = "DESC" if sort != "asc" else "ASC"
+
+        where = ["ETAT = 0"]
+        params = []
+
+        if cam_id and cam_id.isdigit():
+            where.append("CAMERA_ID = ?")
+            params.append(int(cam_id))
+
+        if date_from:
+            where.append("date(DATE_SERVER) >= date(?)")
+            params.append(date_from)
+
+        if date_to:
+            where.append("date(DATE_SERVER) <= date(?)")
+            params.append(date_to)
+
+        where_sql = " AND ".join(where)
+
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"""
+            SELECT *
+            FROM {sql_db.MAIN_TABLE}
+            WHERE {where_sql}
+            ORDER BY DATE_SERVER {order};
+        """, params)
+        rows = cursor.fetchall()
+        conn.close()
+
+        data = [dict(r) for r in rows]
+
+        output = StringIO()
+        if data:
+            fieldnames = list(data[0].keys())
+        else:
+            fieldnames = ["ID", "DATE_SERVER", "CAMERA_ID", "TEMPERATURE", "HUMIDITE", "IMAGE_REPERTOIRE", "ETAT"]
+
+        writer = csv.DictWriter(output, fieldnames=fieldnames)
+        writer.writeheader()
+        for d in data:
+            writer.writerow(d)
+
+        return Response(
+            output.getvalue(),
+            mimetype="text/csv; charset=utf-8",
+            headers={"Content-Disposition": 'attachment; filename="export_images.csv"'}
+        )
 
 
     @app.route("/main/hidden")
