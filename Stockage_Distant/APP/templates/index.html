@@ -80,6 +80,22 @@
         <div class="content">
           <div class="badge">ID {{ img['ID'] }}</div>
 
+    <!-- Actions: Hide / Delete -->
+    <div style="display:flex; gap:10px; margin:10px 0; flex-wrap:wrap;">
+      <!-- Hide: ETAT = 1 -->
+      <form method="post" action="{{ url_for('hide_image', image_id=img['ID']) }}">
+        <button class="btn" type="submit">Hide</button>
+      </form>
+
+      <!-- Delete: DB + file -->
+      <form method="post"
+            action="{{ url_for('delete_image', image_id=img['ID']) }}"
+            onsubmit="return confirm('Delete this image permanently?');">
+        <button class="btn" type="submit">Delete</button>
+      </form>
+    </div>
+
+
           <div class="meta">
             <div>
               <div class="k">Temperature</div>
