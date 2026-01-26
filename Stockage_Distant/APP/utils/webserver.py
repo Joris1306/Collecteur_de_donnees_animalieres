@@ -4,6 +4,7 @@ import sqlite3
 import datetime
 import json
 import csv
+import os
 
 
 from io import StringIO
@@ -220,6 +221,78 @@ class webserver:
             mimetype="text/csv; charset=utf-8",
             headers={"Content-Disposition": 'attachment; filename="export_images.csv"'}
         )
+  
+
+@app.route("/image/<int:image_id>/hide", methods=["POST"])
+@login_required
+def hide_image(image_id):
+    """Soft delete: set ETAT=1 so it goes to /main/hidden"""
+    try:
+        webserver.init_sql_table()
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"""
+            UPDATE {sql_db.MAIN_TABLE}
+            SET ETAT = 1
+            WHERE ID = ?;
+        """, (image_id,))
+        conn.commit()
+        conn.close()
+        return redirect(request.referrer or url_for("index"))
+    except Exception as e:
+        logging.error(e)
+        return redirect(request.referrer or url_for("index"))
+
+
+@app.route("/image/<int:image_id>/delete", methods=["POST"])
+@login_required
+def delete_image(image_id):
+    """Hard delete: remove DB row + delete image file"""
+    try:
+        webserver.init_sql_table()
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+
+        # 1) Get image path from DB
+        cursor.execute(f"""
+            SELECT IMAGE_REPERTOIRE FROM {sql_db.MAIN_TABLE}
+            WHERE ID = ?;
+        """, (image_id,))
+        row = cursor.fetchone()
+
+        image_rel_path = None
+        if row:
+            # sqlite3.Row -> allow dict-like access
+            try:
+                image_rel_path = row["IMAGE_REPERTOIRE"]
+            except Exception:
+                # fallback if row is a tuple
+                image_rel_path = row[0]
+
+        # 2) Delete DB row
+        cursor.execute(f"""
+            DELETE FROM {sql_db.MAIN_TABLE}
+            WHERE ID = ?;
+        """, (image_id,))
+        conn.commit()
+        conn.close()
+
+        # 3) Delete file (best-effort)
+        if image_rel_path:
+            # IMAGE_REPERTOIRE is used with url_for('static', filename=...)
+            # so it should be like "images/xxx.png"
+            abs_path = os.path.join(os.path.dirname(__file__), "static", image_rel_path)
+            # If your paths already include "images/..." this works.
+            # If your IMAGE_REPERTOIRE is already a full static path, adjust accordingly.
+            if os.path.exists(abs_path):
+                os.remove(abs_path)
+
+        return redirect(request.referrer or url_for("index"))
+
+    except Exception as e:
+        logging.error(e)
+        return redirect(request.referrer or url_for("index"))
+
 
 
     @app.route("/main/hidden")
