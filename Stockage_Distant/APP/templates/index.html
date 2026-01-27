@@ -25,30 +25,30 @@
       <button class="btn" id="btnToggle">Toggle Layout</button>
       <!-- <button class="btn" onclick="window.location.href='{{ url_for('map') }}'">Go to Map</button> -->
       <!-- <button class="btn" onclick="window.location.href='{{ url_for('cam') }}'">Go to Cam</button> -->
-      <button class="btn" onclick="window.location.href='{{ url_for('export_csv', cam_id=cam_id, from=date_from, to=date_to, sort=sort) }}'">Export CSV</button>
+      <button class="btn" onclick="window.location.href='{{ url_for('export_csv', cam_id=cam_id, from=date_from, to=date_to, sort=sort, format='xlsx') }}'">Export XLSX</button>
 
 
     </div>
   </div>
 
   <!-- Filters -->
-  <form method="get" style="margin:12px 0 18px; display:flex; gap:12px; flex-wrap:wrap; align-items:end;">
-    <label style="display:flex; flex-direction:column; gap:6px;">
+  <form method="get" class="filter-form">
+    <label>
       Camera ID
-      <input type="number" name="cam_id" min="1" value="{{ cam_id|default('') }}" placeholder="e.g. 1">
+      <input type="number" name="cam_id" min="0" value="{{ cam_id|default('') }}" placeholder="e.g. 1">
     </label>
 
-    <label style="display:flex; flex-direction:column; gap:6px;">
+    <label>
       From
       <input type="date" name="from" value="{{ date_from|default('') }}">
     </label>
 
-    <label style="display:flex; flex-direction:column; gap:6px;">
+    <label>
       To
       <input type="date" name="to" value="{{ date_to|default('') }}">
     </label>
 
-    <label style="display:flex; flex-direction:column; gap:6px;">
+    <label>
       Sort
       <select name="sort">
         <option value="desc" {% if sort|default('desc') == 'desc' %}selected{% endif %}>Newest</option>

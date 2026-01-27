@@ -49,6 +49,19 @@ body{
   padding:10px 12px;
   border-radius:12px;
   cursor:pointer;
+  font-size:14px;
+  font-weight:500;
+  transition: all 0.2s ease;
+}
+
+.btn:hover{
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+
+.btn:active{
+  transform: translateY(0);
 }
 
 /* Grid */
@@ -235,3 +248,98 @@ body{
   }
 }
 
+/* Filter Form Styles */
+.filter-form{
+  margin: 12px 0 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+.filter-form label{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.filter-form input,
+.filter-form select{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.filter-form input:focus,
+.filter-form select:focus{
+  border-color: rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.05);
+}
+
+.filter-form input[type="number"],
+.filter-form input[type="date"]{
+  appearance: auto;
+}
+
+.filter-form input::placeholder{
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.filter-form select{
+  cursor: pointer;
+}
+
+.filter-form select option{
+  background: #0b1220;
+  color: var(--text);
+}
+
+.filter-form button.btn{
+  align-self: flex-end;
+  min-width: 100px;
+}
+
+.filter-form a.btn{
+  align-self: flex-end;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  min-width: 90px;
+}
+
+@media (max-width: 640px){
+  .filter-form{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-form label{
+    width: 100%;
+  }
+  
+  .filter-form input,
+  .filter-form select{
+    width: 100%;
+  }
+  
+  .filter-form button.btn,
+  .filter-form a.btn{
+    width: 100%;
+  }
+}

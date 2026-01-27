@@ -21,4 +21,7 @@ CDC/main.pdf
 CDC/main.synctex.gz
 CDC/main.toc
 
-.vscode/
+*.vscode/
+Stockage_Distant/APP/.vscode
+Stockage_Distant/APP/.github
+Stockage_Distant/APP/utils/__pycache__/

@@ -1,7 +1,10 @@
 import sqlite3
 import os
+import sys
 import datetime
 
+# Add parent directory to path so this script can be run directly
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.image_reconstructor import image_reconstructor
 from utlitaires import DB_PATH,logging,IMAGE_PATH
@@ -87,9 +90,9 @@ class sql_db:
             heures = data.get('DATE.HOUR')
             minutes = data.get('DATE.MINUTE')
             secondes = data.get('DATE.SECOND')
-            date = f"{annee}-{mois}-{jours}_{heures}:{minutes}:{secondes}"
-            date = datetime.datetime.strptime(date, "%Y-%m-%d_%H:%M:%S")
-            return date.strftime("%Y-%m-%d_%H:%M:%S")
+            date = f"{annee}-{mois}-{jours}_{heures}_{minutes}_{secondes}"
+            date = datetime.datetime.strptime(date, "%Y-%m-%d_%H-%M-%S")
+            return date.strftime("%Y-%m-%d_%H-%M-%S")
         except Exception as e:
             logging.error(f"Error : {e}")
             return None #sql_db.date_now()
@@ -127,7 +130,7 @@ class sql_db:
     
     @staticmethod
     def date_now():
-        return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         
     @staticmethod
     def insert_img(data:dict):
@@ -213,13 +216,59 @@ class sql_db:
             conn.commit()
             conn.close()
 
+    @staticmethod
+    def rename_images_in_db():
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"""
+        select * from {sql_db.MAIN_TABLE};
+        """)
+
+        rows = cursor.fetchall()
+
+        for row in rows:
+            old_relative_path = row["IMAGE_REPERTOIRE"]
+            
+            # Get the filename without path
+            filename = os.path.basename(old_relative_path)
+            
+            # Remove colons from filename
+            new_filename = filename.replace(":", "_")
+            
+            # Build full paths (on disk)
+            old_full_path = os.path.join(IMAGE_PATH, filename)
+            new_full_path = os.path.join(IMAGE_PATH, new_filename)
+            
+            # Only process if filename has colons (i.e., changed)
+            if filename != new_filename:
+                try:
+                    # Rename file on disk if it exists
+                    if os.path.exists(old_full_path):
+                        os.rename(old_full_path, new_full_path)
+                        logging.info(f"Renamed file: {old_full_path} -> {new_full_path}")
+                    
+                    # Update database with new relative path (images/filename format)
+                    new_relative_path = f"images/{new_filename}"
+                    cursor.execute(f"""
+                    UPDATE {sql_db.MAIN_TABLE}
+                    SET IMAGE_REPERTOIRE = ?
+                    WHERE ID = ?;
+                    """, (new_relative_path, row["ID"]))
+                    
+                except Exception as e:
+                    logging.error(f"Error renaming image {filename}: {e}")
+
+        conn.commit()
+        conn.close()
 
 def main():
     sql_db.create_main_table()
     sql_db.create_stat_table()
     sql_db.create_camera_table()
 
-    sql_db.remove_img("396")
+    # sql_db.remove_img("396")
+
+    sql_db.rename_images_in_db()
 
 
 

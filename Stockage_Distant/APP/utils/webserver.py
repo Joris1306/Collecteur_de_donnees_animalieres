@@ -5,9 +5,20 @@ import datetime
 import json
 import csv
 import os
+import zipfile
+from io import BytesIO
 
 
 from io import StringIO
+from pathlib import Path
+from urllib.parse import quote
+try:
+    from openpyxl import Workbook
+    from openpyxl.styles import Font
+    OPENPYXL_AVAILABLE = True
+except ImportError:
+    OPENPYXL_AVAILABLE = False
+    logging.warning("openpyxl not installed. XLSX export will not be available. Install with: pip install openpyxl")
 from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
@@ -188,6 +199,7 @@ class webserver:
         date_to   = request.args.get("to", "")
         sort      = request.args.get("sort", "desc")
         cam_id    = request.args.get("cam_id", "")
+        format_type = request.args.get("format", "xlsx")  # default to xlsx
 
         order = "DESC" if sort != "asc" else "ASC"
 
@@ -221,6 +233,100 @@ class webserver:
 
         data = [dict(r) for r in rows]
 
+        # Export as XLSX if available and requested
+        if format_type == "xlsx" and OPENPYXL_AVAILABLE:
+            return webserver._export_xlsx(data)
+        else:
+            # Fallback to CSV
+            return webserver._export_csv_fallback(data)
+
+    @staticmethod
+    def _export_xlsx(data):
+        """Export data as XLSX with images bundled in a ZIP file"""
+        # Create Excel file
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Images Export"
+
+        # Define headers
+        if data:
+            headers = list(data[0].keys())
+        else:
+            headers = ["ID", "DATE_SERVER", "CAMERA_ID", "TEMPERATURE", "HUMIDITE", "IMAGE_REPERTOIRE", "ETAT"]
+
+        # Write headers with bold font
+        for col_num, header in enumerate(headers, 1):
+            cell = ws.cell(row=1, column=col_num, value=header)
+            cell.font = Font(bold=True)
+
+        # Collect image files
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        image_files = []
+
+        # Write data rows
+        for row_num, row_data in enumerate(data, 2):
+            for col_num, header in enumerate(headers, 1):
+                value = row_data.get(header, "")
+                cell = ws.cell(row=row_num, column=col_num)
+                
+                # Create relative hyperlink for IMAGE_REPERTOIRE column
+                if header == "IMAGE_REPERTOIRE" and value:
+                    image_path = os.path.join(base_path, 'static', value)
+                    
+                    # Store image info for zip
+                    if os.path.exists(image_path):
+                        image_files.append((image_path, value))
+                    
+                    # Use relative path in Excel (images/ folder in zip)
+                    cell.hyperlink = f"images/{os.path.basename(value)}"
+                    cell.value = f"📷 {os.path.basename(value)}"
+                    cell.font = Font(color="0563C1", underline="single")
+                else:
+                    cell.value = value
+
+        # Auto-adjust column widths
+        for column in ws.columns:
+            max_length = 0
+            column_letter = column[0].column_letter
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = min(max_length + 2, 50)
+            ws.column_dimensions[column_letter].width = adjusted_width
+
+        # Save Excel to BytesIO
+        excel_buffer = BytesIO()
+        wb.save(excel_buffer)
+        excel_buffer.seek(0)
+
+        # Create ZIP file containing Excel and images
+        zip_buffer = BytesIO()
+        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+            # Add Excel file
+            zip_file.writestr('export_images.xlsx', excel_buffer.getvalue())
+            
+            # Add all images to images/ folder in zip
+            for image_path, relative_path in image_files:
+                try:
+                    with open(image_path, 'rb') as img_file:
+                        zip_file.writestr(f'images/{os.path.basename(relative_path)}', img_file.read())
+                except Exception as e:
+                    logging.warning(f"Failed to add image {relative_path} to zip: {e}")
+        
+        zip_buffer.seek(0)
+
+        return Response(
+            zip_buffer.getvalue(),
+            mimetype="application/zip",
+            headers={"Content-Disposition": f'attachment; filename="export_images_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.zip"'}
+        )
+
+    @staticmethod
+    def _export_csv_fallback(data):
+        """Fallback CSV export"""
         output = StringIO()
         if data:
             fieldnames = list(data[0].keys())
@@ -235,81 +341,79 @@ class webserver:
         return Response(
             output.getvalue(),
             mimetype="text/csv; charset=utf-8",
-            headers={"Content-Disposition": 'attachment; filename="export_images.csv"'}
+            headers={"Content-Disposition": f'attachment; filename="export_images_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.csv"'}
         )
   
 
-@app.route("/image/<int:image_id>/hide", methods=["POST"])
-@login_required
-def hide_image(image_id):
-    """Soft delete: set ETAT=1 so it goes to /main/hidden"""
-    try:
-        webserver.init_sql_table()
-        conn = sql_db.get_db()
-        cursor = conn.cursor()
-        cursor.execute(f"""
-            UPDATE {sql_db.MAIN_TABLE}
-            SET ETAT = 1
-            WHERE ID = ?;
-        """, (image_id,))
-        conn.commit()
-        conn.close()
-        return redirect(request.referrer or url_for("index"))
-    except Exception as e:
-        logging.error(e)
-        return redirect(request.referrer or url_for("index"))
+    @app.route("/image/<int:image_id>/hide", methods=["POST"])
+    @login_required
+    def hide_image(image_id):
+        """Soft delete: set ETAT=1 so it goes to /main/hidden"""
+        try:
+            webserver.init_sql_table()
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
+            cursor.execute(f"""
+                UPDATE {sql_db.MAIN_TABLE}
+                SET ETAT = 1
+                WHERE ID = ?;
+            """, (image_id,))
+            conn.commit()
+            conn.close()
+            return redirect(request.referrer or url_for("index"))
+        except Exception as e:
+            logging.error(e)
+            return redirect(request.referrer or url_for("index"))
 
 
-@app.route("/image/<int:image_id>/delete", methods=["POST"])
-@login_required
-def delete_image(image_id):
-    """Hard delete: remove DB row + delete image file"""
-    try:
-        webserver.init_sql_table()
-        conn = sql_db.get_db()
-        cursor = conn.cursor()
+    @app.route("/image/<int:image_id>/delete", methods=["POST"])
+    @login_required
+    def delete_image(image_id):
+        """Hard delete: remove DB row + delete image file"""
+        try:
+            webserver.init_sql_table()
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
 
-        # 1) Get image path from DB
-        cursor.execute(f"""
-            SELECT IMAGE_REPERTOIRE FROM {sql_db.MAIN_TABLE}
-            WHERE ID = ?;
-        """, (image_id,))
-        row = cursor.fetchone()
+            # 1) Get image path from DB
+            cursor.execute(f"""
+                SELECT IMAGE_REPERTOIRE FROM {sql_db.MAIN_TABLE}
+                WHERE ID = ?;
+            """, (image_id,))
+            row = cursor.fetchone()
 
-        image_rel_path = None
-        if row:
-            # sqlite3.Row -> allow dict-like access
-            try:
-                image_rel_path = row["IMAGE_REPERTOIRE"]
-            except Exception:
-                # fallback if row is a tuple
-                image_rel_path = row[0]
+            image_rel_path = None
+            if row:
+                # sqlite3.Row -> allow dict-like access
+                try:
+                    image_rel_path = row["IMAGE_REPERTOIRE"]
+                except Exception:
+                    # fallback if row is a tuple
+                    image_rel_path = row[0]
 
-        # 2) Delete DB row
-        cursor.execute(f"""
-            DELETE FROM {sql_db.MAIN_TABLE}
-            WHERE ID = ?;
-        """, (image_id,))
-        conn.commit()
-        conn.close()
+            # 2) Delete DB row
+            cursor.execute(f"""
+                DELETE FROM {sql_db.MAIN_TABLE}
+                WHERE ID = ?;
+            """, (image_id,))
+            conn.commit()
+            conn.close()
 
-        # 3) Delete file (best-effort)
-        if image_rel_path:
-            # IMAGE_REPERTOIRE is used with url_for('static', filename=...)
-            # so it should be like "images/xxx.png"
-            abs_path = os.path.join(os.path.dirname(__file__), "static", image_rel_path)
-            # If your paths already include "images/..." this works.
-            # If your IMAGE_REPERTOIRE is already a full static path, adjust accordingly.
-            if os.path.exists(abs_path):
-                os.remove(abs_path)
+            # 3) Delete file (best-effort)
+            if image_rel_path:
+                # IMAGE_REPERTOIRE is used with url_for('static', filename=...)
+                # so it should be like "images/xxx.png"
+                abs_path = os.path.join(os.path.dirname(__file__), "static", image_rel_path)
+                # If your paths already include "images/..." this works.
+                # If your IMAGE_REPERTOIRE is already a full static path, adjust accordingly.
+                if os.path.exists(abs_path):
+                    os.remove(abs_path)
 
-        return redirect(request.referrer or url_for("index"))
+            return redirect(request.referrer or url_for("index"))
 
-    except Exception as e:
-        logging.error(e)
-        return redirect(request.referrer or url_for("index"))
-
-
+        except Exception as e:
+            logging.error(e)
+            return redirect(request.referrer or url_for("index"))
 
     @app.route("/main/hidden")
     @login_required
@@ -438,7 +542,7 @@ def delete_image(image_id):
     def submap():
         return render_template("map.html")
     
-    @app.route("/map")
+    @app.route("/map", endpoint='map')
     @login_required
     def map():
         try:
