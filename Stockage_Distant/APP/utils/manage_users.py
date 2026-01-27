@@ -5,9 +5,12 @@ Manage users (add, remove, change password, block/unblock)
 """
 import sys
 import os
-sys.path.insert(0, os.path.dirname(__file__))
+# Ensure app root (parent of utils) is on sys.path so `utils.*` imports work
+APP_ROOT = os.path.dirname(os.path.dirname(__file__))
+if APP_ROOT not in sys.path:
+    sys.path.insert(0, APP_ROOT)
 
-from auth import add_user, load_users, save_users, verify_password, change_password, block_user, unblock_user, is_user_blocked
+from utils.auth import add_user, load_users, save_users, verify_password, change_password, block_user, unblock_user, is_user_blocked
 
 
 def list_users():
@@ -18,8 +21,8 @@ def list_users():
         return
     print("\nRegistered users:")
     print("-" * 30)
-    for username in users.keys():
-        print(f"  - {username}")
+    for username, val in users.items():
+        print(f"  - {username} : {val}")
     print()
 
 
@@ -170,40 +173,44 @@ def show_user_status():
 def main():
     """Main menu"""
     while True:
-        print("\n" + "=" * 40)
-        print("User Management")
-        print("=" * 40)
-        print("1. List users")
-        print("2. Add new user")
-        print("3. Remove user")
-        print("4. Change password")
-        print("5. Block user (force logout)")
-        print("6. Unblock user")
-        print("7. Show user status")
-        print("8. Exit")
-        print("-" * 40)
-        
-        choice = input("Select an option (1-8): ").strip()
-        
-        if choice == '1':
-            list_users()
-        elif choice == '2':
-            add_new_user()
-        elif choice == '3':
-            remove_user()
-        elif choice == '4':
-            change_user_password()
-        elif choice == '5':
-            block_user_interactive()
-        elif choice == '6':
-            unblock_user_interactive()
-        elif choice == '7':
-            show_user_status()
-        elif choice == '8':
-            print("Goodbye!")
+        try:
+            print("\n" + "=" * 40)
+            print("User Management")
+            print("=" * 40)
+            print("1. List users")
+            print("2. Add new user")
+            print("3. Remove user")
+            print("4. Change password")
+            print("5. Block user (force logout)")
+            print("6. Unblock user")
+            print("7. Show user status")
+            print("8. Exit")
+            print("-" * 40)
+            
+            choice = input("Select an option (1-8): ").strip()
+            
+            if choice == '1':
+                list_users()
+            elif choice == '2':
+                add_new_user()
+            elif choice == '3':
+                remove_user()
+            elif choice == '4':
+                change_user_password()
+            elif choice == '5':
+                block_user_interactive()
+            elif choice == '6':
+                unblock_user_interactive()
+            elif choice == '7':
+                show_user_status()
+            elif choice == '8':
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+        except KeyboardInterrupt:
+            print("\nExiting...")
             break
-        else:
-            print("Invalid choice. Please try again.")
 
 
 if __name__ == '__main__':

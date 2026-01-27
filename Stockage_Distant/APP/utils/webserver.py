@@ -8,7 +8,7 @@ from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
 from utlitaires import app, logging, get_properties
-from auth import login_required, verify_password, is_logged_in, block_user, unblock_user, is_user_blocked
+from utils.auth import login_required, role_required, verify_password, is_logged_in, block_user, unblock_user, is_user_blocked, get_user_role
 
 
 class webserver:
@@ -51,6 +51,16 @@ class webserver:
             logging.info(f"User '{username}' logged out")
         session.clear()
         return redirect(url_for('login_page'))
+
+    # Inject current user and role into all templates
+    @app.context_processor
+    def inject_user_context():
+        user = session.get('user')
+        role = get_user_role(user) if user else 'user'
+        return {
+            'current_user': user,
+            'current_role': role,
+        }
 
     # ====== PROTECTED PAGE ROUTES ======
     @app.route("/events")
@@ -120,6 +130,11 @@ class webserver:
                 except Exception:
                     d['HUMIDITE'] = None
 
+                try:
+                    d['DATE_SERVER'] = datetime.datetime.fromisoformat(d['DATE_SERVER']).strftime("%H:%M:%S %d/%m/%Y")
+                except Exception:
+                    pass
+
                 images.append(d)
 
             # images.reverse()
@@ -133,6 +148,7 @@ class webserver:
     
     @app.route("/main/hidden")
     @login_required
+    @role_required('dev')
     def index_hidden():
         try:
             # Ensure DB tables exist before querying
@@ -174,6 +190,11 @@ class webserver:
         except Exception as e:
             logging.error(e)
             return render_template("index.html", images=[])
+
+    # ====== UNAUTHORIZED ROUTE ======
+    @app.route("/unauthorized")
+    def unauthorized():
+        return render_template("unauthorized.html"), 403
 
     @app.route("/image/<int:cam_id>")
     @login_required

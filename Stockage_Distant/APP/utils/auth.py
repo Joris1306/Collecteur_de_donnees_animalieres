@@ -6,13 +6,14 @@ import json
 import os
 from functools import wraps
 from flask import redirect, url_for, session, request, render_template
-from utlitaires import app, logging
+import logging
 
-BASE_PATH = os.path.dirname(__file__)
-JSON_USERS = os.path.join(BASE_PATH, 'JSON', 'users.json')
+# App root directory (parent of utils)
+APP_ROOT = os.path.dirname(os.path.dirname(__file__))
+JSON_USERS = os.path.join(APP_ROOT, 'JSON', 'users.json')
 
-# Session secret key - change this to something random in production
-app.secret_key = 'your-secret-key-change-this-in-production'
+# Note: Do not import the Flask app here to avoid circular imports.
+# Set the Flask secret key in the app initialization (utlitaires.py).
 
 
 def load_users():
@@ -28,6 +29,49 @@ def save_users(users):
     os.makedirs(os.path.dirname(JSON_USERS), exist_ok=True)
     with open(JSON_USERS, 'w') as f:
         json.dump(users, f, indent=2)
+
+
+# ===== ROLES / ACCESS CONTROL =====
+ROLE_ORDER = [
+    'user',   # default/basic user
+    'dev',    # developer/support level
+    'admin'   # administrator
+]
+
+
+def get_user_role(username: str) -> str:
+    """Return the role for a username, defaulting to 'user'."""
+    users = load_users()
+    return users.get(username, {}).get('role', 'user')
+
+
+def _role_level(role: str) -> int:
+    try:
+        return ROLE_ORDER.index(role)
+    except ValueError:
+        return ROLE_ORDER.index('user')
+
+
+def role_required(min_role: str):
+    """
+    Decorator enforcing that the current user's role is >= min_role.
+    Redirects to 'unauthorized' if not permitted, or login if not authenticated.
+    """
+    def decorator(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            if 'user' not in session:
+                return redirect(url_for('login_page', next=request.url))
+            current_user = session.get('user')
+            if is_user_blocked(current_user):
+                session.clear()
+                return redirect(url_for('login_page'))
+            user_role = get_user_role(current_user)
+            if _role_level(user_role) < _role_level(min_role):
+                return redirect(url_for('unauthorized'))
+            return f(*args, **kwargs)
+        return wrapped
+    return decorator
 
 
 def verify_password(username, password):

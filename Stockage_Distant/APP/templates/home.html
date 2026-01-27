@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Data Monitoring System</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+        {% include '_favicon.html' %}
+    {% include '_styles.html' %}
+
     <style>
         .home-wrapper {
             min-height: 100vh;
@@ -188,16 +192,7 @@
     </style>
 </head>
 <body class="home-wrapper">
-    <!-- Navbar with Logout -->
-    <nav class="navbar">
-        <h2>Data Monitoring System</h2>
-        <div class="navbar-actions">
-            <span class="navbar-user">
-                Logged in as: <strong>{{ session.get('user', 'Unknown') }}</strong>
-            </span>
-            <a href="{{ url_for('logout') }}" style="padding:10px 16px; background:linear-gradient(180deg, var(--panel2), var(--panel)); color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.2s ease;">Logout</a>
-        </div>
-    </nav>
+    {% include '_navbar.html' %}
 
     <!-- Main Content -->
     <div class="main-content">
@@ -251,9 +246,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 Data Monitoring System. All rights reserved.</p>
-    </footer>
+    {% include '_footer.html' %}
 </body>
 </html>

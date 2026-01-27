@@ -16,6 +16,7 @@ import webbrowser
 import time
 import socket
 import logging
+import secrets
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -32,6 +33,12 @@ os.makedirs(IMAGE_PATH, exist_ok=True)
 DB_PATH = os.path.join(BASE_PATH,'app.db')
 
 app = Flask(__name__)
+# Configure Flask session secret key. Prefer env var; fallback to a random token.
+app.secret_key = (
+    os.environ.get("FLASK_SECRET_KEY")
+    or os.environ.get("SECRET_KEY")
+    or secrets.token_hex(32)
+)
 
 def get_properties():
     with open(JSON_PROPERTIES, "r") as f:
