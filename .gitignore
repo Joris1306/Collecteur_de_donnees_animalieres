@@ -25,3 +25,5 @@ CDC/main.toc
 Stockage_Distant/APP/.vscode
 Stockage_Distant/APP/.github
 Stockage_Distant/APP/utils/__pycache__/
+
+*.DS_Store
