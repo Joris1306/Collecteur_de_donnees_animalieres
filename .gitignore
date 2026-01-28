@@ -27,3 +27,6 @@ Stockage_Distant/APP/.github
 Stockage_Distant/APP/utils/__pycache__/
 
 *.DS_Store
+Stockage_Distant/APP/static/.DS_Store
+Stockage_Distant/APP/utils/__pycache__/sql_db.cpython-313.pyc
+Stockage_Distant/APP/utils/__pycache__/data_receiver.cpython-313.pyc

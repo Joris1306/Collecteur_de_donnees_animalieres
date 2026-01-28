@@ -117,6 +117,8 @@ class data_receiver:
                     # AI_CLASSIFICATION
                     # chemin de l'image reçu : metadata['IMAGE_REPERTOIRE']
                     # défintion de l'état ('ETAT')
+                    # 
+                    # metadata['ETAT'] = IA_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
                     #
 
                     sql_db.insert_img(metadata)

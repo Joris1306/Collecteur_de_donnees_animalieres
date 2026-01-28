@@ -14,6 +14,7 @@ class sql_db:
     MAIN_TABLE = "MAIN"
     STAT_TABLE = "STATS"
     CAM_TABLE = "CAMERA"
+    JOURNAL_TABLE = "JOURNAL"
 
     @staticmethod
     def get_db():
@@ -80,6 +81,40 @@ class sql_db:
         conn.commit()
         conn.close()
 
+    @staticmethod
+    def create_journal_table():
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS {sql_db.JOURNAL_TABLE} (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            EVENT_TYPE TEXT NOT NULL,
+            DESCRIPTION TEXT NOT NULL,
+            CAM_ID INTEGER,
+            IMAGE_ID INTEGER,
+            TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """)
+
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def log_event(event_type, description, cam_id=None, image_id=None):
+        """Log an event to the journal"""
+        try:
+            sql_db.create_journal_table()
+            conn = sql_db.get_db()
+            cursor = conn.cursor()
+            cursor.execute(f"""
+            INSERT INTO {sql_db.JOURNAL_TABLE} (EVENT_TYPE, DESCRIPTION, CAM_ID, IMAGE_ID)
+            VALUES (?, ?, ?, ?)
+            """, (event_type, description, cam_id, image_id))
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            logging.error(f"Error logging event: {e}")
+
 
     @staticmethod
     def formate_date(data:dict):
@@ -90,7 +125,7 @@ class sql_db:
             heures = data.get('DATE.HOUR')
             minutes = data.get('DATE.MINUTE')
             secondes = data.get('DATE.SECOND')
-            date = f"{annee}-{mois}-{jours}_{heures}_{minutes}_{secondes}"
+            date = f"{annee}-{mois}-{jours}_{heures}-{minutes}-{secondes}"
             date = datetime.datetime.strptime(date, "%Y-%m-%d_%H-%M-%S")
             return date.strftime("%Y-%m-%d_%H-%M-%S")
         except Exception as e:

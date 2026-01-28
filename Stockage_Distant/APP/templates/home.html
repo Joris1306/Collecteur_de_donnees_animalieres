@@ -228,11 +228,19 @@
                 </a>
 
                 <!-- Battery Graph Page -->
-                <a href="{{ url_for('battery_graph', cam_id=1) }}" class="page-card">
+                <a href="{{ url_for('battery') }}" class="page-card">
                     <div class="page-icon">🔋</div>
                     <h3 class="page-title">Battery Status</h3>
                     <p class="page-description">Monitor battery levels and performance metrics for your devices</p>
                     <span class="page-link">View Battery →</span>
+                </a>
+
+                <!-- Journal Page -->
+                <a href="{{ url_for('journal') }}" class="page-card">
+                    <div class="page-icon">📔</div>
+                    <h3 class="page-title">System Journal</h3>
+                    <p class="page-description">View a complete log of all system events and activities</p>
+                    <span class="page-link">View Journal →</span>
                 </a>
 
                 <!-- Hidden Images Page -->

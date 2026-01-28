@@ -6,6 +6,8 @@
     <a href="{{ url_for('index') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">Images</a>
     <a href="{{ url_for('map') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">Map</a>
     <a href="{{ url_for('cam') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">Cam</a>
+    <a href="{{ url_for('battery') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">Battery</a>
+    <a href="{{ url_for('journal') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">Journal</a>
     {% if current_role in ['dev','admin'] %}
       <a href="{{ url_for('index_hidden') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">Hidden</a>
     {% endif %}
