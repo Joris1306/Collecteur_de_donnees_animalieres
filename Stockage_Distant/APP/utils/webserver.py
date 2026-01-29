@@ -490,7 +490,7 @@ class webserver:
 
             order = "DESC" if sort != "asc" else "ASC"
 
-            where = ["ETAT <> 0"]
+            where = ["(ETAT <> 0 OR ETAT IS NULL)"]
             params = []
 
             if cam_id:

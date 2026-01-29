@@ -1,11 +1,16 @@
 import folium
 import webbrowser
 import os
+import sys
+from pathlib import Path
+
+# Add parent directory to path so this script can be run directly
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utlitaires import BASE_PATH 
 
 class web_map:
-    MAP_URL = 'map.html'
+    MAP_URL = os.path.join(BASE_PATH, "templates", "map.html")
     zoom_position = 'Polytech'
     default_param = {
         "France": {
@@ -17,8 +22,8 @@ class web_map:
             "default_zoom": 13
         },
         "Polytech": {
-            "default_location": [47.368, -1.386],
-            "default_zoom": 13
+            "default_location": [47.2819, -1.5159],
+            "default_zoom": 14
         }
     }
 
@@ -48,12 +53,14 @@ class web_map:
 
     @staticmethod
     def open_map():
-        webbrowser.open_new_tab(web_map.MAP_URL)
+        map_path = Path(web_map.MAP_URL).resolve()
+        if not map_path.exists():
+            web_map.save_map()
+        return webbrowser.open_new_tab(map_path.as_uri())
 
     @staticmethod
     def save_map():
-        web_map.map_world.save(os.path.join(BASE_PATH, "templates", "map.html"))
-
+        return web_map.map_world.save(web_map.MAP_URL)
 
 # Module-level wrappers for convenient imports
 def init_cam_list(cam_list: dict[str, list[float]]):
@@ -66,3 +73,16 @@ def open_map():
 
 def save_map():
     return web_map.save_map()
+
+
+def main():
+    print(f"{'Testing web_map module':=^100}")
+    web_map.save_map()
+    print(f"Map saved to {web_map.MAP_URL}")
+    if web_map.open_map():
+        print(f"Map opened in a new tab")
+    else:
+        print(f"Failed to open map")
+
+if __name__ == "__main__":
+    main()

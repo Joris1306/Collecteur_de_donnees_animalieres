@@ -57,8 +57,8 @@ class metadata_trap:
         default_data['WHEATER.HUM'] = weather.get('humidity')
         # default_data['GPS.LONG'] = -1.379
         # default_data['GPS.LAT'] = 47.373
-        default_data['GPS.LONG'] = 47.281297
-        default_data['GPS.LAT'] = -1.515095
+        default_data['GPS.LONG'] = -1.5159
+        default_data['GPS.LAT'] = 47.2819
         _date = datetime.datetime.now()
         default_data['DATE.YEAR'] = _date.year
         default_data['DATE.MONTH'] = _date.month
@@ -78,7 +78,7 @@ class metadata_trap:
 
 class json_emitter:
     properties = utlitaires.get_properties()
-    RECEIVER_IP = properties.get(properties.get('IP'))
+    RECEIVER_IP = '192.0.0.2' #properties.get(properties.get('IP'))
     RECEIVER_PORT = properties.get('PORT')
     METADATA_PATH = properties.get('METADATA_PATH')
     IMAGE_PATH = properties.get('IMAGE_PATH')
@@ -114,12 +114,12 @@ def main():
     # data['IMG'] = load_sample.sample_image('pic0')
     # print(str(data))
     
-    # json_emitter.send_image(load_sample.sample_image('pic2'))
+    json_emitter.send_image(load_sample.sample_image('pic2'))
 
-    with open(os.path.join(SAMPLE_PATH,'mouse.txt'), 'r') as f:
-        buf = f.read()
+    # with open(os.path.join(SAMPLE_PATH,'mouse.txt'), 'r') as f:
+    #     buf = f.read()
 
-    json_emitter.send_image(buf)
+    # json_emitter.send_image(buf)
 
     json_emitter.send_data(str(data))
 

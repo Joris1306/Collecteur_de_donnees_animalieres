@@ -160,6 +160,13 @@ class sql_db:
             logging.error(f"width = {width}")
             logging.error(f"height = {height}")
             logging.error(f"format_ = {format_}")
+
+            sql_db.log_event(
+                event_type="ERROR",
+                description=f"Erreur de reconstruction d'image : e={e}\nimg_buffer = {img_buffer[:15]}[...]\nwidth = {width}\nheight = {height}\nformat_ = {format_}",
+                cam_id=None,
+                image_id=None
+            )
             
             return None
     
@@ -204,6 +211,7 @@ class sql_db:
                     sql_db.date_now()
                 )
             )
+            
         except Exception as e:
             logging.error(f"{f"{"insert_img"} : {e}":^50}")
             logging.error(f"error : {e}")
@@ -212,6 +220,14 @@ class sql_db:
                     logging.error(f"{key} : {value}")
             # logging.info(data)
             logging.error("end data")
+
+            sql_db.log_event(
+                event_type="ERROR",
+                description=f"Error in insert_img : {e}",
+                cam_id=data.get('CAM.ID'),
+                image_id=None
+            )
+
         finally:
             conn.commit()
             conn.close()
@@ -302,8 +318,6 @@ def main():
     sql_db.create_camera_table()
 
     # sql_db.remove_img("396")
-
-    sql_db.rename_images_in_db()
 
 
 
