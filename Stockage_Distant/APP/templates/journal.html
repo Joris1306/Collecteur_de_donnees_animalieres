@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Journal</title>
+    {% include '_favicon.html' %}
+    {% include '_styles.html' %}
+    
+    <style>
+        .journal-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .event-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+            transition: all 0.2s ease;
+        }
+
+        .event-item:hover {
+            border-color: rgba(255,255,255,.15);
+            background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+        }
+
+        .event-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: rgba(255,255,255,.08);
+        }
+
+        .event-icon.image_received {
+            background: rgba(100, 200, 255, 0.2);
+        }
+
+        .event-icon.image_hidden {
+            background: rgba(255, 180, 100, 0.2);
+        }
+
+        .event-icon.image_deleted {
+            background: rgba(255, 100, 100, 0.2);
+        }
+
+        .event-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .event-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+
+        .event-type {
+            font-weight: 600;
+            color: var(--text);
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(255,255,255,.08);
+        }
+
+        .event-type.image_received {
+            background: rgba(100, 200, 255, 0.2);
+            color: rgba(100, 200, 255, 1);
+        }
+
+        .event-type.image_hidden {
+            background: rgba(255, 180, 100, 0.2);
+            color: rgba(255, 180, 100, 1);
+        }
+
+        .event-type.image_deleted {
+            background: rgba(255, 100, 100, 0.2);
+            color: rgba(255, 100, 100, 1);
+        }
+
+        .event-cam {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .event-description {
+            color: var(--text);
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .event-timestamp {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        .pagination a,
+        .pagination span {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .pagination a:hover {
+            background: rgba(255,255,255,.08);
+        }
+
+        .pagination span.current {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+{% include '_navbar.html' %}
+
+<div class="container">
+    <div class="topbar">
+        <div class="title">
+            <h1>📔 System Journal</h1>
+            <div class="subtitle">
+                Event log of all system activities
+            </div>
+        </div>
+        <div class="actions">
+            <button class="btn" onclick="window.history.back()">⬅ Back</button>
+            <button class="btn" onclick="window.location.reload()">Refresh</button>
+        </div>
+    </div>
+
+    <div class="journal-container">
+        {% if events %}
+            {% for event in events %}
+                <div class="event-item">
+                    <div class="event-icon {{ event.EVENT_TYPE }}">
+                        {% if event.EVENT_TYPE == 'image_received' %}
+                            📷
+                        {% elif event.EVENT_TYPE == 'image_hidden' %}
+                            👁️
+                        {% elif event.EVENT_TYPE == 'image_deleted' %}
+                            🗑️
+                        {% else %}
+                            📌
+                        {% endif %}
+                    </div>
+                    
+                    <div class="event-content">
+                        <div class="event-title">
+                            <span class="event-type {{ event.EVENT_TYPE }}">
+                                {% if event.EVENT_TYPE == 'image_received' %}
+                                    Image Received
+                                {% elif event.EVENT_TYPE == 'image_hidden' %}
+                                    Image Hidden
+                                {% elif event.EVENT_TYPE == 'image_deleted' %}
+                                    Image Deleted
+                                {% else %}
+                                    Event
+                                {% endif %}
+                            </span>
+                            {% if event.CAM_ID %}
+                                <span class="event-cam">Camera #{{ event.CAM_ID }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="event-description">
+                            {{ event.DESCRIPTION }}
+                        </div>
+                        
+                        <div class="event-timestamp">
+                            {{ event.TIMESTAMP }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('journal', page=1) }}">« First</a>
+                    <a href="{{ url_for('journal', page=page-1) }}">‹ Previous</a>
+                {% endif %}
+                
+                <span>Page {{ page }} of {{ total_pages }}</span>
+                
+                {% if page < total_pages %}
+                    <a href="{{ url_for('journal', page=page+1) }}">Next ›</a>
+                    <a href="{{ url_for('journal', page=total_pages) }}">Last »</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-state-icon">📭</div>
+                <h3>No events yet</h3>
+                <p>Events will appear here as your system records activities</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% include '_footer.html' %}
+
+</body>
+</html>

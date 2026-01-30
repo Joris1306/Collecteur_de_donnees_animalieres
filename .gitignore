@@ -1,3 +1,4 @@
+# LaTeX/CDC files
 CDC/.vscode
 CDC/main.toc
 CDC/main.synctex.gz
@@ -18,12 +19,50 @@ CDC/main.ist
 CDC/main.lof
 CDC/main.lot
 CDC/main.pdf
-CDC/main.synctex.gz
-CDC/main.toc
 
-*.vscode/
-Stockage_Distant/APP/.vscode
-Stockage_Distant/APP/.github
-Stockage_Distant/APP/utils/__pycache__/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
 
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# GitHub
+.github/
+
+# Environment variables
+.env
+.env.local
+
+# OS
 *.DS_Store
+.DS_Store

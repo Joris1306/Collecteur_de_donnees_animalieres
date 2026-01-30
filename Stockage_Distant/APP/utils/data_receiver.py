@@ -127,11 +127,19 @@ class data_receiver:
 
 
                     # défintion de l'état ('ETAT')
+                    # 
+                    # metadata['ETAT'] = IA_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
                     #
 
                     sql_db.insert_img(metadata)
 
                     logging.info(f"{'metadata saved to sql':=^100}")
+                    sql_db.log_event(
+                        event_type="image received", 
+                        description=f"Image received and stored in database from CAM.ID={metadata.get('CAM.ID')}", 
+                        cam_id=metadata.get('CAM.ID'),
+                        image_id=None,
+                    )
                     
                     # Notify all SSE listeners about new data
                     with data_receiver._listeners_lock:
