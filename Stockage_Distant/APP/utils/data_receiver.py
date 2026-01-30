@@ -7,6 +7,7 @@ import ast
 
 from utlitaires import app,logging,get_properties
 from utils.sql_db import sql_db
+from utils.AI_CLASSIFICATION import AI_CLASSIFICATION
 
 
 class data_receiver:
@@ -116,6 +117,15 @@ class data_receiver:
                     # 
                     # AI_CLASSIFICATION
                     # chemin de l'image reçu : metadata['IMAGE_REPERTOIRE']
+
+                    metadata['ETAT'] = AI_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
+                    metadata['IMAGE_TRAITEE'] = AI_CLASSIFICATION.get_image_traitee(metadata['IMAGE_REPERTOIRE'])
+
+                    metadata['NOM_ANIMAL'] = AI_CLASSIFICATION.get_animal_name(metadata['IMAGE_REPERTOIRE'])
+
+
+
+
                     # défintion de l'état ('ETAT')
                     #
 
