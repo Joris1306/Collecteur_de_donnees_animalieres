@@ -1,4 +1,5 @@
 pip install SQLAlchemy
 pip install folium
 pip install openpyxl
+pip install ultralytics
 
