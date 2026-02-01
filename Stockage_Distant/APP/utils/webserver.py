@@ -54,6 +54,52 @@ class webserver:
         sql_db.create_main_table()
         sql_db.create_camera_table()
 
+    @staticmethod
+    def _normalize_image_row(row):
+        d = dict(row)
+        try:
+            d["TEMPERATURE"] = (
+                float(d.get("TEMPERATURE"))
+                if d.get("TEMPERATURE") is not None
+                else None
+            )
+        except Exception:
+            d["TEMPERATURE"] = None
+        try:
+            d["HUMIDITE"] = (
+                float(d.get("HUMIDITE"))
+                if d.get("HUMIDITE") is not None
+                else None
+            )
+        except Exception:
+            d["HUMIDITE"] = None
+
+        try:
+            d["DATE_SERVER"] = datetime.datetime.fromisoformat(
+                d["DATE_SERVER"]
+            ).strftime("%H:%M:%S %d/%m/%Y")
+        except Exception:
+            pass
+
+        try:
+            if d.get("IMAGE_TRAITEE") is not None:
+                d["CHEMIN_IMAGE"] = d["IMAGE_TRAITEE"]
+            elif d.get("IMAGE_REPERTOIRE") is not None:
+                d["CHEMIN_IMAGE"] = d["IMAGE_REPERTOIRE"]
+        except Exception:
+            pass
+
+        try:
+            d["CONFIANCE"] = (
+                float(d.get("CONFIANCE"))
+                if d.get("CONFIANCE") is not None
+                else 0.0
+            )
+        except Exception:
+            d["CONFIANCE"] = 0.0
+
+        return d
+
     # ====== LOGIN ROUTES ======
     @app.route("/login", methods=["GET", "POST"])
     def login_page():
@@ -173,7 +219,8 @@ class webserver:
                 f"""
                 SELECT * FROM {sql_db.MAIN_TABLE}
                 WHERE {where_sql}
-                ORDER BY DATE_SERVER {order};
+                ORDER BY DATE_SERVER {order}
+                LIMIT 6;
             """,
                 params,
             )
@@ -181,34 +228,7 @@ class webserver:
             rows = cursor.fetchall()
             conn.close()
 
-            images = []
-            for r in rows:
-                d = dict(r)
-                try:
-                    d["TEMPERATURE"] = (
-                        float(d.get("TEMPERATURE"))
-                        if d.get("TEMPERATURE") is not None
-                        else None
-                    )
-                except Exception:
-                    d["TEMPERATURE"] = None
-                try:
-                    d["HUMIDITE"] = (
-                        float(d.get("HUMIDITE"))
-                        if d.get("HUMIDITE") is not None
-                        else None
-                    )
-                except Exception:
-                    d["HUMIDITE"] = None
-
-                try:
-                    d["DATE_SERVER"] = datetime.datetime.fromisoformat(
-                        d["DATE_SERVER"]
-                    ).strftime("%H:%M:%S %d/%m/%Y")
-                except Exception:
-                    pass
-
-                images.append(d)
+            images = [webserver._normalize_image_row(r) for r in rows]
 
             return render_template(
                 "index.html",
@@ -513,7 +533,8 @@ class webserver:
                 f"""
                 SELECT * FROM {sql_db.MAIN_TABLE}
                 WHERE {where_sql}
-                ORDER BY DATE_SERVER {order};
+                ORDER BY DATE_SERVER {order}
+                LIMIT 6;
             """,
                 params,
             )
@@ -521,26 +542,7 @@ class webserver:
             rows = cursor.fetchall()
             conn.close()
 
-            images = []
-            for r in rows:
-                d = dict(r)
-                try:
-                    d["TEMPERATURE"] = (
-                        float(d.get("TEMPERATURE"))
-                        if d.get("TEMPERATURE") is not None
-                        else None
-                    )
-                except Exception:
-                    d["TEMPERATURE"] = None
-                try:
-                    d["HUMIDITE"] = (
-                        float(d.get("HUMIDITE"))
-                        if d.get("HUMIDITE") is not None
-                        else None
-                    )
-                except Exception:
-                    d["HUMIDITE"] = None
-                images.append(d)
+            images = [webserver._normalize_image_row(r) for r in rows]
 
             return render_template(
                 "index.html",

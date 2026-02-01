@@ -183,8 +183,8 @@ class sql_db:
             conn = sql_db.get_db()
             cursor = conn.cursor()
             cursor.execute(f"""
-            INSERT INTO {sql_db.MAIN_TABLE} (DATE_SERVER, DATE_TRAP, GEOLOCALISATION_LAT, GEOLOCALISATION_LONG, TEMPERATURE, HUMIDITE, IMAGE_REPERTOIRE, BATTERIE, CAMERA_ID)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO {sql_db.MAIN_TABLE} (DATE_SERVER, DATE_TRAP, GEOLOCALISATION_LAT, GEOLOCALISATION_LONG, TEMPERATURE, HUMIDITE, IMAGE_REPERTOIRE,IMAGE_TRAITEE, BATTERIE, CAMERA_ID, ETAT,NOM_ANIMAL, CONFIANCE)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, 
                 (
                     sql_db.formate_date(data),
@@ -194,8 +194,12 @@ class sql_db:
                     data.get('WHEATER.TEMP'), 
                     data.get('WHEATER.HUM'), 
                     data.get('IMAGE_REPERTOIRE'), 
+                    data.get('IMAGE_TRAITEE'),
                     data.get('CAM.BATTERY'),
-                    data.get('CAM.ID')
+                    data.get('CAM.ID'),
+                    data.get('ETAT'),
+                    data.get('NOM_ANIMAL'),
+                    data.get('CONFIANCE')
                 )
             )
 
@@ -211,7 +215,7 @@ class sql_db:
                     sql_db.date_now()
                 )
             )
-            
+
         except Exception as e:
             logging.error(f"{f"{"insert_img"} : {e}":^50}")
             logging.error(f"error : {e}")

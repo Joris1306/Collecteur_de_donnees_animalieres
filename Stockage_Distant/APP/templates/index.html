@@ -65,15 +65,16 @@
     {% for img in images %}
       <article class="card">
         <div class="thumb">
-          <img src="{{ url_for('static', filename=img['IMAGE_REPERTOIRE']) }}"
+          <img src="{{ url_for('static', filename=img['CHEMIN_IMAGE']) }}"
                alt="Image {{ img['ID'] }}"
-               onclick="openLightbox('{{ url_for('static', filename=img['IMAGE_REPERTOIRE']) }}')">
+               onclick="openLightbox('{{ url_for('static', filename=img['CHEMIN_IMAGE']) }}')">
         </div>
 
         <div class="content">
           <div class="badge">ID {{ img['ID'] }}</div>
 
-          <div class="badge">détecté : {{ img['NOM_ANIMAL'] }}</div>
+          <div class="badge">{{ img['NOM_ANIMAL'] }} {{ "%.2f"|format(img['CONFIANCE']) }}%</div>
+
     <!-- Actions: Hide / Delete -->
     <div style="display:flex; gap:10px; margin:10px 0; flex-wrap:wrap;">
       <!-- Hide: ETAT = 1 -->
