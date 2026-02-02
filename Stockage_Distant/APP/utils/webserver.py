@@ -219,8 +219,7 @@ class webserver:
                 f"""
                 SELECT * FROM {sql_db.MAIN_TABLE}
                 WHERE {where_sql}
-                ORDER BY DATE_SERVER {order}
-                LIMIT 6;
+                ORDER BY DATE_SERVER {order};
             """,
                 params,
             )
@@ -533,8 +532,7 @@ class webserver:
                 f"""
                 SELECT * FROM {sql_db.MAIN_TABLE}
                 WHERE {where_sql}
-                ORDER BY DATE_SERVER {order}
-                LIMIT 6;
+                ORDER BY DATE_SERVER {order};
             """,
                 params,
             )

@@ -34,7 +34,7 @@ class AI_CLASSIFICATION:
         image = AI_CLASSIFICATION._open_image(image_path)
         results = model(image)
 
-        animal_name = "Pas identifié ou Faux positif"
+        animal_name = None
 
         for r in results:
             for box in r.boxes:
@@ -119,8 +119,8 @@ class AI_CLASSIFICATION:
     
     @staticmethod
     def get_confiance_animal(image_path):
-        model = YOLO(AI_CLASSIFICATION.MODEL_PATH)
-        image = Image.open(image_path)
+        model = AI_CLASSIFICATION._get_model()
+        image = AI_CLASSIFICATION._open_image(image_path)
         results = model(image)
 
         conf_animal = 0.0
@@ -139,8 +139,30 @@ class AI_CLASSIFICATION:
         return conf_animal
 
     @staticmethod
-    def get_parameters(image_path):
-        pass
+    def get_parameters(image_path: str) -> tuple[list[dict[str, str]], dict[str, str]]:
+        """classification ia
+
+        Args:
+            image_path (str): chemin de l'image a traité (l'objet image peut être appelé : AI_CLASSIFICATION._open_image(image_path))
+
+        Returns:
+            tuple[list[dict[str, str]], dict[str, str]]: _description_
+            - arg1 : list[dict[str, str]]: liste des 'objets' détectés avec leurs paramètres
+                - arg1[i] : dict[str, str] : dictionnaire des paramètres de l'objet i (quelconque)
+                - clé :
+                    - 'ETAT' : str : état de la classification de l'animal
+                    - 'NOM_ANIMAL' : str : nom de l'animal détecté
+                    - 'CONFIANCE' : str : confiance de la détection de l'animal
+            - arg2 : dict[str, str]: dictionnaire des paramètres globaux de l'image
+                - clé :
+                    - 'IMAGE_TRAITEE' : str : chemin de l'image traitée (avec les cadres et textes) 
+        """
+        try:
+            return list(), dict()
+        except Exception as e:
+            print(f"Error in get_parameters: {e}")
+            return [], {}
+
 
 def main():
     image_path = os.path.join(BASE_PATH, 'static',"images/2026-01-30_11-11-31.png")
