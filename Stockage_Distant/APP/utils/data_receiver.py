@@ -120,8 +120,8 @@ class data_receiver:
 
                     metadata['ETAT'] = AI_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
                     metadata['IMAGE_TRAITEE'] = AI_CLASSIFICATION.get_image_traitee(metadata['IMAGE_REPERTOIRE'])
-
                     metadata['NOM_ANIMAL'] = AI_CLASSIFICATION.get_animal_name(metadata['IMAGE_REPERTOIRE'])
+                    metadata['CONFIANCE'] = AI_CLASSIFICATION.get_confiance_animal(metadata['IMAGE_REPERTOIRE'])
 
 
 

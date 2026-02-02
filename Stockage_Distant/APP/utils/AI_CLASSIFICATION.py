@@ -3,129 +3,122 @@ import numpy as np
 from ultralytics import YOLO
 from PIL import Image
 
-CONFIANCE = 0.5
+CONFIANCE = 0.3
 
 class AI_CLASSIFICATION:
 
-    
-
-    @staticmethod
-    def get_animal_name(image_path):
-        model = YOLO("yolov8n.pt")
-        image = Image.open(image_path)
-        results = model(image)
-
-        animal_name = "Pas identifié ou Faux positif"
-
-        for r in results:
-            for box in r.boxes:
-                conf = float(box.conf)
-                cls_id = int(box.cls)
-                label = model.names[cls_id]
-
-                if conf >= CONFIANCE:  # Seuil de confiance
-                    if model.names[int(box.cls)] not in ["person"]:
-                        continue
-                    animal_name = label
-
-                    #animal_name = ""
-                    #animal_name = animal_name + " " + label
-
-        return animal_name
 
 
     @staticmethod
-    def get_image_traitee(image_path):
-        model = YOLO("yolov8n.pt")
-        image = Image.open(image_path)
-        results = model(image)
+    def get_parameters(image_path: str) -> tuple[list[dict[str, str]], dict[str, str]]:
+        """classification ia
 
-        img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+        Args:
+            image_path (str): chemin de l'image a traité (l'objet image peut être appelé : AI_CLASSIFICATION._open_image(image_path))
 
-        for r in results:
-            for box in r.boxes:
+        Returns:
+            tuple[list[dict[str, str]], dict[str, str]]: _description_
+            - arg1 : list[dict[str, str]]: liste des 'objets' détectés avec leurs paramètres
+                - arg1[i] : dict[str, str] : dictionnaire des paramètres de l'objet i (quelconque)
+                - clé :
+                    - 'ETAT' : str : état de la classification de l'animal
+                    - 'NOM_ANIMAL' : str : nom de l'animal détecté
+                    - 'CONFIANCE' : str : confiance de la détection de l'animal
+            - arg2 : dict[str, str]: dictionnaire des paramètres globaux de l'image
+                - clé :
+                    - 'IMAGE_TRAITEE' : str : chemin de l'image traitée (avec les cadres et textes) 
+        """
+        try:
+            # Load model and image once
+            model = YOLO("yolov8n.pt")
+            image = Image.open(image_path)
+            results = model(image)
 
-                # filtrage des détections (que HUMAIN pour l'instant)
-                if box.conf < CONFIANCE:
-                    continue
-                if model.names[int(box.cls)] not in ["person"]:
-                    continue
+            # Initialize result structures
+            detected_objects = []
+            etat = 0  # Default: No problem
+            
+            # Convert image for OpenCV processing
+            img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+            
+            # Check if image is too blurry using Laplacian variance
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            laplacian_var = cv2.Laplacian(gray, cv2.CV_64F).var()
+            
+            # If laplacian variance is low, image is too blurry (ETAT = 1)
+            if laplacian_var < 50  :  # Threshold for blur detection
+                etat = 1
+            
+            # Process each detection
+            for r in results:
+                for box in r.boxes:
+                    conf = float(box.conf)
+                    cls_id = int(box.cls)
+                    label = model.names[cls_id]
 
-                #variables par les fonctions de yolo
-                x1, y1, x2, y2 = map(int, box.xyxy[0])
-                conf = float(box.conf)
-                cls_id = int(box.cls)
-                label = model.names[cls_id]
+                    # Filter by confidence threshold and only process persons
+                    if conf >= CONFIANCE and label == "person":
+                        etat = 2  # There is a human (overrides blur detection)
+                        
+                        # Add detection to list (without ETAT, it's now global)
+                        obj_params = {
+                            'NOM_ANIMAL': label,
+                            'CONFIANCE': f"{conf:.2f}"
+                        }
+                        detected_objects.append(obj_params)
+                        
+                        # Draw bounding box on image
+                        x1, y1, x2, y2 = map(int, box.xyxy[0])
+                        cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
+                        
+                        # Optional: Add text on image (currently commented out)
+                        # text = f"{label} {conf*100:.1f}%"
+                        # cv2.putText(
+                        #     img, text,
+                        #     (x1, y1-10),
+                        #     cv2.FONT_HERSHEY_SIMPLEX,
+                        #     0.7,
+                        #     (0, 0, 255),
+                        #     2
+                        # )
+            
+            # Global parameters
+            global_params = {
+                'ETAT': str(etat),
+                'IMAGE_TRAITEE': img
+            }
+            
+            return detected_objects, global_params
+            
+        except Exception as e:
+            print(f"Error in get_parameters: {e}")
+            return [], {}
 
-                # cadre sur la photo
-                cv2.rectangle(img, (x1,y1), (x2,y2), (0, 0, 255), 2)#Pour régler couleur
 
-                # texte sur la photo
-                text = f"{label} {conf*100:.1f}%"
-                cv2.putText(
-                    img, text,
-                    (x1, y1-10),
-                    cv2.FONT_HERSHEY_SIMPLEX,
-                    0.7,
-                    (0, 0, 255),#Pour régler couleur
-                    2
-                )
-
-        return img
+if __name__ == "__main__":
+    # Test avec une image du dossier SAMPLE
+    test_image_path = "images_ia/test_ourcamera2.png"  # À remplacer par un chemin d'image valide
     
-
-
-    @staticmethod
-    def get_etat(image_path):
-        model = YOLO("yolov8n.pt")
-        image = Image.open(image_path)
-        results = model(image)
-
-        etat = 0
-
-        for r in results:
-            for box in r.boxes:
-                conf = float(box.conf)
-                cls_id = int(box.cls)
-                label = model.names[cls_id]
-
-                if conf >= CONFIANCE:  # Seuil de confiance
-                    if label == "person":
-                        return 2
-
-        return etat
+    # Exécuter la classification
+    detected_objects, global_params = AI_CLASSIFICATION.get_parameters(test_image_path)
     
-
-
-
-
-
-# model = YOLO("yolov8n.pt")
-
-# image = Image.open("images_ia/Wolf2.jpg")
-# results = model(image)
-
-# img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-
-# for r in results:
-#     for box in r.boxes:
-#         x1, y1, x2, y2 = map(int, box.xyxy[0])
-#         conf = float(box.conf)
-#         cls_id = int(box.cls)
-#         label = model.names[cls_id]
-
-#         # cadre sur la photo
-#         cv2.rectangle(img, (x1,y1), (x2,y2), (0, 0, 255), 2)#Pour régler couleur
-
-#         # texte sur la photo
-#         text = f"{label} {conf*100:.1f}%"
-#         cv2.putText(
-#             img, text,
-#             (x1, y1-10),
-#             cv2.FONT_HERSHEY_SIMPLEX,
-#             0.7,
-#             (0, 0, 255),#Pour régler couleur
-#             2
-#         )
-
-# cv2.imwrite("result.jpg", img)
+    # Afficher les résultats
+    print(f"Objets détectés: {len(detected_objects)}")
+    print()
+    
+    for i, obj in enumerate(detected_objects):
+        print(f"Objet {i+1}:")
+        for key, value in obj.items():
+            print(f"  {key}: {value}")
+        print()
+    
+    print("Paramètres globaux:")
+    for key, value in global_params.items():
+        if key == 'IMAGE_TRAITEE':
+            # Save the processed image
+            output_path = "processed_image.jpg"
+            cv2.imwrite(output_path, value)
+            print(f"  {key}: Image numpy array (shape: {value.shape if hasattr(value, 'shape') else 'N/A'})")
+            print(f"  ✓ Image sauvegardée: {output_path}")
+        else:
+            print(f"  {key}: {value}")
