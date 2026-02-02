@@ -2,12 +2,31 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 from PIL import Image
+import sys
+import os
 
-CONFIANCE = 0.3
+# Add parent directory to path so this script can be run directly
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from utlitaires import BASE_PATH
+
 
 class AI_CLASSIFICATION:
+    CONFIANCE = 0.3
+    MODEL_PATH = os.path.join(BASE_PATH,'utils',"yolov8n.pt")
+    IMAGE_DIR = os.path.join(BASE_PATH,'static')
+    _MODEL = None
+    _TARGET_LABELS = {"person"}
 
+    @staticmethod
+    def _get_model():
+        if AI_CLASSIFICATION._MODEL is None:
+            AI_CLASSIFICATION._MODEL = YOLO(AI_CLASSIFICATION.MODEL_PATH)
+        return AI_CLASSIFICATION._MODEL
 
+    @staticmethod
+    def _open_image(image_path):
+        return Image.open(os.path.join(AI_CLASSIFICATION.IMAGE_DIR, image_path))
 
     @staticmethod
     def get_parameters(image_path: str) -> tuple[list[dict[str, str]], dict[str, str]]:
@@ -30,8 +49,8 @@ class AI_CLASSIFICATION:
         """
         try:
             # Load model and image once
-            model = YOLO("yolov8n.pt")
-            image = Image.open(image_path)
+            model = AI_CLASSIFICATION._get_model()
+            image = AI_CLASSIFICATION._open_image(image_path)
             results = model(image)
 
             # Initialize result structures
@@ -57,7 +76,7 @@ class AI_CLASSIFICATION:
                     label = model.names[cls_id]
 
                     # Filter by confidence threshold and only process persons
-                    if conf >= CONFIANCE and label == "person":
+                    if conf >= AI_CLASSIFICATION.CONFIANCE and label == "person":
                         etat = 2  # There is a human (overrides blur detection)
                         
                         # Add detection to list (without ETAT, it's now global)

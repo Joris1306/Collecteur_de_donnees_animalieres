@@ -11,7 +11,6 @@ from utils.AI_CLASSIFICATION import AI_CLASSIFICATION
 
 
 class data_receiver:
-
     data = {}
     _io_queue = queue.Queue()
     # in-memory temporary hex buffer (no files)
@@ -116,20 +115,12 @@ class data_receiver:
 
                     # 
                     # AI_CLASSIFICATION
-                    # chemin de l'image reçu : metadata['IMAGE_REPERTOIRE']
-
+                    # 
                     metadata['ETAT'] = AI_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
                     metadata['IMAGE_TRAITEE'] = AI_CLASSIFICATION.get_image_traitee(metadata['IMAGE_REPERTOIRE'])
                     metadata['NOM_ANIMAL'] = AI_CLASSIFICATION.get_animal_name(metadata['IMAGE_REPERTOIRE'])
                     metadata['CONFIANCE'] = AI_CLASSIFICATION.get_confiance_animal(metadata['IMAGE_REPERTOIRE'])
-
-
-
-
-                    # défintion de l'état ('ETAT')
-                    # 
-                    # metadata['ETAT'] = IA_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
-                    #
+                    # metadata.update(AI_CLASSIFICATION.get_parameters(metadata['IMAGE_REPERTOIRE']))
 
                     sql_db.insert_img(metadata)
 
