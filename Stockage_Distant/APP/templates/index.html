@@ -73,7 +73,22 @@
         <div class="content">
           <div class="badge">ID {{ img['ID'] }}</div>
 
-          <div class="badge">{{ img['NOM_ANIMAL'] }} {{ "%.2f"|format(img['CONFIANCE']) }}%</div>
+          {% if img.get('DETECTED_ANIMALS') and img['DETECTED_ANIMALS']|length > 0 %}
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
+              {% for det in img['DETECTED_ANIMALS'] %}
+                <div class="badge">
+                  {{ det['ANIMAL'] }}
+                  {% if det['CONFIANCE'] is not none %}
+                    {{ "%.2f"|format(det['CONFIANCE']) }}%
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% elif img['NOM_ANIMAL'] %}
+            <div class="badge">{{ img['NOM_ANIMAL'] }}</div>
+          {% else %}
+            <div class="badge">No detection</div>
+          {% endif %}
 
     <!-- Actions: Hide / Delete -->
     <div style="display:flex; gap:10px; margin:10px 0; flex-wrap:wrap;">

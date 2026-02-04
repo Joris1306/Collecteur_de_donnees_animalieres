@@ -15,11 +15,13 @@ class sql_db:
     STAT_TABLE = "STATS"
     CAM_TABLE = "CAMERA"
     JOURNAL_TABLE = "JOURNAL"
+    IA_TABLE = "IA"
 
     @staticmethod
     def get_db():
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA foreign_keys = ON")
         return conn
     
     @staticmethod
@@ -29,7 +31,7 @@ class sql_db:
         cursor.execute(f"""
         CREATE TABLE IF NOT EXISTS {sql_db.CAM_TABLE} (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            CAM_ID INTEGER NOT NULL,
+            CAM_ID INTEGER NOT NULL UNIQUE,
             BATTERY TEXT,
             LAST_LAT TEXT,
             LAST_LONG TEXT,
@@ -93,6 +95,24 @@ class sql_db:
             CAM_ID INTEGER,
             IMAGE_ID INTEGER,
             TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """)
+
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def create_IA_table():
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS {sql_db.IA_TABLE} (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            IMAGE_ID INT NOT NULL,
+            ANIMAL TEXT,
+            CONFIANCE REAL,
+            DESCRIPTION TEXT,
+            FOREIGN KEY (IMAGE_ID) REFERENCES {sql_db.MAIN_TABLE}(ID)
         )
         """)
 
@@ -179,12 +199,13 @@ class sql_db:
         try:
             sql_db.create_stat_table()
             sql_db.create_main_table()
+            sql_db.create_IA_table()
 
             conn = sql_db.get_db()
             cursor = conn.cursor()
             cursor.execute(f"""
-            INSERT INTO {sql_db.MAIN_TABLE} (DATE_SERVER, DATE_TRAP, GEOLOCALISATION_LAT, GEOLOCALISATION_LONG, TEMPERATURE, HUMIDITE, IMAGE_REPERTOIRE,IMAGE_TRAITEE, BATTERIE, CAMERA_ID, ETAT,NOM_ANIMAL, CONFIANCE)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO {sql_db.MAIN_TABLE} (DATE_SERVER, DATE_TRAP, GEOLOCALISATION_LAT, GEOLOCALISATION_LONG, TEMPERATURE, HUMIDITE, IMAGE_REPERTOIRE,IMAGE_TRAITEE, BATTERIE, CAMERA_ID, ETAT)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, 
                 (
                     sql_db.formate_date(data),
@@ -197,12 +218,46 @@ class sql_db:
                     data.get('IMAGE_TRAITEE'),
                     data.get('CAM.BATTERY'),
                     data.get('CAM.ID'),
-                    data.get('ETAT'),
-                    data.get('NOM_ANIMAL'),
-                    data.get('CONFIANCE')
+                    data.get('ETAT')
                 )
             )
 
+            last_id = cursor.lastrowid
+
+            detections = data.get('IA', []) or []
+            primary_animal = None
+            primary_conf = None
+
+            for d in detections:
+                animal = d.get('ANIMAL') or d.get('NOM_ANIMAL')
+                conf_value = d.get('CONFIANCE')
+                try:
+                    conf_value = float(conf_value) if conf_value is not None else None
+                except Exception:
+                    conf_value = None
+
+                if animal:
+                    cursor.execute(f"""
+                    INSERT INTO {sql_db.IA_TABLE} (IMAGE_ID, ANIMAL, CONFIANCE)
+                    VALUES (?, ?, ?)
+                    """, 
+                        (
+                            last_id,
+                            animal,
+                            conf_value
+                        )
+                    )
+
+                if animal and (primary_conf is None or (conf_value is not None and conf_value > primary_conf)):
+                    primary_animal = animal
+                    primary_conf = conf_value
+
+            if primary_animal:
+                cursor.execute(
+                    f"UPDATE {sql_db.MAIN_TABLE} SET NOM_ANIMAL = ? WHERE ID = ?",
+                    (primary_animal, last_id),
+                )
+            
             cursor.execute(f"""
             INSERT INTO {sql_db.CAM_TABLE} (CAM_ID,BATTERY, LAST_LAT, LAST_LONG, UPDATE_DATE)
             VALUES (?, ?, ?, ?, ?)

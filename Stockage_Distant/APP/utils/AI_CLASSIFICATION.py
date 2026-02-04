@@ -82,7 +82,7 @@ class AI_CLASSIFICATION:
                         # Add detection to list (without ETAT, it's now global)
                         obj_params = {
                             'NOM_ANIMAL': label,
-                            'CONFIANCE': f"{conf:.2f}"
+                            'CONFIANCE': f"{conf*100:.2f}"
                         }
                         detected_objects.append(obj_params)
                         
@@ -101,10 +101,18 @@ class AI_CLASSIFICATION:
                         #     2
                         # )
             
+            # Save processed image with detections
+            image_dir = os.path.dirname(image_path)
+            image_name = os.path.basename(image_path)
+            rel_traitee_path = os.path.join(image_dir, f"traitee_{image_name}")
+            img_traitee_path = os.path.join(AI_CLASSIFICATION.IMAGE_DIR, rel_traitee_path)
+            os.makedirs(os.path.dirname(img_traitee_path), exist_ok=True)
+            cv2.imwrite(img_traitee_path, img)
+        
             # Global parameters
             global_params = {
                 'ETAT': str(etat),
-                'IMAGE_TRAITEE': img
+                'IMAGE_TRAITEE': img_traitee_path
             }
             
             return detected_objects, global_params
@@ -116,7 +124,7 @@ class AI_CLASSIFICATION:
 
 if __name__ == "__main__":
     # Test avec une image du dossier SAMPLE
-    test_image_path = "images_ia/test_ourcamera2.png"  # À remplacer par un chemin d'image valide
+    test_image_path = "images/2026-01-30_11-37-12.png"  # À remplacer par un chemin d'image valide
     
     # Exécuter la classification
     detected_objects, global_params = AI_CLASSIFICATION.get_parameters(test_image_path)
@@ -135,9 +143,7 @@ if __name__ == "__main__":
     for key, value in global_params.items():
         if key == 'IMAGE_TRAITEE':
             # Save the processed image
-            output_path = "processed_image.jpg"
-            cv2.imwrite(output_path, value)
-            print(f"  {key}: Image numpy array (shape: {value.shape if hasattr(value, 'shape') else 'N/A'})")
-            print(f"  ✓ Image sauvegardée: {output_path}")
+            print(f"  {key}: Image saved at {value}")
+            Image.open(value).show()
         else:
             print(f"  {key}: {value}")

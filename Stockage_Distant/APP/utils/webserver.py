@@ -53,6 +53,7 @@ class webserver:
         sql_db.create_stat_table()
         sql_db.create_main_table()
         sql_db.create_camera_table()
+        sql_db.create_IA_table()
 
     @staticmethod
     def _normalize_image_row(row):
@@ -225,9 +226,42 @@ class webserver:
             )
 
             rows = cursor.fetchall()
-            conn.close()
 
             images = [webserver._normalize_image_row(r) for r in rows]
+
+            image_ids = [img.get("ID") for img in images if img.get("ID") is not None]
+            detected_map = {}
+            if image_ids:
+                placeholders = ",".join(["?"] * len(image_ids))
+                cursor.execute(
+                    f"""
+                    SELECT IMAGE_ID, ANIMAL, CONFIANCE
+                    FROM {sql_db.IA_TABLE}
+                    WHERE IMAGE_ID IN ({placeholders})
+                    ORDER BY CONFIANCE DESC
+                    """,
+                    image_ids,
+                )
+
+                ia_rows = cursor.fetchall()
+                for r in ia_rows:
+                    animal = r["ANIMAL"]
+                    if not animal:
+                        continue
+                    conf_value = r["CONFIANCE"]
+                    try:
+                        conf_value = float(conf_value) if conf_value is not None else None
+                    except Exception:
+                        conf_value = None
+
+                    detected_map.setdefault(r["IMAGE_ID"], []).append(
+                        {"ANIMAL": animal, "CONFIANCE": conf_value}
+                    )
+
+            for img in images:
+                img["DETECTED_ANIMALS"] = detected_map.get(img.get("ID"), [])
+
+            conn.close()
 
             return render_template(
                 "index.html",

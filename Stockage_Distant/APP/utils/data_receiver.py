@@ -115,13 +115,10 @@ class data_receiver:
 
                     # 
                     # AI_CLASSIFICATION
-                    # 
-                    metadata['ETAT'] = AI_CLASSIFICATION.get_etat(metadata['IMAGE_REPERTOIRE'])
-                    metadata['IMAGE_TRAITEE'] = AI_CLASSIFICATION.get_image_traitee(metadata['IMAGE_REPERTOIRE'])
-                    metadata['NOM_ANIMAL'] = AI_CLASSIFICATION.get_animal_name(metadata['IMAGE_REPERTOIRE'])
-                    metadata['CONFIANCE'] = AI_CLASSIFICATION.get_confiance_animal(metadata['IMAGE_REPERTOIRE'])
-                    # metadata.update(AI_CLASSIFICATION.get_parameters(metadata['IMAGE_REPERTOIRE']))
-
+                    #
+                    metadata['IA'], global_parameters = AI_CLASSIFICATION.get_parameters(metadata['IMAGE_REPERTOIRE'])
+                    metadata.update(global_parameters)
+                    
                     sql_db.insert_img(metadata)
 
                     logging.info(f"{'metadata saved to sql':=^100}")
