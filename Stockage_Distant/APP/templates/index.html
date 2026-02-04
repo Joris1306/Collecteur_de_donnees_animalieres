@@ -78,9 +78,12 @@
     <!-- Actions: Hide / Delete -->
     <div style="display:flex; gap:10px; margin:10px 0; flex-wrap:wrap;">
       <!-- Hide: ETAT = 1 -->
-      <form method="post" action="{{ url_for('hide_image', image_id=img['ID']) }}">
-        <button class="btn" type="submit">Hide</button>
-      </form>
+    {% if img['ETAT'] == 0 %}
+    <form method="post" action="{{ url_for('hide_image', image_id=img['ID']) }}">
+      <button class="btn" type="submit">Hide</button>
+    </form>
+    {% endif %}
+
 
       <!-- Delete: DB + file -->
       <form method="post"
