@@ -1,1 +1,22 @@
+{
+  "title": "Latest Images",
+  "refresh": "Refresh",
+  "toggle_layout": "Toggle Layout",
+  "go_map": "Go to Map",
+  "go_cam": "Go to Camera",
+  "export": "Export",
+  "camera_id": "Camera ID",
+  "from": "From",
+  "to": "To",
+  "sort": "Sort",
+  "newest": "Newest",
+  "oldest": "Oldest",
+  "apply": "Apply",
+  "reset": "Reset",
+  "temperature": "Temperature",
+  "humidity": "Humidity",
+  "date": "Date",
+  "hide": "Hide",
+  "delete": "Delete"
+}
 
