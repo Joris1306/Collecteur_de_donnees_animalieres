@@ -1,1 +1,22 @@
+{
+  "title": "Dernières images",
+  "refresh": "Rafraîchir",
+  "toggle_layout": "Changer l'affichage",
+  "go_map": "Carte",
+  "go_cam": "Caméras",
+  "export": "Exporter",
+  "camera_id": "ID Caméra",
+  "from": "Du",
+  "to": "Au",
+  "sort": "Tri",
+  "newest": "Plus récentes",
+  "oldest": "Plus anciennes",
+  "apply": "Appliquer",
+  "reset": "Réinitialiser",
+  "temperature": "Température",
+  "humidity": "Humidité",
+  "date": "Date",
+  "hide": "Masquer",
+  "delete": "Supprimer"
+}
 
