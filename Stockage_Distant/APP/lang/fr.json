@@ -111,4 +111,27 @@
   "common.id": "ID",
   "common.back": "Retour",
   "common.toggle_layout": "Changer la mise en page"
+  "journal.title": "Journal système",
+  "journal.h1": "Journal système",
+  "journal.subtitle": "Historique de tous les événements du système",
+
+  "journal.event.image_received": "Image reçue",
+  "journal.event.image_hidden": "Image masquée",
+  "journal.event.image_deleted": "Image supprimée",
+  "journal.event.generic": "Événement",
+
+  "journal.camera": "Caméra",
+
+  "journal.empty.title": "Aucun événement",
+  "journal.empty.text": "Les événements apparaîtront ici au fur et à mesure de l’activité du système",
+
+  "pagination.first": "« Début",
+  "pagination.previous": "‹ Précédent",
+  "pagination.next": "Suivant ›",
+  "pagination.last": "Fin »",
+  "pagination.page": "Page",
+  "pagination.of": "sur",
+
+  "common.back": "Retour",
+  "common.refresh": "Rafraîchir"
 }
