@@ -45,4 +45,29 @@
   "home.cards.hidden.title": "Hidden Images",
   "home.cards.hidden.desc": "Access images that have been marked as hidden from the main feed",
   "home.cards.hidden.cta": "View Hidden →"
+  "images.title": "Latest Images",
+  "images.header": "Last %(count)s Uploaded Images",
+  "images.subtitle": "Automatic Wildlife Monitoring System — Camera-triggered images and environmental data",
+
+  "common.refresh": "Refresh",
+  "common.toggle_layout": "Toggle Layout",
+  "common.export_xlsx": "Export XLSX",
+  "common.apply": "Apply",
+  "common.reset": "Reset",
+
+  "filters.camera_id": "Camera ID",
+  "filters.camera_placeholder": "e.g. 1",
+  "filters.from": "From",
+  "filters.to": "To",
+  "filters.sort": "Sort",
+  "filters.newest": "Newest",
+  "filters.oldest": "Oldest",
+
+  "actions.hide": "Hide",
+  "actions.delete": "Delete",
+  "actions.confirm_delete": "Delete this image permanently?",
+
+  "fields.temperature": "Temperature",
+  "fields.humidity": "Humidity",
+  "fields.date": "Date"
 }
