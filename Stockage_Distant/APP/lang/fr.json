@@ -134,4 +134,10 @@
 
   "common.back": "Retour",
   "common.refresh": "Rafraîchir"
+  "unauthorized.title": "Accès refusé",
+  "unauthorized.h1": "Accès refusé",
+  "unauthorized.text": "Vous n’avez pas l’autorisation d’accéder à cette page.",
+  "unauthorized.go_home": "Aller à l’accueil",
+  "unauthorized.go_login": "Aller à la connexion"
+
 }
