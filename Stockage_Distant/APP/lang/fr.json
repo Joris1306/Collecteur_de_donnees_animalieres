@@ -93,4 +93,13 @@
   "login.toggle_password": "Afficher/Masquer le mot de passe",
   "login.submit": "Se connecter",
   "login.footer": "Accès sécurisé au système de surveillance"
+  "battery.title": "Surveillance de la batterie",
+  "battery.h1": "Surveillance de la batterie",
+  "battery.subtitle": "Suivi en temps réel du niveau de batterie de toutes les caméras",
+  "battery.camera": "Caméra",
+  "battery.graph_title_prefix": "Batterie — Caméra",
+  "battery.dataset_label": "Niveau de batterie (%)",
+
+  "common.back": "Retour",
+  "common.refresh": "Rafraîchir"
 }
