@@ -1,23 +1,20 @@
 {
-  "title": "Latest Images",
-  "refresh": "Refresh",
-  "toggle_layout": "Toggle Layout",
-  "go_map": "Go to Map",
-  "go_cam": "Go to Camera",
-  "export": "Export",
-  "camera_id": "Camera ID",
-  "from": "From",
-  "to": "To",
-  "sort": "Sort",
-  "newest": "Newest",
-  "oldest": "Oldest",
-  "apply": "Apply",
-  "reset": "Reset",
-  "temperature": "Temperature",
-  "humidity": "Humidity",
-  "date": "Date",
-  "hide": "Hide",
-  "delete": "Delete"
+  "app.title": "Data Monitoring System",
+
+  "nav.home": "Home",
+  "nav.images": "Images",
+  "nav.map": "Map",
+  "nav.cam": "Cam",
+  "nav.battery": "Battery",
+  "nav.journal": "Journal",
+  "nav.hidden": "Hidden",
+  "nav.logged_in_as": "Logged in as",
+  "nav.logout": "Logout",
+
+  "footer.title": "Camera Map",
+  "footer.subtitle": "Live monitoring dashboard",
+  "footer.article": "Article",
+
   "home.title": "Home - Data Monitoring System",
   "home.hero_title": "Welcome to Your Monitoring Dashboard",
   "home.hero_subtitle": "Select a section below to navigate through your system",
@@ -44,7 +41,8 @@
 
   "home.cards.hidden.title": "Hidden Images",
   "home.cards.hidden.desc": "Access images that have been marked as hidden from the main feed",
-  "home.cards.hidden.cta": "View Hidden →"
+  "home.cards.hidden.cta": "View Hidden →",
+
   "images.title": "Latest Images",
   "images.header": "Last %(count)s Uploaded Images",
   "images.subtitle": "Automatic Wildlife Monitoring System — Camera-triggered images and environmental data",
@@ -54,6 +52,8 @@
   "common.export_xlsx": "Export XLSX",
   "common.apply": "Apply",
   "common.reset": "Reset",
+  "common.back": "Back",
+  "common.id": "ID",
 
   "filters.camera_id": "Camera ID",
   "filters.camera_placeholder": "e.g. 1",
@@ -69,30 +69,16 @@
 
   "fields.temperature": "Temperature",
   "fields.humidity": "Humidity",
-  "fields.date": "Date"
-  "app.title": "Data Monitoring System",
-  "nav.home": "Home",
-  "nav.images": "Images",
-  "nav.map": "Map",
-  "nav.cam": "Cam",
-  "nav.battery": "Battery",
-  "nav.journal": "Journal",
-  "nav.hidden": "Hidden",
-  "nav.logged_in_as": "Logged in as",
-  "nav.logout": "Logout"
-  "footer.title": "Camera Map",
-  "footer.subtitle": "Live monitoring dashboard",
-  "footer.article": "Article"
-  "app.title": "Data Monitoring System",
+  "fields.date": "Date",
 
   "login.title_page": "Login",
   "login.username": "Username",
   "login.password": "Password",
   "login.username_placeholder": "Enter your username",
   "login.password_placeholder": "Enter your password",
-  "login.toggle_password": "Show/Hide password",
   "login.submit": "Log In",
-  "login.footer": "Secure access to data monitoring system"
+  "login.footer": "Secure access to data monitoring system",
+
   "battery.title": "Battery Monitoring",
   "battery.h1": "Battery Monitoring",
   "battery.subtitle": "Real-time battery level tracking for all cameras",
@@ -100,17 +86,12 @@
   "battery.graph_title_prefix": "Battery — Camera",
   "battery.dataset_label": "Battery Level (%)",
 
-  "common.back": "Back",
-  "common.refresh": "Refresh"
   "cam.title": "Camera List",
   "cam.h1": "Registered Cameras",
   "cam.subtitle": "Wildlife Monitoring System — Active camera overview",
   "cam.name": "Name",
   "cam.location": "Location",
 
-  "common.id": "ID",
-  "common.back": "Back",
-  "common.toggle_layout": "Toggle Layout"
   "journal.title": "System Journal",
   "journal.h1": "System Journal",
   "journal.subtitle": "Event log of all system activities",
@@ -132,15 +113,14 @@
   "pagination.page": "Page",
   "pagination.of": "of",
 
-  "common.back": "Back",
-  "common.refresh": "Refresh"
   "unauthorized.title": "Unauthorized",
   "unauthorized.h1": "Access denied",
   "unauthorized.text": "You don’t have permission to view this page.",
   "unauthorized.go_home": "Go to Home",
-  "unauthorized.go_login": "Go to Login"
+  "unauthorized.go_login": "Go to Login",
+
   "error.title": "Error",
   "error.h2": "An error occurred",
   "error.text": "Something went wrong while loading this page."
-
 }
+
