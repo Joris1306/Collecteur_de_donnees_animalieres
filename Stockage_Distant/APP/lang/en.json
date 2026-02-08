@@ -83,4 +83,14 @@
   "footer.title": "Camera Map",
   "footer.subtitle": "Live monitoring dashboard",
   "footer.article": "Article"
+  "app.title": "Data Monitoring System",
+
+  "login.title_page": "Login",
+  "login.username": "Username",
+  "login.password": "Password",
+  "login.username_placeholder": "Enter your username",
+  "login.password_placeholder": "Enter your password",
+  "login.toggle_password": "Show/Hide password",
+  "login.submit": "Log In",
+  "login.footer": "Secure access to data monitoring system"
 }
