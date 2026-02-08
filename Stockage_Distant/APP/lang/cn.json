@@ -103,4 +103,15 @@
 
   "common.back": "返回",
   "common.refresh": "刷新"
+  
+  "cam.title": "相机列表",
+  "cam.h1": "已注册相机",
+  "cam.subtitle": "野生动物监测系统 — 活跃相机概览",
+  "cam.name": "名称",
+  "cam.location": "位置",
+
+  "common.id": "ID",
+  "common.back": "返回",
+  "common.toggle_layout": "切换布局"
+
 }
