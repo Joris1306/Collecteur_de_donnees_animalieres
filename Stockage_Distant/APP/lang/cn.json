@@ -83,4 +83,14 @@
   "footer.title": "相机地图",
   "footer.subtitle": "实时监控仪表盘",
   "footer.article": "新闻报道"
+  "app.title": "数据监控系统",
+
+  "login.title_page": "登录",
+  "login.username": "用户名",
+  "login.password": "密码",
+  "login.username_placeholder": "请输入用户名",
+  "login.password_placeholder": "请输入密码",
+  "login.toggle_password": "显示/隐藏密码",
+  "login.submit": "登录",
+  "login.footer": "安全访问数据监控系统"
 }
