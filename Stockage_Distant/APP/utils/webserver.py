@@ -14,12 +14,15 @@ import json
 import csv
 import os
 import zipfile
+SUPPORTED_LANGS = {"fr", "en", "cn"}
+from flask import g
 from io import BytesIO
 
 
 from io import StringIO
 from pathlib import Path
 from urllib.parse import quote
+from utlitaires import app, logging, get_properties
 
 try:
     from openpyxl import Workbook
@@ -34,7 +37,7 @@ except ImportError:
 from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
-from utlitaires import app, logging, get_properties
+
 from utils.auth import (
     login_required,
     role_required,
@@ -45,6 +48,91 @@ from utils.auth import (
     is_user_blocked,
     get_user_role,
 )
+
+# i18n (simple JSON-based)
+LANG_DIR = Path(__file__).resolve().parent.parent / "lang"   # 如果 lang 在项目根目录
+SUPPORTED_LANGS = {"en", "fr", "cn"}
+DEFAULT_LANG = "en"
+
+_I18N_CACHE = {}  # {"en": {...}, "fr": {...}}
+
+def _load_lang(lang: str) -> dict:
+    """Load one JSON language file with cache."""
+    if lang in _I18N_CACHE:
+        return _I18N_CACHE[lang]
+
+    fp = LANG_DIR / f"{lang}.json"
+    try:
+        with open(fp, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        logging.warning(f"i18n: failed to load {fp}: {e}")
+        data = {}
+
+    _I18N_CACHE[lang] = data
+    return data
+
+def get_lang() -> str:
+    """Choose current language: ?lang=xx > session > default."""
+    lang = request.args.get("lang")
+    if lang:
+        lang = lang.lower()
+        if lang in SUPPORTED_LANGS:
+            session["lang"] = lang
+            return lang
+
+    lang = session.get("lang", DEFAULT_LANG)
+    return lang if lang in SUPPORTED_LANGS else DEFAULT_LANG
+
+def t(key: str, default: str | None = None, **kwargs) -> str:
+    """
+    Translate a key. Example: t("nav.logout")
+    Supports format: t("hello.user", name="Grace")
+    """
+    lang = get_lang()
+    table = _load_lang(lang)
+    text = table.get(key, default if default is not None else key)
+
+    # optional string formatting with kwargs
+    try:
+        return text.format(**kwargs)
+    except Exception:
+        return text
+
+
+
+from functools import lru_cache
+
+
+LANG_DIR = os.path.join(os.path.dirname(__file__), "lang")
+
+SUPPORTED_LANGS = ("en", "fr", "cn")
+
+@lru_cache(maxsize=16)
+def _load_lang_file(lang_code: str) -> dict:
+    path = os.path.join(LANG_DIR, f"{lang_code}.json")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def t(key: str, default: str = "") -> str:
+    lang = session.get("lang", "en")
+    if lang not in SUPPORTED_LANGS:
+        lang = "en"
+
+    data = _load_lang_file(lang)
+
+    cur = data
+    for part in key.split("."):
+        if isinstance(cur, dict) and part in cur:
+            cur = cur[part]
+        else:
+            return default or key
+
+    return cur if isinstance(cur, str) else (default or key)
+
 
 
 class webserver:
@@ -146,6 +234,14 @@ class webserver:
             "current_user": user,
             "current_role": role,
         }
+
+    @app.context_processor
+    def inject_i18n():
+        return {
+            "t": t,
+            "current_lang": get_lang(),
+        }
+
 
     # ====== PROTECTED PAGE ROUTES ======
     @app.route("/events")
@@ -962,3 +1058,12 @@ class webserver:
         logging.info(data)
 
         return "OK"
+        
+    @app.route("/set-lang/<lang>")
+    @login_required
+    def set_lang(lang):
+        lang = (lang or "").lower()
+        if lang in SUPPORTED_LANGS:
+            session["lang"] = lang
+        return redirect(request.referrer or url_for("home"))
+
