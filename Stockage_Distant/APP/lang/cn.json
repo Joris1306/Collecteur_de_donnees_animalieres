@@ -113,5 +113,28 @@
   "common.id": "ID",
   "common.back": "返回",
   "common.toggle_layout": "切换布局"
+  "journal.title": "系统日志",
+  "journal.h1": "系统日志",
+  "journal.subtitle": "系统所有活动的事件记录",
+
+  "journal.event.image_received": "接收到图片",
+  "journal.event.image_hidden": "图片已隐藏",
+  "journal.event.image_deleted": "图片已删除",
+  "journal.event.generic": "事件",
+
+  "journal.camera": "相机",
+
+  "journal.empty.title": "暂无事件",
+  "journal.empty.text": "系统记录活动后，事件将显示在这里",
+
+  "pagination.first": "« 首页",
+  "pagination.previous": "‹ 上一页",
+  "pagination.next": "下一页 ›",
+  "pagination.last": "末页 »",
+  "pagination.page": "第",
+  "pagination.of": "页 / 共",
+
+  "common.back": "返回",
+  "common.refresh": "刷新"
 
 }
