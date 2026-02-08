@@ -141,6 +141,9 @@
   "unauthorized.text": "你没有权限访问此页面。",
   "unauthorized.go_home": "回到首页",
   "unauthorized.go_login": "去登录"
+  "error.title": "错误",
+  "error.h2": "发生错误",
+  "error.text": "加载页面时发生了错误。"
 
 
 }
