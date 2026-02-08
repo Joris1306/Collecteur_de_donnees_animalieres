@@ -139,5 +139,8 @@
   "unauthorized.text": "Vous n’avez pas l’autorisation d’accéder à cette page.",
   "unauthorized.go_home": "Aller à l’accueil",
   "unauthorized.go_login": "Aller à la connexion"
+  "error.title": "Erreur",
+  "error.h2": "Une erreur est survenue",
+  "error.text": "Une erreur s’est produite lors du chargement de cette page."
 
 }
