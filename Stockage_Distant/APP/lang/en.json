@@ -134,4 +134,10 @@
 
   "common.back": "Back",
   "common.refresh": "Refresh"
+  "unauthorized.title": "Unauthorized",
+  "unauthorized.h1": "Access denied",
+  "unauthorized.text": "You don’t have permission to view this page.",
+  "unauthorized.go_home": "Go to Home",
+  "unauthorized.go_login": "Go to Login"
+
 }
