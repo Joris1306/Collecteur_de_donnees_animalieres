@@ -18,4 +18,31 @@
   "date": "Date",
   "hide": "Masquer",
   "delete": "Supprimer"
+  "home.title": "Accueil - Système de surveillance",
+  "home.hero_title": "Bienvenue sur votre tableau de bord",
+  "home.hero_subtitle": "Choisissez une section ci-dessous pour naviguer dans le système",
+
+  "home.cards.images.title": "Dernières images",
+  "home.cards.images.desc": "Afficher et gérer les images les plus récentes de votre système de surveillance",
+  "home.cards.images.cta": "Voir les images →",
+
+  "home.cards.map.title": "Vue carte",
+  "home.cards.map.desc": "Explorer les emplacements sur une carte interactive",
+  "home.cards.map.cta": "Ouvrir la carte →",
+
+  "home.cards.cam.title": "Gestion des caméras",
+  "home.cards.cam.desc": "Accéder à vos caméras et gérer leurs paramètres",
+  "home.cards.cam.cta": "Gérer les caméras →",
+
+  "home.cards.battery.title": "État de la batterie",
+  "home.cards.battery.desc": "Suivre le niveau de batterie et les performances des appareils",
+  "home.cards.battery.cta": "Voir la batterie →",
+
+  "home.cards.journal.title": "Journal système",
+  "home.cards.journal.desc": "Consulter l’historique complet des événements et activités",
+  "home.cards.journal.cta": "Voir le journal →",
+
+  "home.cards.hidden.title": "Images masquées",
+  "home.cards.hidden.desc": "Accéder aux images masquées du flux principal",
+  "home.cards.hidden.cta": "Voir les masquées →"
 }
