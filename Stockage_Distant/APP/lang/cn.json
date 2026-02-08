@@ -18,4 +18,31 @@
   "date": "时间",
   "hide": "隐藏",
   "delete": "删除"
+  "home.title": "首页 - 数据监控系统",
+  "home.hero_title": "欢迎来到监控面板",
+  "home.hero_subtitle": "请选择下方模块进入系统功能",
+
+  "home.cards.images.title": "最新图片",
+  "home.cards.images.desc": "查看并管理系统最新上传的图片",
+  "home.cards.images.cta": "查看图片 →",
+
+  "home.cards.map.title": "地图视图",
+  "home.cards.map.desc": "在交互式地图上查看监控点位",
+  "home.cards.map.cta": "打开地图 →",
+
+  "home.cards.cam.title": "相机管理",
+  "home.cards.cam.desc": "查看并管理相机设备及其信息",
+  "home.cards.cam.cta": "管理相机 →",
+
+  "home.cards.battery.title": "电量状态",
+  "home.cards.battery.desc": "监控设备电量变化与性能指标",
+  "home.cards.battery.cta": "查看电量 →",
+
+  "home.cards.journal.title": "系统日志",
+  "home.cards.journal.desc": "查看系统全部事件与操作记录",
+  "home.cards.journal.cta": "查看日志 →",
+
+  "home.cards.hidden.title": "已隐藏图片",
+  "home.cards.hidden.desc": "查看从主列表中隐藏的图片",
+  "home.cards.hidden.cta": "查看隐藏 →"
 }
