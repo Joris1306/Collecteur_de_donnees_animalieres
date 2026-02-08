@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Camera List</title>
+  <title>{{ t("cam.title") }}</title>
   {% include '_favicon.html' %}
   {% include '_styles.html' %}
 </head>
@@ -14,15 +14,15 @@
 <div class="container">
   <div class="topbar">
     <div class="title">
-      <h1>Registered Cameras</h1>
+      <h1>{{ t("cam.h1") }}</h1>
       <div class="subtitle">
-        Wildlife Monitoring System — Active camera overview
+        {{ t("cam.subtitle") }}
       </div>
     </div>
 
     <div class="actions">
-      <button onclick="history.back()" class="btn">Back</button>
-      <button class="btn" id="btnToggle">Toggle Layout</button>
+      <button onclick="history.back()" class="btn">{{ t("common.back") }}</button>
+      <button class="btn" id="btnToggle">{{ t("common.toggle_layout") }}</button>
     </div>
   </div>
 
@@ -31,18 +31,18 @@
       <article onclick="window.location.href='/battery/{{ cam.id }}/graph'" class="card">
         <div class="content">
           <div class="row">
-            <div class="badge">ID {{ cam.id }}</div>
+            <div class="badge">{{ t("common.id") }} {{ cam.id }}</div>
             <div class="pill">{{ cam.battery }}</div>
           </div>
 
           <div class="meta">
             <div class="kv">
-              <div class="k">Name</div>
+              <div class="k">{{ t("cam.name") }}</div>
               <div class="v">{{ cam.name }}</div>
             </div>
 
             <div class="kv">
-              <div class="k">Location</div>
+              <div class="k">{{ t("cam.location") }}</div>
               <div class="v">{{ cam.location }}</div>
             </div>
           </div>
@@ -58,3 +58,4 @@
 {% include '_footer.html' %}
 </body>
 </html>
+
