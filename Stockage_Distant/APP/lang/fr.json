@@ -45,4 +45,29 @@
   "home.cards.hidden.title": "Images masquées",
   "home.cards.hidden.desc": "Accéder aux images masquées du flux principal",
   "home.cards.hidden.cta": "Voir les masquées →"
+  "images.title": "Dernières images",
+  "images.header": "Dernières %(count)s images importées",
+  "images.subtitle": "Système de surveillance — Images déclenchées par caméra et données environnementales",
+
+  "common.refresh": "Rafraîchir",
+  "common.toggle_layout": "Changer la vue",
+  "common.export_xlsx": "Exporter XLSX",
+  "common.apply": "Appliquer",
+  "common.reset": "Réinitialiser",
+
+  "filters.camera_id": "ID caméra",
+  "filters.camera_placeholder": "ex. 1",
+  "filters.from": "Du",
+  "filters.to": "Au",
+  "filters.sort": "Tri",
+  "filters.newest": "Plus récent",
+  "filters.oldest": "Plus ancien",
+
+  "actions.hide": "Masquer",
+  "actions.delete": "Supprimer",
+  "actions.confirm_delete": "Supprimer définitivement cette image ?",
+
+  "fields.temperature": "Température",
+  "fields.humidity": "Humidité",
+  "fields.date": "Date"
 }
