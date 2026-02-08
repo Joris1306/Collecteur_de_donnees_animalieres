@@ -80,4 +80,7 @@
   "nav.hidden": "Hidden",
   "nav.logged_in_as": "Logged in as",
   "nav.logout": "Logout"
+  "footer.title": "Camera Map",
+  "footer.subtitle": "Live monitoring dashboard",
+  "footer.article": "Article"
 }
