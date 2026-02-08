@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Battery Monitoring</title>
+    <title>{{ t("battery.title") }}</title>
     {% include '_favicon.html' %}
     {% include '_styles.html' %}
     
@@ -90,14 +90,14 @@
 <div class="container">
     <div class="topbar">
         <div class="title">
-            <h1>🔋 Battery Monitoring</h1>
+            <h1>🔋 {{ t("battery.h1") }}</h1>
             <div class="subtitle">
-                Real-time battery level tracking for all cameras
+                {{ t("battery.subtitle") }}
             </div>
         </div>
         <div class="actions">
-            <button class="btn" onclick="window.history.back()">⬅ Back</button>
-            <button class="btn" onclick="window.location.reload()">Refresh</button>
+            <button class="btn" onclick="window.history.back()">⬅ {{ t("common.back") }}</button>
+            <button class="btn" onclick="window.location.reload()">{{ t("common.refresh") }}</button>
         </div>
     </div>
 
@@ -107,7 +107,7 @@
             {% for cam in cameras %}
                 <div class="camera-item {% if cam.CAM_ID == default_cam_id %}active{% endif %}" 
                      onclick="selectCamera({{ cam.CAM_ID }})">
-                    <div class="camera-id">📷 Camera {{ cam.CAM_ID }}</div>
+                    <div class="camera-id">📷 {{ t("battery.camera") }} {{ cam.CAM_ID }}</div>
                     <!-- <div class="camera-battery">🔋 {{ cam.BATTERY or 'N/A' }}%</div> -->
                 </div>
             {% endfor %}
@@ -115,7 +115,7 @@
 
         <!-- Graph Container -->
         <div class="graph-container">
-            <div class="graph-title" id="graphTitle">Battery — Camera {{ default_cam_id }}</div>
+            <div class="graph-title" id="graphTitle">{{ t("battery.graph_title_prefix") }} {{ default_cam_id }}</div>
             <article class="card" style="border: none; background: transparent; box-shadow: none;">
                 <div class="content" style="padding: 0;">
                     <canvas id="batteryGraph" height="120"></canvas>
@@ -129,6 +129,12 @@
     let currentCamId = {{ default_cam_id }};
     let chartInstance = null;
 
+    const I18N = {
+      graphTitlePrefix: {{ t("battery.graph_title_prefix")|tojson }},
+      datasetLabel: {{ t("battery.dataset_label")|tojson }},
+      cameraLabel: {{ t("battery.camera")|tojson }}
+    };
+
     async function selectCamera(camId) {
         currentCamId = camId;
         
@@ -139,7 +145,7 @@
         event.currentTarget.classList.add('active');
         
         // Update title
-        document.getElementById('graphTitle').textContent = `Battery — Camera ${camId}`;
+        document.getElementById('graphTitle').textContent = `${I18N.graphTitlePrefix} ${camId}`;
         
         // Fetch and update graph
         await updateGraph(camId);
@@ -169,7 +175,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: `Battery Level (%)`,
+                            label: I18N.datasetLabel,
                             data: values,
                             borderColor: 'rgba(100, 200, 255, 0.8)',
                             backgroundColor: 'rgba(100, 200, 255, 0.1)',
@@ -248,3 +254,4 @@
 
 </body>
 </html>
+
