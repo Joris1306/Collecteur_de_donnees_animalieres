@@ -1,23 +1,20 @@
 {
-  "title": "最新图片",
-  "refresh": "刷新",
-  "toggle_layout": "切换布局",
-  "go_map": "地图",
-  "go_cam": "摄像头",
-  "export": "导出",
-  "camera_id": "摄像头编号",
-  "from": "起始日期",
-  "to": "结束日期",
-  "sort": "排序",
-  "newest": "最新",
-  "oldest": "最早",
-  "apply": "应用",
-  "reset": "重置",
-  "temperature": "温度",
-  "humidity": "湿度",
-  "date": "时间",
-  "hide": "隐藏",
-  "delete": "删除"
+  "app.title": "数据监控系统",
+
+  "nav.home": "首页",
+  "nav.images": "图片",
+  "nav.map": "地图",
+  "nav.cam": "相机",
+  "nav.battery": "电量",
+  "nav.journal": "日志",
+  "nav.hidden": "已隐藏",
+  "nav.logged_in_as": "当前用户",
+  "nav.logout": "退出",
+
+  "footer.title": "相机地图",
+  "footer.subtitle": "实时监控仪表盘",
+  "footer.article": "新闻报道",
+
   "home.title": "首页 - 数据监控系统",
   "home.hero_title": "欢迎来到监控面板",
   "home.hero_subtitle": "请选择下方模块进入系统功能",
@@ -44,7 +41,8 @@
 
   "home.cards.hidden.title": "已隐藏图片",
   "home.cards.hidden.desc": "查看从主列表中隐藏的图片",
-  "home.cards.hidden.cta": "查看隐藏 →"
+  "home.cards.hidden.cta": "查看隐藏 →",
+
   "images.title": "最新图片",
   "images.header": "最近上传 %(count)s 张图片",
   "images.subtitle": "野生动物监测系统 — 相机触发图片与环境数据",
@@ -54,6 +52,8 @@
   "common.export_xlsx": "导出 XLSX",
   "common.apply": "应用",
   "common.reset": "重置",
+  "common.back": "返回",
+  "common.id": "ID",
 
   "filters.camera_id": "相机ID",
   "filters.camera_placeholder": "例如 1",
@@ -69,31 +69,16 @@
 
   "fields.temperature": "温度",
   "fields.humidity": "湿度",
-  "fields.date": "时间"
-  "app.title": "数据监控系统",
-  "nav.home": "首页",
-  "nav.images": "图片",
-  "nav.map": "地图",
-  "nav.cam": "相机",
-  "nav.battery": "电量",
-  "nav.journal": "日志",
-  "nav.hidden": "已隐藏",
-  "nav.logged_in_as": "当前用户",
-  "nav.logout": "退出"
-  "footer.title": "相机地图",
-  "footer.subtitle": "实时监控仪表盘",
-  "footer.article": "新闻报道"
-  "app.title": "数据监控系统",
+  "fields.date": "时间",
 
   "login.title_page": "登录",
   "login.username": "用户名",
   "login.password": "密码",
   "login.username_placeholder": "请输入用户名",
   "login.password_placeholder": "请输入密码",
-  "login.toggle_password": "显示/隐藏密码",
   "login.submit": "登录",
-  "login.footer": "安全访问数据监控系统"
-  
+  "login.footer": "安全访问数据监控系统",
+
   "battery.title": "电池监控",
   "battery.h1": "电池监控",
   "battery.subtitle": "所有相机电池电量的实时追踪",
@@ -101,18 +86,12 @@
   "battery.graph_title_prefix": "电池 — 相机",
   "battery.dataset_label": "电量 (%)",
 
-  "common.back": "返回",
-  "common.refresh": "刷新"
-  
   "cam.title": "相机列表",
   "cam.h1": "已注册相机",
   "cam.subtitle": "野生动物监测系统 — 活跃相机概览",
   "cam.name": "名称",
   "cam.location": "位置",
 
-  "common.id": "ID",
-  "common.back": "返回",
-  "common.toggle_layout": "切换布局"
   "journal.title": "系统日志",
   "journal.h1": "系统日志",
   "journal.subtitle": "系统所有活动的事件记录",
@@ -134,16 +113,14 @@
   "pagination.page": "第",
   "pagination.of": "页 / 共",
 
-  "common.back": "返回",
-  "common.refresh": "刷新"
   "unauthorized.title": "无权限",
   "unauthorized.h1": "拒绝访问",
   "unauthorized.text": "你没有权限访问此页面。",
   "unauthorized.go_home": "回到首页",
-  "unauthorized.go_login": "去登录"
+  "unauthorized.go_login": "去登录",
+
   "error.title": "错误",
   "error.h2": "发生错误",
   "error.text": "加载页面时发生了错误。"
-
-
 }
+
