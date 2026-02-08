@@ -70,4 +70,14 @@
   "fields.temperature": "Température",
   "fields.humidity": "Humidité",
   "fields.date": "Date"
+  "app.title": "Système de suivi des données",
+  "nav.home": "Accueil",
+  "nav.images": "Images",
+  "nav.map": "Carte",
+  "nav.cam": "Caméras",
+  "nav.battery": "Batterie",
+  "nav.journal": "Journal",
+  "nav.hidden": "Masquées",
+  "nav.logged_in_as": "Connecté en tant que",
+  "nav.logout": "Déconnexion"
 }
