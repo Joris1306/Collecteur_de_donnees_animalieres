@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unauthorized</title>
+    <title>{{ t("unauthorized.title") }}</title>
     {% include '_favicon.html' %}
     {% include '_styles.html' %}
 
@@ -20,15 +20,16 @@
     {% include '_navbar.html' %}
     <div class="wrapper">
         <div class="card">
-            <h1>Access denied</h1>
-            <p>You don’t have permission to view this page.</p>
+            <h1>{{ t("unauthorized.h1") }}</h1>
+            <p>{{ t("unauthorized.text") }}</p>
             {% if session.get('user') %}
-                <a class="btn" href="{{ url_for('home') }}">Go to Home</a>
+                <a class="btn" href="{{ url_for('home') }}">{{ t("unauthorized.go_home") }}</a>
             {% else %}
-                <a class="btn" href="{{ url_for('login_page') }}">Go to Login</a>
+                <a class="btn" href="{{ url_for('login_page') }}">{{ t("unauthorized.go_login") }}</a>
             {% endif %}
         </div>
     </div>
     {% include '_footer.html' %}
 </body>
 </html>
+
