@@ -93,4 +93,13 @@
   "login.toggle_password": "Show/Hide password",
   "login.submit": "Log In",
   "login.footer": "Secure access to data monitoring system"
+  "battery.title": "Battery Monitoring",
+  "battery.h1": "Battery Monitoring",
+  "battery.subtitle": "Real-time battery level tracking for all cameras",
+  "battery.camera": "Camera",
+  "battery.graph_title_prefix": "Battery — Camera",
+  "battery.dataset_label": "Battery Level (%)",
+
+  "common.back": "Back",
+  "common.refresh": "Refresh"
 }
