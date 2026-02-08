@@ -18,4 +18,31 @@
   "date": "Date",
   "hide": "Hide",
   "delete": "Delete"
+  "home.title": "Home - Data Monitoring System",
+  "home.hero_title": "Welcome to Your Monitoring Dashboard",
+  "home.hero_subtitle": "Select a section below to navigate through your system",
+
+  "home.cards.images.title": "Latest Images",
+  "home.cards.images.desc": "View and manage the most recent uploaded images from your monitoring system",
+  "home.cards.images.cta": "View Images →",
+
+  "home.cards.map.title": "Map View",
+  "home.cards.map.desc": "Explore your monitoring locations on an interactive map",
+  "home.cards.map.cta": "Open Map →",
+
+  "home.cards.cam.title": "Camera Management",
+  "home.cards.cam.desc": "Access and manage your camera devices and their settings",
+  "home.cards.cam.cta": "Manage Cameras →",
+
+  "home.cards.battery.title": "Battery Status",
+  "home.cards.battery.desc": "Monitor battery levels and performance metrics for your devices",
+  "home.cards.battery.cta": "View Battery →",
+
+  "home.cards.journal.title": "System Journal",
+  "home.cards.journal.desc": "View a complete log of all system events and activities",
+  "home.cards.journal.cta": "View Journal →",
+
+  "home.cards.hidden.title": "Hidden Images",
+  "home.cards.hidden.desc": "Access images that have been marked as hidden from the main feed",
+  "home.cards.hidden.cta": "View Hidden →"
 }
