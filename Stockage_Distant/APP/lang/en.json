@@ -70,4 +70,14 @@
   "fields.temperature": "Temperature",
   "fields.humidity": "Humidity",
   "fields.date": "Date"
+  "app.title": "Data Monitoring System",
+  "nav.home": "Home",
+  "nav.images": "Images",
+  "nav.map": "Map",
+  "nav.cam": "Cam",
+  "nav.battery": "Battery",
+  "nav.journal": "Journal",
+  "nav.hidden": "Hidden",
+  "nav.logged_in_as": "Logged in as",
+  "nav.logout": "Logout"
 }
