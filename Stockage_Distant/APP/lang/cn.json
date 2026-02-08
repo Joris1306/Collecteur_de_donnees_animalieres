@@ -45,4 +45,29 @@
   "home.cards.hidden.title": "已隐藏图片",
   "home.cards.hidden.desc": "查看从主列表中隐藏的图片",
   "home.cards.hidden.cta": "查看隐藏 →"
+  "images.title": "最新图片",
+  "images.header": "最近上传 %(count)s 张图片",
+  "images.subtitle": "野生动物监测系统 — 相机触发图片与环境数据",
+
+  "common.refresh": "刷新",
+  "common.toggle_layout": "切换布局",
+  "common.export_xlsx": "导出 XLSX",
+  "common.apply": "应用",
+  "common.reset": "重置",
+
+  "filters.camera_id": "相机ID",
+  "filters.camera_placeholder": "例如 1",
+  "filters.from": "从",
+  "filters.to": "到",
+  "filters.sort": "排序",
+  "filters.newest": "最新",
+  "filters.oldest": "最旧",
+
+  "actions.hide": "隐藏",
+  "actions.delete": "删除",
+  "actions.confirm_delete": "确定永久删除这张图片吗？",
+
+  "fields.temperature": "温度",
+  "fields.humidity": "湿度",
+  "fields.date": "时间"
 }
