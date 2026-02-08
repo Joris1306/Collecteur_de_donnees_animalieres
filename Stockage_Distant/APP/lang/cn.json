@@ -80,4 +80,7 @@
   "nav.hidden": "已隐藏",
   "nav.logged_in_as": "当前用户",
   "nav.logout": "退出"
+  "footer.title": "相机地图",
+  "footer.subtitle": "实时监控仪表盘",
+  "footer.article": "新闻报道"
 }
