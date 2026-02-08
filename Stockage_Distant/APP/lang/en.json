@@ -102,4 +102,13 @@
 
   "common.back": "Back",
   "common.refresh": "Refresh"
+  "cam.title": "Camera List",
+  "cam.h1": "Registered Cameras",
+  "cam.subtitle": "Wildlife Monitoring System — Active camera overview",
+  "cam.name": "Name",
+  "cam.location": "Location",
+
+  "common.id": "ID",
+  "common.back": "Back",
+  "common.toggle_layout": "Toggle Layout"
 }
