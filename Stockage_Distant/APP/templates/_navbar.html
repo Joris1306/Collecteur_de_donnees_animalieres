@@ -34,15 +34,41 @@
     {% endif %}
   </div>
 
-  <div style="display:flex; align-items:center; gap:20px;">
+  <div style="display:flex; align-items:center; gap:12px;">
+    <!-- Language switch -->
+    <div style="display:flex; gap:6px; align-items:center;">
+      <a href="{{ url_for('set_lang', lang='en') }}"
+         class="btn"
+         style="padding:6px 10px; font-size:12px; border-radius:10px; border:1px solid var(--border); text-decoration:none;
+                {% if lang == 'en' %}background:rgba(100,200,255,.18); border-color:rgba(100,200,255,.45);{% else %}background:linear-gradient(180deg, var(--panel2), var(--panel));{% endif %}">
+        EN
+      </a>
+
+      <a href="{{ url_for('set_lang', lang='fr') }}"
+         class="btn"
+         style="padding:6px 10px; font-size:12px; border-radius:10px; border:1px solid var(--border); text-decoration:none;
+                {% if lang == 'fr' %}background:rgba(100,200,255,.18); border-color:rgba(100,200,255,.45);{% else %}background:linear-gradient(180deg, var(--panel2), var(--panel));{% endif %}">
+        FR
+      </a>
+
+      <a href="{{ url_for('set_lang', lang='cn') }}"
+         class="btn"
+         style="padding:6px 10px; font-size:12px; border-radius:10px; border:1px solid var(--border); text-decoration:none;
+                {% if lang == 'cn' %}background:rgba(100,200,255,.18); border-color:rgba(100,200,255,.45);{% else %}background:linear-gradient(180deg, var(--panel2), var(--panel));{% endif %}">
+        中文
+      </a>
+    </div>
+
     <span style="color:var(--muted); font-size:14px;">
       {{ t("nav.logged_in_as") }}:
       <strong style="color:var(--text);">{{ current_user or session.get('user', 'Unknown') }}</strong>
     </span>
 
-    <a href="{{ url_for('logout') }}" style="padding:10px 16px; background:linear-gradient(180deg, var(--panel2), var(--panel)); color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.2s ease;">
+    <a href="{{ url_for('logout') }}"
+       style="padding:10px 16px; background:linear-gradient(180deg, var(--panel2), var(--panel)); color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.2s ease;">
       {{ t("nav.logout") }}
     </a>
   </div>
 </nav>
+
 
