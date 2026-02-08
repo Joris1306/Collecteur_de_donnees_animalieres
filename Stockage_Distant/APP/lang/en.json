@@ -139,5 +139,8 @@
   "unauthorized.text": "You don’t have permission to view this page.",
   "unauthorized.go_home": "Go to Home",
   "unauthorized.go_login": "Go to Login"
+  "error.title": "Error",
+  "error.h2": "An error occurred",
+  "error.text": "Something went wrong while loading this page."
 
 }
