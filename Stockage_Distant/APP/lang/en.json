@@ -111,4 +111,27 @@
   "common.id": "ID",
   "common.back": "Back",
   "common.toggle_layout": "Toggle Layout"
+  "journal.title": "System Journal",
+  "journal.h1": "System Journal",
+  "journal.subtitle": "Event log of all system activities",
+
+  "journal.event.image_received": "Image Received",
+  "journal.event.image_hidden": "Image Hidden",
+  "journal.event.image_deleted": "Image Deleted",
+  "journal.event.generic": "Event",
+
+  "journal.camera": "Camera",
+
+  "journal.empty.title": "No events yet",
+  "journal.empty.text": "Events will appear here as your system records activities",
+
+  "pagination.first": "« First",
+  "pagination.previous": "‹ Previous",
+  "pagination.next": "Next ›",
+  "pagination.last": "Last »",
+  "pagination.page": "Page",
+  "pagination.of": "of",
+
+  "common.back": "Back",
+  "common.refresh": "Refresh"
 }
