@@ -93,4 +93,14 @@
   "login.toggle_password": "显示/隐藏密码",
   "login.submit": "登录",
   "login.footer": "安全访问数据监控系统"
+  
+  "battery.title": "电池监控",
+  "battery.h1": "电池监控",
+  "battery.subtitle": "所有相机电池电量的实时追踪",
+  "battery.camera": "相机",
+  "battery.graph_title_prefix": "电池 — 相机",
+  "battery.dataset_label": "电量 (%)",
+
+  "common.back": "返回",
+  "common.refresh": "刷新"
 }
