@@ -80,4 +80,7 @@
   "nav.hidden": "Masquées",
   "nav.logged_in_as": "Connecté en tant que",
   "nav.logout": "Déconnexion"
+  "footer.title": "Carte des caméras",
+  "footer.subtitle": "Tableau de bord de surveillance en direct",
+  "footer.article": "Article"
 }
