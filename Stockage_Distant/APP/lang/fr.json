@@ -102,7 +102,6 @@
 
   "common.back": "Retour",
   "common.refresh": "Rafraîchir"
-  {
   "cam.title": "Liste des caméras",
   "cam.h1": "Caméras enregistrées",
   "cam.subtitle": "Système de suivi de la faune — Vue d’ensemble des caméras actives",
@@ -112,6 +111,4 @@
   "common.id": "ID",
   "common.back": "Retour",
   "common.toggle_layout": "Changer la mise en page"
-}
-
 }
