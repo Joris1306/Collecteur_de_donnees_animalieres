@@ -70,4 +70,14 @@
   "fields.temperature": "温度",
   "fields.humidity": "湿度",
   "fields.date": "时间"
+  "app.title": "数据监控系统",
+  "nav.home": "首页",
+  "nav.images": "图片",
+  "nav.map": "地图",
+  "nav.cam": "相机",
+  "nav.battery": "电量",
+  "nav.journal": "日志",
+  "nav.hidden": "已隐藏",
+  "nav.logged_in_as": "当前用户",
+  "nav.logout": "退出"
 }
