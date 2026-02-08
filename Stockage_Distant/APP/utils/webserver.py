@@ -186,6 +186,14 @@ class webserver:
 
         return render_template("login.html")
 
+    @app.route("/set-lang/<lang>")
+    def set_lang(lang):
+        if lang not in ["en", "fr", "cn"]:
+            lang = "en"
+        session["lang"] = lang
+        return redirect(request.referrer or url_for("home"))
+
+
     @app.route("/logout")
     def logout():
         """Handle user logout"""
