@@ -83,4 +83,14 @@
   "footer.title": "Carte des caméras",
   "footer.subtitle": "Tableau de bord de surveillance en direct",
   "footer.article": "Article"
+  "app.title": "Système de surveillance des données",
+
+  "login.title_page": "Connexion",
+  "login.username": "Nom d'utilisateur",
+  "login.password": "Mot de passe",
+  "login.username_placeholder": "Saisissez votre nom d'utilisateur",
+  "login.password_placeholder": "Saisissez votre mot de passe",
+  "login.toggle_password": "Afficher/Masquer le mot de passe",
+  "login.submit": "Se connecter",
+  "login.footer": "Accès sécurisé au système de surveillance"
 }
