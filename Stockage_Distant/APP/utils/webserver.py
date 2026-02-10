@@ -14,12 +14,14 @@ import json
 import csv
 import os
 import zipfile
+from flask import g
 from io import BytesIO
 
 
 from io import StringIO
 from pathlib import Path
 from urllib.parse import quote
+from utlitaires import app, logging, get_properties
 
 try:
     from openpyxl import Workbook
@@ -34,7 +36,7 @@ except ImportError:
 from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
-from utlitaires import app, logging, get_properties
+
 from utils.auth import (
     login_required,
     role_required,
@@ -45,6 +47,62 @@ from utils.auth import (
     is_user_blocked,
     get_user_role,
 )
+
+
+from functools import lru_cache
+from pathlib import Path
+from flask import request, session
+import json
+
+# ===== i18n =====
+LANG_DIR = Path(__file__).resolve().parent.parent / "lang" 
+SUPPORTED_LANGS = {"fr", "en", "cn"}
+DEFAULT_LANG = "en"
+
+def get_lang() -> str:
+    lang = (request.args.get("lang") or session.get("lang") or DEFAULT_LANG).lower()
+    if lang not in SUPPORTED_LANGS:
+        lang = DEFAULT_LANG
+    session["lang"] = lang
+    return lang
+
+@lru_cache(maxsize=16)
+def _load_lang_file(lang_code: str) -> dict:
+    path = LANG_DIR / f"{lang_code}.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def t(key: str, default: str = "") -> str:
+    # 1) try current lang
+    lang = get_lang()
+    data = _load_lang_file(lang)
+
+    def _get(data_dict):
+        cur = data_dict
+        for part in key.split("."):
+            if isinstance(cur, dict) and part in cur:
+                cur = cur[part]
+            else:
+                return None
+        return cur if isinstance(cur, str) else None
+
+    v = _get(data)
+    if v is not None:
+        return v
+
+    # 2) fallback to English
+    v = _get(_load_lang_file("en"))
+    if v is not None:
+        return v
+
+    # 3) last fallback
+    return default or key
+
+
+
 
 
 class webserver:
@@ -129,6 +187,14 @@ class webserver:
 
         return render_template("login.html")
 
+    @app.route("/set-lang/<lang>")
+    def set_lang(lang):
+        if lang not in ["en", "fr", "cn"]:
+            lang = "en"
+        session["lang"] = lang
+        return redirect(request.referrer or url_for("home"))
+
+
     @app.route("/logout")
     def logout():
         """Handle user logout"""
@@ -147,6 +213,14 @@ class webserver:
             "current_user": user,
             "current_role": role,
         }
+
+    @app.context_processor
+    def inject_i18n():
+        return {
+            "t": t,
+            "current_lang": get_lang(),
+        }
+
 
     # ====== PROTECTED PAGE ROUTES ======
     @app.route("/events")
@@ -996,3 +1070,14 @@ class webserver:
         logging.info(data)
 
         return "OK"
+        
+    @app.route("/set-lang/<lang>")
+    @login_required
+    def set_lang(lang):
+        lang = (lang or "").lower()
+        if lang in SUPPORTED_LANGS:
+            session["lang"] = lang
+            _load_lang_file.cache_clear()  
+        return redirect(request.referrer or url_for("home"))
+
+

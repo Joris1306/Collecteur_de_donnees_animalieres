@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang|default('en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Data Monitoring System</title>
-    {% include '_favicon.html' %}    
+    <title>{{ t("login.title_page") }} - {{ t("app.title") }}</title>
+    {% include '_favicon.html' %}
     {% include '_styles.html' %}
 
     <style>
@@ -168,39 +168,59 @@
     </style>
 </head>
 <body>
+    <div style="position:absolute; top:20px; right:20px; display:flex; gap:8px;">
+      <a href="{{ url_for('set_lang', lang='en') }}">EN</a>
+      <a href="{{ url_for('set_lang', lang='fr') }}">FR</a>
+      <a href="{{ url_for('set_lang', lang='cn') }}">中文</a>
+    </div>
+
     <div class="login-wrapper">
         <div class="login-card">
-            <h1>Data Monitoring System</h1>
-            
+            <h1>{{ t("app.title") }}</h1>
+
             {% if error %}
                 <div class="message-box error">{{ error }}</div>
             {% endif %}
-            
+
             {% if message %}
                 <div class="message-box success">{{ message }}</div>
             {% endif %}
-            
+
             <form method="POST" action="{{ url_for('login_page') }}">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required autofocus placeholder="Enter your username">
+                    <label for="username">{{ t("login.username") }}</label>
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           required
+                           autofocus
+                           placeholder="{{ t('login.username_placeholder') }}">
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">{{ t("login.password") }}</label>
                     <div class="password-container">
-                        <input type="password" id="password" name="password" required placeholder="Enter your password" class="password-input">
-                        <button type="button" class="password-toggle" id="togglePassword" onclick="togglePasswordVisibility()">
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               required
+                               placeholder="{{ t('login.password_placeholder') }}"
+                               class="password-input">
+                        <button type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                onclick="togglePasswordVisibility()"
+                                aria-label="{{ t('login.toggle_password') }}">
                             <span id="passwordIcon">👁️</span>
                         </button>
                     </div>
                 </div>
-                
-                <button type="submit" class="login-button">Log In</button>
+
+                <button type="submit" class="login-button">{{ t("login.submit") }}</button>
             </form>
-            
+
             <div class="login-footer">
-                <p>Secure access to data monitoring system</p>
+                <p>{{ t("login.footer") }}</p>
             </div>
         </div>
     </div>
@@ -209,7 +229,7 @@
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
             const passwordIcon = document.getElementById('passwordIcon');
-            
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 passwordIcon.textContent = '👁️‍🗨️';
