@@ -22,4 +22,4 @@
 - [ ] changer le /home pour avoir une meilleure expérience pour explorer le site
 - [ ] changer le /home : cacher la navbar (bouton pour naviguer sur les autres) car déjà affiché dans le corps de la page
 - [ ] traduction des pages en français, en anglais, en chinois
-- [ ] bouton hide de /main/hidden est inutile car déjà caché, (à supprimer)
+- [ ] bouton hide de /main/hidden est inutile car déjà caché, (à transformer en show => affiche sur la page principale)
