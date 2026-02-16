@@ -75,12 +75,14 @@ def _load_lang_file(lang_code: str) -> dict:
     except Exception:
         return {}
 
-def t(key: str, default: str = "") -> str:
+def t(key: str, default: str = "", **kwargs) -> str:
     # 1) try current lang
     lang = get_lang()
     data = _load_lang_file(lang)
 
     def _get(data_dict):
+        if key in data_dict and isinstance(data_dict[key], str):
+            return data_dict[key]
         cur = data_dict
         for part in key.split("."):
             if isinstance(cur, dict) and part in cur:
@@ -91,14 +93,29 @@ def t(key: str, default: str = "") -> str:
 
     v = _get(data)
     if v is not None:
+        if kwargs:
+            try:
+                return v % kwargs
+            except (TypeError, ValueError, KeyError):
+                return v
         return v
 
     # 2) fallback to English
     v = _get(_load_lang_file("en"))
     if v is not None:
+        if kwargs:
+            try:
+                return v % kwargs
+            except (TypeError, ValueError, KeyError):
+                return v
         return v
 
     # 3) last fallback
+    if default and kwargs:
+        try:
+            return default % kwargs
+        except (TypeError, ValueError, KeyError):
+            return default
     return default or key
 
 
@@ -186,14 +203,6 @@ class webserver:
             return redirect(url_for("index"))
 
         return render_template("login.html")
-
-    @app.route("/set-lang/<lang>")
-    def set_lang(lang):
-        if lang not in ["en", "fr", "cn"]:
-            lang = "en"
-        session["lang"] = lang
-        return redirect(request.referrer or url_for("home"))
-
 
     @app.route("/logout")
     def logout():
@@ -1072,7 +1081,6 @@ class webserver:
         return "OK"
         
     @app.route("/set-lang/<lang>")
-    @login_required
     def set_lang(lang):
         lang = (lang or "").lower()
         if lang in SUPPORTED_LANGS:

@@ -192,7 +192,9 @@
     </style>
 </head>
 <body class="home-wrapper">
-    {#{% include '_navbar.html' %}#}
+    {% set hide_nav_links = true %}
+    {% include '_navbar.html' %}
+    {% set hide_nav_links = false %}
 
     <!-- Main Content -->
     <div class="main-content">

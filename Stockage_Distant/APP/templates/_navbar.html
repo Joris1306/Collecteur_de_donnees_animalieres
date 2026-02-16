@@ -2,35 +2,37 @@
   <div style="display:flex; align-items:center; gap:20px;">
     <h2 style="margin:0; color:var(--text); font-size:20px; font-weight:600;">{{ t("app.title") }}</h2>
 
-    <!-- Navigation links -->
-    <a href="{{ url_for('home') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-      {{ t("nav.home") }}
-    </a>
-
-    <a href="{{ url_for('index') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-      {{ t("nav.images") }}
-    </a>
-
-    <a href="{{ url_for('map') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-      {{ t("nav.map") }}
-    </a>
-
-    <a href="{{ url_for('cam') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-      {{ t("nav.cam") }}
-    </a>
-
-    <a href="{{ url_for('battery') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-      {{ t("nav.battery") }}
-    </a>
-
-    <a href="{{ url_for('journal') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-      {{ t("nav.journal") }}
-    </a>
-
-    {% if current_role in ['dev','admin'] %}
-      <a href="{{ url_for('index_hidden') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.hidden") }}
+    {% if not hide_nav_links %}
+      <!-- Navigation links -->
+      <a href="{{ url_for('home') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        {{ t("nav.home") }}
       </a>
+
+      <a href="{{ url_for('index') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        {{ t("nav.images") }}
+      </a>
+
+      <a href="{{ url_for('map') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        {{ t("nav.map") }}
+      </a>
+
+      <a href="{{ url_for('cam') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        {{ t("nav.cam") }}
+      </a>
+
+      <a href="{{ url_for('battery') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        {{ t("nav.battery") }}
+      </a>
+
+      <a href="{{ url_for('journal') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        {{ t("nav.journal") }}
+      </a>
+
+      {% if current_role in ['dev','admin'] %}
+        <a href="{{ url_for('index_hidden') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+          {{ t("nav.hidden") }}
+        </a>
+      {% endif %}
     {% endif %}
   </div>
 
