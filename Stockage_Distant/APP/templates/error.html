@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title>{{ t("error.title") }}</title>
     {% include '_favicon.html' %}
     {% include '_styles.html' %}
 
@@ -12,13 +12,24 @@
             height: 90vh;
             border: none;
         }
+        .error-wrapper {
+            padding: 40px;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
     {% include '_navbar.html' %}
 
-<h2>Error</h2>
-{% include '_footer.html' %}
+    <div class="error-wrapper">
+        <h2>{{ t("error.h2") }}</h2>
+        <p>{{ t("error.text") }}</p>
+    </div>
 
+    {% include '_footer.html' %}
 </body>
 </html>
+

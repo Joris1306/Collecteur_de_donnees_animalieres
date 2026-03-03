@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang|default('en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Data Monitoring System</title>
+    <title>{{ t("home.title") }}</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
         {% include '_favicon.html' %}
@@ -192,63 +192,65 @@
     </style>
 </head>
 <body class="home-wrapper">
+    {% set hide_nav_links = true %}
     {% include '_navbar.html' %}
+    {% set hide_nav_links = false %}
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="container">
             <div class="hero">
-                <h1>Welcome to Your Monitoring Dashboard</h1>
-                <p>Select a section below to navigate through your system</p>
+                <h1>{{ t("home.hero_title") }}</h1>
+                <p>{{ t("home.hero_subtitle") }}</p>
             </div>
 
             <div class="pages-grid">
                 <!-- Images Page -->
                 <a href="{{ url_for('index') }}" class="page-card">
                     <div class="page-icon">🖼️</div>
-                    <h3 class="page-title">Latest Images</h3>
-                    <p class="page-description">View and manage the most recent uploaded images from your monitoring system</p>
-                    <span class="page-link">View Images →</span>
+                    <h3 class="page-title">{{ t("home.cards.images.title") }}</h3>
+                    <p class="page-description">{{ t("home.cards.images.desc") }}</p>
+                    <span class="page-link">{{ t("home.cards.images.cta") }}</span>
                 </a>
 
                 <!-- Map Page -->
                 <a href="{{ url_for('map') }}" class="page-card">
                     <div class="page-icon">🗺️</div>
-                    <h3 class="page-title">Map View</h3>
-                    <p class="page-description">Explore your monitoring locations on an interactive map</p>
-                    <span class="page-link">Open Map →</span>
+                    <h3 class="page-title">{{ t("home.cards.map.title") }}</h3>
+                    <p class="page-description">{{ t("home.cards.map.desc") }}</p>
+                    <span class="page-link">{{ t("home.cards.map.cta") }}</span>
                 </a>
 
                 <!-- Camera Page -->
                 <a href="{{ url_for('cam') }}" class="page-card">
                     <div class="page-icon">📷</div>
-                    <h3 class="page-title">Camera Management</h3>
-                    <p class="page-description">Access and manage your camera devices and their settings</p>
-                    <span class="page-link">Manage Cameras →</span>
+                    <h3 class="page-title">{{ t("home.cards.cam.title") }}</h3>
+                    <p class="page-description">{{ t("home.cards.cam.desc") }}</p>
+                    <span class="page-link">{{ t("home.cards.cam.cta") }}</span>
                 </a>
 
                 <!-- Battery Graph Page -->
                 <a href="{{ url_for('battery') }}" class="page-card">
                     <div class="page-icon">🔋</div>
-                    <h3 class="page-title">Battery Status</h3>
-                    <p class="page-description">Monitor battery levels and performance metrics for your devices</p>
-                    <span class="page-link">View Battery →</span>
+                    <h3 class="page-title">{{ t("home.cards.battery.title") }}</h3>
+                    <p class="page-description">{{ t("home.cards.battery.desc") }}</p>
+                    <span class="page-link">{{ t("home.cards.battery.cta") }}</span>
                 </a>
 
                 <!-- Journal Page -->
                 <a href="{{ url_for('journal') }}" class="page-card">
                     <div class="page-icon">📔</div>
-                    <h3 class="page-title">System Journal</h3>
-                    <p class="page-description">View a complete log of all system events and activities</p>
-                    <span class="page-link">View Journal →</span>
+                    <h3 class="page-title">{{ t("home.cards.journal.title") }}</h3>
+                    <p class="page-description">{{ t("home.cards.journal.desc") }}</p>
+                    <span class="page-link">{{ t("home.cards.journal.cta") }}</span>
                 </a>
 
                 <!-- Hidden Images Page -->
                 <a href="{{ url_for('index_hidden') }}" class="page-card">
                     <div class="page-icon">🗄️</div>
-                    <h3 class="page-title">Hidden Images</h3>
-                    <p class="page-description">Access images that have been marked as hidden from the main feed</p>
-                    <span class="page-link">View Hidden →</span>
+                    <h3 class="page-title">{{ t("home.cards.hidden.title") }}</h3>
+                    <p class="page-description">{{ t("home.cards.hidden.desc") }}</p>
+                    <span class="page-link">{{ t("home.cards.hidden.cta") }}</span>
                 </a>
             </div>
         </div>

@@ -733,7 +733,8 @@ class image_reconstructor:
         analysis = image_reconstructor.analyze_image_quality(img)
         
         # Determine adjustment parameters based on analysis
-        params = {
+        # Type hint to allow both bool and float values
+        params: dict = {
             "equalize_histogram": True,  # Better detail recovery
             "denoise": True,             # Reduce noise in poor lighting
             "white_balance": True,       # Correct color cast
@@ -872,7 +873,8 @@ def main():
     image_example.show()
 
     adjusted_img = image_reconstructor.adjust_image(image_example, brightness=1.2, contrast=1.5)
-    adjusted_img.show()
+    if adjusted_img:
+        adjusted_img.show()
     # Analyze and auto-correct the image
     analysis = image_reconstructor.analyze_image_quality(image_example)
     print("Image Quality Analysis:")
@@ -892,10 +894,12 @@ def main():
 
     print("Applying Canva preset...")
     canva_corrected = image_reconstructor.apply_canva_preset(image_example)
-    canva_corrected.show()
-    canva_corrected.save(os.path.join(BASE_PATH, "SAMPLE", "corrected_image.jpg"))
-    canva_corrected_smooth = image_reconstructor.apply_canva_preset(canva_corrected, smooth=3)
-    canva_corrected_smooth.show()
+    if canva_corrected:
+        canva_corrected.show()
+        canva_corrected.save(os.path.join(BASE_PATH, "SAMPLE", "corrected_image.jpg"))
+        canva_corrected_smooth = image_reconstructor.apply_canva_preset(canva_corrected, smooth=3)
+        if canva_corrected_smooth:
+            canva_corrected_smooth.show()
 
     print("Done! Images ready for display.")
 

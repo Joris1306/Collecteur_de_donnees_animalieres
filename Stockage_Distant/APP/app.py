@@ -4,7 +4,6 @@ import threading
 from utlitaires import data_receiver
 
 
-
 if __name__ == "__main__":
     properties = get_properties()
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true" or not app.debug:

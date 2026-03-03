@@ -15,11 +15,13 @@ class sql_db:
     STAT_TABLE = "STATS"
     CAM_TABLE = "CAMERA"
     JOURNAL_TABLE = "JOURNAL"
+    IA_TABLE = "IA"
 
     @staticmethod
     def get_db():
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA foreign_keys = ON")
         return conn
     
     @staticmethod
@@ -29,7 +31,7 @@ class sql_db:
         cursor.execute(f"""
         CREATE TABLE IF NOT EXISTS {sql_db.CAM_TABLE} (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            CAM_ID INTEGER NOT NULL,
+            CAM_ID INTEGER NOT NULL UNIQUE,
             BATTERY TEXT,
             LAST_LAT TEXT,
             LAST_LONG TEXT,
@@ -100,6 +102,24 @@ class sql_db:
         conn.close()
 
     @staticmethod
+    def create_IA_table():
+        conn = sql_db.get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS {sql_db.IA_TABLE} (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            IMAGE_ID INT NOT NULL,
+            ANIMAL TEXT,
+            CONFIANCE REAL,
+            DESCRIPTION TEXT,
+            FOREIGN KEY (IMAGE_ID) REFERENCES {sql_db.MAIN_TABLE}(ID)
+        )
+        """)
+
+        conn.commit()
+        conn.close()
+
+    @staticmethod
     def log_event(event_type, description, cam_id=None, image_id=None):
         """Log an event to the journal"""
         try:
@@ -135,6 +155,10 @@ class sql_db:
 
     @staticmethod
     def path_from_buffer(data:dict):
+        img_buffer = None
+        width = None
+        height = None
+        format_ = None
         try:
             img_buffer = data.get('IMG')
             width = data.get('IMG.WIDTH')
@@ -155,15 +179,19 @@ class sql_db:
             return f"images/{filename}"
         
         except Exception as e:
-            logging.error(f"error in path_from_buffer : {e}")
-            logging.error(f"img_buffer = {img_buffer[:15]}[...]")
-            logging.error(f"width = {width}")
-            logging.error(f"height = {height}")
-            logging.error(f"format_ = {format_}")
+            if img_buffer and width and height and format_:
+                logging.error(f"error in path_from_buffer : {e}")
+                if isinstance(img_buffer, (bytes, bytearray)) and len(img_buffer) >= 15:
+                    logging.error(f"img_buffer = {img_buffer[:15]}[...]")
+                else:
+                    logging.error(f"img_buffer = {img_buffer}")
+                logging.error(f"width = {width}")
+                logging.error(f"height = {height}")
+                logging.error(f"format_ = {format_}")
 
             sql_db.log_event(
                 event_type="ERROR",
-                description=f"Erreur de reconstruction d'image : e={e}\nimg_buffer = {img_buffer[:15]}[...]\nwidth = {width}\nheight = {height}\nformat_ = {format_}",
+                description=f"Erreur de reconstruction d'image : e={e}\nimg_buffer = {str(img_buffer)[:50] if img_buffer else 'None'}[...]\nwidth = {width}\nheight = {height}\nformat_ = {format_}",
                 cam_id=None,
                 image_id=None
             )
@@ -176,15 +204,17 @@ class sql_db:
         
     @staticmethod
     def insert_img(data:dict):
+        conn = None
         try:
             sql_db.create_stat_table()
             sql_db.create_main_table()
+            sql_db.create_IA_table()
 
             conn = sql_db.get_db()
             cursor = conn.cursor()
             cursor.execute(f"""
-            INSERT INTO {sql_db.MAIN_TABLE} (DATE_SERVER, DATE_TRAP, GEOLOCALISATION_LAT, GEOLOCALISATION_LONG, TEMPERATURE, HUMIDITE, IMAGE_REPERTOIRE,IMAGE_TRAITEE, BATTERIE, CAMERA_ID, ETAT,NOM_ANIMAL, CONFIANCE)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO {sql_db.MAIN_TABLE} (DATE_SERVER, DATE_TRAP, GEOLOCALISATION_LAT, GEOLOCALISATION_LONG, TEMPERATURE, HUMIDITE, IMAGE_REPERTOIRE,IMAGE_TRAITEE, BATTERIE, CAMERA_ID, ETAT)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, 
                 (
                     sql_db.formate_date(data),
@@ -197,12 +227,46 @@ class sql_db:
                     data.get('IMAGE_TRAITEE'),
                     data.get('CAM.BATTERY'),
                     data.get('CAM.ID'),
-                    data.get('ETAT'),
-                    data.get('NOM_ANIMAL'),
-                    data.get('CONFIANCE')
+                    data.get('ETAT')
                 )
             )
 
+            last_id = cursor.lastrowid
+
+            detections = data.get('IA', []) or []
+            primary_animal = None
+            primary_conf = None
+
+            for d in detections:
+                animal = d.get('ANIMAL') or d.get('NOM_ANIMAL')
+                conf_value = d.get('CONFIANCE')
+                try:
+                    conf_value = float(conf_value) if conf_value is not None else None
+                except Exception:
+                    conf_value = None
+
+                if animal:
+                    cursor.execute(f"""
+                    INSERT INTO {sql_db.IA_TABLE} (IMAGE_ID, ANIMAL, CONFIANCE)
+                    VALUES (?, ?, ?)
+                    """, 
+                        (
+                            last_id,
+                            animal,
+                            conf_value
+                        )
+                    )
+
+                if animal and (primary_conf is None or (conf_value is not None and conf_value > primary_conf)):
+                    primary_animal = animal
+                    primary_conf = conf_value
+
+            if primary_animal:
+                cursor.execute(
+                    f"UPDATE {sql_db.MAIN_TABLE} SET NOM_ANIMAL = ? WHERE ID = ?",
+                    (primary_animal, last_id),
+                )
+            
             cursor.execute(f"""
             INSERT INTO {sql_db.CAM_TABLE} (CAM_ID,BATTERY, LAST_LAT, LAST_LONG, UPDATE_DATE)
             VALUES (?, ?, ?, ?, ?)
@@ -233,11 +297,13 @@ class sql_db:
             )
 
         finally:
-            conn.commit()
-            conn.close()
+            if conn:
+                conn.commit()
+                conn.close()
 
     @staticmethod
     def remove_img(img_id:str):
+        conn = None
         try:
             conn = sql_db.get_db()
             cursor = conn.cursor()
@@ -268,8 +334,9 @@ class sql_db:
         except Exception as e:
             logging.error(f"Error in remove_img : {e}")
         finally:
-            conn.commit()
-            conn.close()
+            if conn:
+                conn.commit()
+                conn.close()
 
     @staticmethod
     def rename_images_in_db():

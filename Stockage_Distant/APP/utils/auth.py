@@ -63,6 +63,8 @@ def role_required(min_role: str):
             if 'user' not in session:
                 return redirect(url_for('login_page', next=request.url))
             current_user = session.get('user')
+            if not current_user:
+                return redirect(url_for('login_page', next=request.url))
             if is_user_blocked(current_user):
                 session.clear()
                 return redirect(url_for('login_page'))

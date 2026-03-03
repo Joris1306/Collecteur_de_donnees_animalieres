@@ -14,12 +14,14 @@ import json
 import csv
 import os
 import zipfile
+from flask import g
 from io import BytesIO
 
 
 from io import StringIO
 from pathlib import Path
 from urllib.parse import quote
+from utlitaires import app, logging, get_properties
 
 try:
     from openpyxl import Workbook
@@ -28,13 +30,15 @@ try:
     OPENPYXL_AVAILABLE = True
 except ImportError:
     OPENPYXL_AVAILABLE = False
+    Workbook = None  # type: ignore
+    Font = None  # type: ignore
     logging.warning(
         "openpyxl not installed. XLSX export will not be available. Install with: pip install openpyxl"
     )
 from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
-from utlitaires import app, logging, get_properties
+
 from utils.auth import (
     login_required,
     role_required,
@@ -47,28 +51,104 @@ from utils.auth import (
 )
 
 
+from functools import lru_cache
+from pathlib import Path
+from flask import request, session
+import json
+
+# ===== i18n =====
+LANG_DIR = Path(__file__).resolve().parent.parent / "lang" 
+SUPPORTED_LANGS = {"fr", "en", "cn"}
+DEFAULT_LANG = "en"
+
+def get_lang() -> str:
+    lang = (request.args.get("lang") or session.get("lang") or DEFAULT_LANG).lower()
+    if lang not in SUPPORTED_LANGS:
+        lang = DEFAULT_LANG
+    session["lang"] = lang
+    return lang
+
+@lru_cache(maxsize=16)
+def _load_lang_file(lang_code: str) -> dict:
+    path = LANG_DIR / f"{lang_code}.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def t(key: str, default: str = "", **kwargs) -> str:
+    # 1) try current lang
+    lang = get_lang()
+    data = _load_lang_file(lang)
+
+    def _get(data_dict):
+        if key in data_dict and isinstance(data_dict[key], str):
+            return data_dict[key]
+        cur = data_dict
+        for part in key.split("."):
+            if isinstance(cur, dict) and part in cur:
+                cur = cur[part]
+            else:
+                return None
+        return cur if isinstance(cur, str) else None
+
+    v = _get(data)
+    if v is not None:
+        if kwargs:
+            try:
+                return v % kwargs
+            except (TypeError, ValueError, KeyError):
+                return v
+        return v
+
+    # 2) fallback to English
+    v = _get(_load_lang_file("en"))
+    if v is not None:
+        if kwargs:
+            try:
+                return v % kwargs
+            except (TypeError, ValueError, KeyError):
+                return v
+        return v
+
+    # 3) last fallback
+    if default and kwargs:
+        try:
+            return default % kwargs
+        except (TypeError, ValueError, KeyError):
+            return default
+    return default or key
+
+
+
+
+
 class webserver:
     @staticmethod
     def init_sql_table():
         sql_db.create_stat_table()
         sql_db.create_main_table()
         sql_db.create_camera_table()
+        sql_db.create_IA_table()
 
     @staticmethod
     def _normalize_image_row(row):
         d = dict(row)
         try:
+            temp_value = d.get("TEMPERATURE")
             d["TEMPERATURE"] = (
-                float(d.get("TEMPERATURE"))
-                if d.get("TEMPERATURE") is not None
+                float(temp_value)
+                if temp_value is not None
                 else None
             )
         except Exception:
             d["TEMPERATURE"] = None
         try:
+            hum_value = d.get("HUMIDITE")
             d["HUMIDITE"] = (
-                float(d.get("HUMIDITE"))
-                if d.get("HUMIDITE") is not None
+                float(hum_value)
+                if hum_value is not None
                 else None
             )
         except Exception:
@@ -90,9 +170,10 @@ class webserver:
             pass
 
         try:
+            conf_value = d.get("CONFIANCE")
             d["CONFIANCE"] = (
-                float(d.get("CONFIANCE"))
-                if d.get("CONFIANCE") is not None
+                float(conf_value)
+                if conf_value is not None
                 else 0.0
             )
         except Exception:
@@ -146,6 +227,14 @@ class webserver:
             "current_user": user,
             "current_role": role,
         }
+
+    @app.context_processor
+    def inject_i18n():
+        return {
+            "t": t,
+            "current_lang": get_lang(),
+        }
+
 
     # ====== PROTECTED PAGE ROUTES ======
     @app.route("/events")
@@ -225,9 +314,42 @@ class webserver:
             )
 
             rows = cursor.fetchall()
-            conn.close()
 
             images = [webserver._normalize_image_row(r) for r in rows]
+
+            image_ids = [img.get("ID") for img in images if img.get("ID") is not None]
+            detected_map = {}
+            if image_ids:
+                placeholders = ",".join(["?"] * len(image_ids))
+                cursor.execute(
+                    f"""
+                    SELECT IMAGE_ID, ANIMAL, CONFIANCE
+                    FROM {sql_db.IA_TABLE}
+                    WHERE IMAGE_ID IN ({placeholders})
+                    ORDER BY CONFIANCE DESC
+                    """,
+                    image_ids,
+                )
+
+                ia_rows = cursor.fetchall()
+                for r in ia_rows:
+                    animal = r["ANIMAL"]
+                    if not animal:
+                        continue
+                    conf_value = r["CONFIANCE"]
+                    try:
+                        conf_value = float(conf_value) if conf_value is not None else None
+                    except Exception:
+                        conf_value = None
+
+                    detected_map.setdefault(r["IMAGE_ID"], []).append(
+                        {"ANIMAL": animal, "CONFIANCE": conf_value}
+                    )
+
+            for img in images:
+                img["DETECTED_ANIMALS"] = detected_map.get(img.get("ID"), [])
+
+            conn.close()
 
             return render_template(
                 "index.html",
@@ -302,9 +424,17 @@ class webserver:
     @staticmethod
     def _export_xlsx(data):
         """Export data as XLSX with images bundled in a ZIP file"""
+        if not OPENPYXL_AVAILABLE:
+            raise ImportError("openpyxl is not installed. Please install it with: pip install openpyxl")
+        
+        assert Workbook is not None, "Workbook should be available"
+        assert Font is not None, "Font should be available"
+        
         # Create Excel file
         wb = Workbook()
         ws = wb.active
+        if ws is None:
+            raise ValueError("Failed to create worksheet")
         ws.title = "Images Export"
 
         # Define headers
@@ -345,8 +475,8 @@ class webserver:
                         image_files.append((image_path, value))
 
                     # Use relative path in Excel (images/ folder in zip)
-                    cell.hyperlink = f"images/{os.path.basename(value)}"
-                    cell.value = f"📷 {os.path.basename(value)}"
+                    cell.hyperlink = f"images/{os.path.basename(value)}"  # type: ignore
+                    cell.value = f"📷 {os.path.basename(value)}"  # type: ignore
                     cell.font = Font(color="0563C1", underline="single")
                 else:
                     cell.value = value
@@ -354,7 +484,7 @@ class webserver:
         # Auto-adjust column widths
         for column in ws.columns:
             max_length = 0
-            column_letter = column[0].column_letter
+            column_letter = column[0].column_letter  # type: ignore
             for cell in column:
                 try:
                     if len(str(cell.value)) > max_length:
@@ -479,7 +609,7 @@ class webserver:
             cam_id = row["CAMERA_ID"] if row else None
             conn.close()
 
-            sql_db.remove_img(image_id)
+            sql_db.remove_img(str(image_id))
             
             # Log event
             sql_db.log_event(
@@ -590,18 +720,20 @@ class webserver:
                 d = dict(r)
                 # Ensure numeric types for temperature and humidity
                 try:
+                    temp_value = d.get("TEMPERATURE")
                     d["TEMPERATURE"] = (
-                        float(d.get("TEMPERATURE"))
-                        if d.get("TEMPERATURE") is not None
+                        float(temp_value)
+                        if temp_value is not None
                         else None
                     )
                 except Exception:
                     d["TEMPERATURE"] = None
 
                 try:
+                    hum_value = d.get("HUMIDITE")
                     d["HUMIDITE"] = (
-                        float(d.get("HUMIDITE"))
-                        if d.get("HUMIDITE") is not None
+                        float(hum_value)
+                        if hum_value is not None
                         else None
                     )
                 except Exception:
@@ -962,3 +1094,13 @@ class webserver:
         logging.info(data)
 
         return "OK"
+        
+    @app.route("/set-lang/<lang>")
+    def set_lang(lang):
+        lang = str(lang or "").lower()
+        if lang in SUPPORTED_LANGS:
+            session["lang"] = lang
+            _load_lang_file.cache_clear()  
+        return redirect(request.referrer or url_for("home"))
+
+
