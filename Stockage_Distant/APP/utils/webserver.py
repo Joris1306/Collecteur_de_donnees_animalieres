@@ -30,6 +30,8 @@ try:
     OPENPYXL_AVAILABLE = True
 except ImportError:
     OPENPYXL_AVAILABLE = False
+    Workbook = None  # type: ignore
+    Font = None  # type: ignore
     logging.warning(
         "openpyxl not installed. XLSX export will not be available. Install with: pip install openpyxl"
     )
@@ -134,17 +136,19 @@ class webserver:
     def _normalize_image_row(row):
         d = dict(row)
         try:
+            temp_value = d.get("TEMPERATURE")
             d["TEMPERATURE"] = (
-                float(d.get("TEMPERATURE"))
-                if d.get("TEMPERATURE") is not None
+                float(temp_value)
+                if temp_value is not None
                 else None
             )
         except Exception:
             d["TEMPERATURE"] = None
         try:
+            hum_value = d.get("HUMIDITE")
             d["HUMIDITE"] = (
-                float(d.get("HUMIDITE"))
-                if d.get("HUMIDITE") is not None
+                float(hum_value)
+                if hum_value is not None
                 else None
             )
         except Exception:
@@ -166,9 +170,10 @@ class webserver:
             pass
 
         try:
+            conf_value = d.get("CONFIANCE")
             d["CONFIANCE"] = (
-                float(d.get("CONFIANCE"))
-                if d.get("CONFIANCE") is not None
+                float(conf_value)
+                if conf_value is not None
                 else 0.0
             )
         except Exception:
@@ -419,9 +424,17 @@ class webserver:
     @staticmethod
     def _export_xlsx(data):
         """Export data as XLSX with images bundled in a ZIP file"""
+        if not OPENPYXL_AVAILABLE:
+            raise ImportError("openpyxl is not installed. Please install it with: pip install openpyxl")
+        
+        assert Workbook is not None, "Workbook should be available"
+        assert Font is not None, "Font should be available"
+        
         # Create Excel file
         wb = Workbook()
         ws = wb.active
+        if ws is None:
+            raise ValueError("Failed to create worksheet")
         ws.title = "Images Export"
 
         # Define headers
@@ -462,8 +475,8 @@ class webserver:
                         image_files.append((image_path, value))
 
                     # Use relative path in Excel (images/ folder in zip)
-                    cell.hyperlink = f"images/{os.path.basename(value)}"
-                    cell.value = f"📷 {os.path.basename(value)}"
+                    cell.hyperlink = f"images/{os.path.basename(value)}"  # type: ignore
+                    cell.value = f"📷 {os.path.basename(value)}"  # type: ignore
                     cell.font = Font(color="0563C1", underline="single")
                 else:
                     cell.value = value
@@ -471,7 +484,7 @@ class webserver:
         # Auto-adjust column widths
         for column in ws.columns:
             max_length = 0
-            column_letter = column[0].column_letter
+            column_letter = column[0].column_letter  # type: ignore
             for cell in column:
                 try:
                     if len(str(cell.value)) > max_length:
@@ -596,7 +609,7 @@ class webserver:
             cam_id = row["CAMERA_ID"] if row else None
             conn.close()
 
-            sql_db.remove_img(image_id)
+            sql_db.remove_img(str(image_id))
             
             # Log event
             sql_db.log_event(
@@ -707,18 +720,20 @@ class webserver:
                 d = dict(r)
                 # Ensure numeric types for temperature and humidity
                 try:
+                    temp_value = d.get("TEMPERATURE")
                     d["TEMPERATURE"] = (
-                        float(d.get("TEMPERATURE"))
-                        if d.get("TEMPERATURE") is not None
+                        float(temp_value)
+                        if temp_value is not None
                         else None
                     )
                 except Exception:
                     d["TEMPERATURE"] = None
 
                 try:
+                    hum_value = d.get("HUMIDITE")
                     d["HUMIDITE"] = (
-                        float(d.get("HUMIDITE"))
-                        if d.get("HUMIDITE") is not None
+                        float(hum_value)
+                        if hum_value is not None
                         else None
                     )
                 except Exception:
@@ -1082,7 +1097,7 @@ class webserver:
         
     @app.route("/set-lang/<lang>")
     def set_lang(lang):
-        lang = (lang or "").lower()
+        lang = str(lang or "").lower()
         if lang in SUPPORTED_LANGS:
             session["lang"] = lang
             _load_lang_file.cache_clear()  

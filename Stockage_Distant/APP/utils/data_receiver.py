@@ -21,6 +21,7 @@ class data_receiver:
     _update_listeners = []
     _listeners_lock = threading.Lock()
 
+    @staticmethod
     def _io_worker():
         while True:
             item = data_receiver._io_queue.get()
@@ -55,7 +56,12 @@ class data_receiver:
                     if chunk_bytes is None:
                         # fallback: try to coerce to bytes
                         try:
-                            chunk_bytes = bytes(data)
+                            if isinstance(data, str):
+                                chunk_bytes = data.encode('utf-8')
+                            elif isinstance(data, (bytes, bytearray)):
+                                chunk_bytes = bytes(data)
+                            else:
+                                chunk_bytes = b""
                         except Exception:
                             chunk_bytes = b""
 
@@ -116,8 +122,11 @@ class data_receiver:
                     # 
                     # AI_CLASSIFICATION
                     #
-                    metadata['IA'], global_parameters = AI_CLASSIFICATION.get_parameters(metadata['IMAGE_REPERTOIRE'])
-                    metadata.update(global_parameters)
+                    if metadata['IMAGE_REPERTOIRE']:
+                        metadata['IA'], global_parameters = AI_CLASSIFICATION.get_parameters(metadata['IMAGE_REPERTOIRE'])
+                        metadata.update(global_parameters)
+                    else:
+                        metadata['IA'] = None
                     
                     sql_db.insert_img(metadata)
 

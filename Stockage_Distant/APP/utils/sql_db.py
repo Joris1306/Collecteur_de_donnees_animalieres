@@ -155,6 +155,10 @@ class sql_db:
 
     @staticmethod
     def path_from_buffer(data:dict):
+        img_buffer = None
+        width = None
+        height = None
+        format_ = None
         try:
             img_buffer = data.get('IMG')
             width = data.get('IMG.WIDTH')
@@ -175,15 +179,19 @@ class sql_db:
             return f"images/{filename}"
         
         except Exception as e:
-            logging.error(f"error in path_from_buffer : {e}")
-            logging.error(f"img_buffer = {img_buffer[:15]}[...]")
-            logging.error(f"width = {width}")
-            logging.error(f"height = {height}")
-            logging.error(f"format_ = {format_}")
+            if img_buffer and width and height and format_:
+                logging.error(f"error in path_from_buffer : {e}")
+                if isinstance(img_buffer, (bytes, bytearray)) and len(img_buffer) >= 15:
+                    logging.error(f"img_buffer = {img_buffer[:15]}[...]")
+                else:
+                    logging.error(f"img_buffer = {img_buffer}")
+                logging.error(f"width = {width}")
+                logging.error(f"height = {height}")
+                logging.error(f"format_ = {format_}")
 
             sql_db.log_event(
                 event_type="ERROR",
-                description=f"Erreur de reconstruction d'image : e={e}\nimg_buffer = {img_buffer[:15]}[...]\nwidth = {width}\nheight = {height}\nformat_ = {format_}",
+                description=f"Erreur de reconstruction d'image : e={e}\nimg_buffer = {str(img_buffer)[:50] if img_buffer else 'None'}[...]\nwidth = {width}\nheight = {height}\nformat_ = {format_}",
                 cam_id=None,
                 image_id=None
             )
@@ -196,6 +204,7 @@ class sql_db:
         
     @staticmethod
     def insert_img(data:dict):
+        conn = None
         try:
             sql_db.create_stat_table()
             sql_db.create_main_table()
@@ -288,11 +297,13 @@ class sql_db:
             )
 
         finally:
-            conn.commit()
-            conn.close()
+            if conn:
+                conn.commit()
+                conn.close()
 
     @staticmethod
     def remove_img(img_id:str):
+        conn = None
         try:
             conn = sql_db.get_db()
             cursor = conn.cursor()
@@ -323,8 +334,9 @@ class sql_db:
         except Exception as e:
             logging.error(f"Error in remove_img : {e}")
         finally:
-            conn.commit()
-            conn.close()
+            if conn:
+                conn.commit()
+                conn.close()
 
     @staticmethod
     def rename_images_in_db():
