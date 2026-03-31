@@ -5,7 +5,7 @@
     "IP_DAVY":"172.20.10.2",
     "IP_LOCAL":"172.20.10.12",
     "LOCALHOST":"127.0.0.1",
-    "IP":"IP_LOCAL",
+    "IP":"IP_SERVER",
     "METADATA_PATH":"/api/data",
     "IMAGE_PATH":"/api/image",
     "TEST_PATH":"/api/test"

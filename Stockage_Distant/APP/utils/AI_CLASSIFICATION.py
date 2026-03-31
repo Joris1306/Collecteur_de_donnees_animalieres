@@ -1,13 +1,44 @@
-
+import os
 import cv2
 import numpy as np
-from speciesnet import DEFAULT_MODEL
-from speciesnet import SpeciesNet
-from speciesnet import draw_bboxes
-from speciesnet import load_rgb_image
+try:
+    from speciesnet import DEFAULT_MODEL
+    from speciesnet import SpeciesNet
+    from speciesnet import draw_bboxes
+    from speciesnet import load_rgb_image
+    SPECIESNET_AVAILABLE = True
+except ModuleNotFoundError:
+    # Allow the rest of the application to run even when speciesnet is not installed.
+    DEFAULT_MODEL = None
+    SpeciesNet = None
+    draw_bboxes = None
+    load_rgb_image = None
+    SPECIESNET_AVAILABLE = False
 
 
 class AI_CLASSIFICATION:
+
+    @staticmethod
+    def _resolve_image_path(image_path: str) -> str:
+        """Resolve a web-style relative image path to an existing file on disk."""
+        if not image_path:
+            return image_path
+
+        if os.path.isabs(image_path) and os.path.exists(image_path):
+            return image_path
+
+        app_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        candidates = [
+            os.path.join(app_root, image_path),
+            os.path.join(app_root, 'static', image_path),
+            os.path.join(app_root, 'static', 'images', os.path.basename(image_path)),
+        ]
+
+        for candidate in candidates:
+            if os.path.exists(candidate):
+                return candidate
+
+        return image_path
 
     @staticmethod
     def get_parameters(image_path: str) -> tuple[list[dict[str, str]], dict[str, str]]:
@@ -29,18 +60,28 @@ class AI_CLASSIFICATION:
                     - 'IMAGE_TRAITEE' : str : image traitée (numpy array)
         """
         try:
+            if (
+                not SPECIESNET_AVAILABLE
+                or SpeciesNet is None
+                or DEFAULT_MODEL is None
+                or load_rgb_image is None
+                or draw_bboxes is None
+            ):
+                return [], {"ETAT": "0"}
+
+            resolved_image_path = AI_CLASSIFICATION._resolve_image_path(image_path)
             model = SpeciesNet(DEFAULT_MODEL)
 
 
-            image = load_rgb_image(image_path)
+            image = load_rgb_image(resolved_image_path)
             if image is None:
-                raise ValueError(f"Impossible de charger l'image: {image_path}")
+                raise ValueError(f"Impossible de charger l'image: {resolved_image_path}")
 
             predictions = model.predict(
                 instances_dict={
                     "instances": [
                         {
-                            "filepath": image_path,
+                            "filepath": resolved_image_path,
                         }
                     ]
                 }
@@ -85,7 +126,7 @@ class AI_CLASSIFICATION:
 
             global_params = {
                 'ETAT': str(etat),
-                'IMAGE_TRAITEE': rel_traitee_path  # Return relative path, not absolute
+                'IMAGE_TRAITEE': image_path
             }
 
             return detected_objects, global_params
@@ -104,7 +145,7 @@ if __name__ == "__main__":
         print("-" * 60)
 
         # Exécuter la classification
-        detected_objects, global_params = AI_CLASSIFICATION_ALT.get_parameters(test_image_path)
+        detected_objects, global_params = AI_CLASSIFICATION.get_parameters(test_image_path)
 
         # Afficher les résultats
         print(f"Objets detectes: {len(detected_objects)}")
@@ -119,11 +160,7 @@ if __name__ == "__main__":
         print("Parametres globaux:")
         for key, value in global_params.items():
             if key == 'IMAGE_TRAITEE':
-                # Save the processed image
-                output_path = "processed_image_speciesnet.jpg"
-                cv2.imwrite(output_path, value)
-                print(f"  {key}: Image numpy array (shape: {value.shape if hasattr(value, 'shape') else 'N/A'})")
-                print(f"  [OK] Image sauvegardee: {output_path}")
+                print(f"  {key}: {value}")
             else:
                 print(f"  {key}: {value}")
 
