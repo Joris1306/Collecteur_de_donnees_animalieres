@@ -66,6 +66,7 @@
   "actions.hide": "Masquer",
   "actions.delete": "Supprimer",
   "actions.confirm_delete": "Supprimer définitivement cette image ?",
+  "actions.human_detected": "⚠️ HUMAIN DÉTECTÉ",
 
   "fields.temperature": "Température",
   "fields.humidity": "Humidité",

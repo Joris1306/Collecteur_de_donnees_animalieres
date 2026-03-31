@@ -66,6 +66,7 @@
   "actions.hide": "隐藏",
   "actions.delete": "删除",
   "actions.confirm_delete": "确定永久删除这张图片吗？",
+  "actions.human_detected": "⚠️ 检测到人类",
 
   "fields.temperature": "温度",
   "fields.humidity": "湿度",

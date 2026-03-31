@@ -19,7 +19,10 @@ import logging
 import secrets
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+logging.getLogger("pydot").setLevel(logging.WARNING)
+logging.getLogger("matplotlib").setLevel(logging.WARNING)
 
 BASE_PATH = os.path.dirname(__file__)
 JSON_CONFIG = os.path.join(BASE_PATH,'JSON','config.json')

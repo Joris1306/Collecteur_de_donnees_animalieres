@@ -75,31 +75,32 @@ class AI_CLASSIFICATION:
                     cls_id = int(box.cls)
                     label = model.names[cls_id]
 
-                    # Filter by confidence threshold and only process persons
-                    if conf >= AI_CLASSIFICATION.CONFIANCE and label == "person":
-                        etat = 2  # There is a human (overrides blur detection)
-                        
-                        # Add detection to list (without ETAT, it's now global)
+                    # Keep all confident detections for DB persistence.
+                    # ETAT=2 remains reserved for human detection.
+                    if conf >= AI_CLASSIFICATION.CONFIANCE:
+                        if label == "person":
+                            etat = 2  # There is a human (overrides blur detection)
+
                         obj_params = {
                             'NOM_ANIMAL': label,
                             'CONFIANCE': f"{conf*100:.2f}"
                         }
                         detected_objects.append(obj_params)
-                        
-                        # Draw bounding box on image
+
+                        # Draw bounding box and label text.
                         x1, y1, x2, y2 = map(int, box.xyxy[0])
-                        cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
-                        
-                        # Optional: Add text on image (currently commented out)
-                        # text = f"{label} {conf*100:.1f}%"
-                        # cv2.putText(
-                        #     img, text,
-                        #     (x1, y1-10),
-                        #     cv2.FONT_HERSHEY_SIMPLEX,
-                        #     0.7,
-                        #     (0, 0, 255),
-                        #     2
-                        # )
+                        color = (0, 0, 255) if label == "person" else (0, 180, 0)
+                        cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
+                        text = f"{label} {conf*100:.1f}%"
+                        cv2.putText(
+                            img,
+                            text,
+                            (x1, max(15, y1 - 8)),
+                            cv2.FONT_HERSHEY_SIMPLEX,
+                            0.55,
+                            color,
+                            2,
+                        )
             
             # Save processed image with detections
             image_dir = os.path.dirname(image_path)
@@ -109,10 +110,10 @@ class AI_CLASSIFICATION:
             os.makedirs(os.path.dirname(img_traitee_path), exist_ok=True)
             cv2.imwrite(img_traitee_path, img)
         
-            # Global parameters
+            # Global parameters - return RELATIVE path for IMAGE_TRAITEE (for url_for in templates)
             global_params = {
                 'ETAT': str(etat),
-                'IMAGE_TRAITEE': img_traitee_path
+                'IMAGE_TRAITEE': rel_traitee_path  # Return relative path, not absolute
             }
             
             return detected_objects, global_params

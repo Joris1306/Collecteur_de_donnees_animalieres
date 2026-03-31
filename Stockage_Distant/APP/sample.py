@@ -67,10 +67,11 @@ class metadata_trap:
         default_data['DATE.MINUTE'] = _date.minute
         default_data['DATE.SECOND'] = _date.second
         default_data['CAM.BATTERY'] = random.randrange(0,100)
-        default_data['CAM.ID'] = random.randrange(0,3)
+        default_data['CAM.ID'] = 2
 
         return default_data
 
+    @staticmethod
     def init_default_data():
         default_data = metadata_trap.get_default_data()
         with open(os.path.join(BASE_PATH,'SAMPLE','data.json'), "w") as f:
@@ -78,7 +79,7 @@ class metadata_trap:
 
 class json_emitter:
     properties = utlitaires.get_properties()
-    RECEIVER_IP = '192.0.0.2' #properties.get(properties.get('IP'))
+    RECEIVER_IP = properties.get(properties.get('IP'))
     RECEIVER_PORT = properties.get('PORT')
     METADATA_PATH = properties.get('METADATA_PATH')
     IMAGE_PATH = properties.get('IMAGE_PATH')
@@ -90,6 +91,7 @@ class json_emitter:
         response = requests.post(url, data=data)
         print(response)
 
+    @staticmethod
     def send_image(image_buff):
         url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}{json_emitter.IMAGE_PATH}"
 
@@ -98,14 +100,32 @@ class json_emitter:
 
 class load_sample:
     @staticmethod
-    def sample_image(pic = Literal['pic0','pic1','pic2']):
-        with open(os.path.join(SAMPLE_PATH,f'{pic}_buffer.txt'), 'r') as f:
-            data = f.read()
-        data = data.replace('\n','')
-        return data
+    def sample_image(pic = Literal['pic0','pic1','pic2','pic3','pic4']):
+        try:
+            with open(os.path.join(SAMPLE_PATH,f'{pic}_buffer.txt'), 'r') as f:
+                data = f.read()
+            data = data.replace('\n','')
+            return data
+        except Exception as e:
+            print(f"Error loading sample image: {e}")
+            return None
 
 
 def main():
+    # check si le serveur est en ligne
+    url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}"
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            print("Serveur en ligne")
+        else:
+            print("Serveur hors ligne")
+    except Exception as e:
+        print(f"Error checking server status: {e}")
+        sys.exit(1)
+
+    
+
     data = metadata_trap.get_default_data()
 
     # with open(os.path.join(BASE_PATH,'SAMPLE','data.json'), 'r') as f:
@@ -114,7 +134,7 @@ def main():
     # data['IMG'] = load_sample.sample_image('pic0')
     # print(str(data))
     
-    json_emitter.send_image(load_sample.sample_image('pic2'))
+    json_emitter.send_image(load_sample.sample_image('pic5'))
 
     # with open(os.path.join(SAMPLE_PATH,'mouse.txt'), 'r') as f:
     #     buf = f.read()

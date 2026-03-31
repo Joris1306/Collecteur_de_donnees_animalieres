@@ -163,7 +163,15 @@ class webserver:
 
         try:
             if d.get("IMAGE_TRAITEE") is not None:
-                d["CHEMIN_IMAGE"] = d["IMAGE_TRAITEE"]
+                img_path = d["IMAGE_TRAITEE"]
+                # Extract relative path if it's an absolute path (old data before fix)
+                if img_path.startswith('/') or '\\' in img_path:
+                    # Extract just the relative part after 'static/'
+                    if '/static/' in img_path:
+                        img_path = img_path.split('/static/')[-1]
+                    elif '\\static\\' in img_path:
+                        img_path = img_path.split('\\static\\')[-1]
+                d["CHEMIN_IMAGE"] = img_path
             elif d.get("IMAGE_REPERTOIRE") is not None:
                 d["CHEMIN_IMAGE"] = d["IMAGE_REPERTOIRE"]
         except Exception:
@@ -285,7 +293,8 @@ class webserver:
 
             order = "DESC" if sort != "asc" else "ASC"
 
-            where = ["ETAT = 0"]
+            # Show both ETAT=0 (no issue) and ETAT=2 (human detected - alert)
+            where = ["(ETAT = 0 OR ETAT = 2)"]
             params = []
 
             if cam_id:

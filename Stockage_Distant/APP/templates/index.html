@@ -69,6 +69,13 @@
         <div class="content">
           <div class="badge">ID {{ img['ID'] }}</div>
 
+          <!-- ALERT: Human detected (ETAT=2) -->
+          {% if img['ETAT'] == 2 %}
+            <div class="badge" style="background: linear-gradient(180deg, rgba(255, 100, 50, 0.4), rgba(255, 70, 20, 0.3)); border: 1px solid rgba(255, 100, 50, 0.6); color: #ff6432; font-weight: 600; margin-top: 6px;">
+              {{ t("actions.human_detected") }}
+            </div>
+          {% endif %}
+
           {% if img.get('DETECTED_ANIMALS') and img['DETECTED_ANIMALS']|length > 0 %}
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
               {% for det in img['DETECTED_ANIMALS'] %}

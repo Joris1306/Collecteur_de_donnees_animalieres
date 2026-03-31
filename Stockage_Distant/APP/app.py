@@ -2,10 +2,12 @@ from utlitaires import app,get_properties,my_ip
 import os
 import threading
 from utlitaires import data_receiver
-
+import logging
 
 if __name__ == "__main__":
     properties = get_properties()
+    werkzeug_logger = logging.getLogger("werkzeug")
+    werkzeug_logger.setLevel(logging.WARNING)
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true" or not app.debug:
         threading.Thread(target=data_receiver._io_worker, daemon=True).start()
 
