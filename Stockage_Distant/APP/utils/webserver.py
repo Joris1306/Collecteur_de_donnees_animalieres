@@ -14,6 +14,7 @@ import json
 import csv
 import os
 import zipfile
+import hmac
 from flask import g
 from io import BytesIO
 
@@ -21,7 +22,7 @@ from io import BytesIO
 from io import StringIO
 from pathlib import Path
 from urllib.parse import quote
-from utlitaires import app, logging, get_properties
+from utlitaires import app, logging, get_properties, JSON_API_KEY
 
 try:
     from openpyxl import Workbook
@@ -38,6 +39,7 @@ except ImportError:
 from utils import web_map
 from utils.sql_db import sql_db
 from utils.data_receiver import data_receiver
+from utils.ai_settings import get_ai_settings, set_ai_settings
 
 from utils.auth import (
     login_required,
@@ -125,6 +127,80 @@ def t(key: str, default: str = "", **kwargs) -> str:
 
 
 class webserver:
+    _INGEST_MAX_METADATA_BYTES = 128 * 1024
+    _INGEST_MAX_IMAGE_BYTES = 12 * 1024 * 1024
+
+    @staticmethod
+    def _load_api_keys() -> dict:
+        try:
+            with open(JSON_API_KEY, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, dict):
+                return data
+        except Exception:
+            pass
+        return {}
+
+    @staticmethod
+    def _get_ingest_token() -> str:
+        # Env var has priority (safer for production than committed JSON).
+        # env_token = (os.environ.get("INGEST_API_KEY") or "").strip()
+        env_token = get_properties().get("INGEST_API_KEY", "").strip()
+        if env_token:
+            return env_token
+
+        keys = webserver._load_api_keys()
+        return str(keys.get("INGEST_API_KEY", "")).strip()
+
+    @staticmethod
+    def _is_ip_allowed() -> bool:
+        # Optional allowlist for fixed microcontroller IP(s):
+        # env INGEST_ALLOW_IPS="192.168.1.40,192.168.1.41"
+        env_allow = (os.environ.get("INGEST_ALLOW_IPS") or "").strip()
+        keys = webserver._load_api_keys()
+        json_allow = keys.get("INGEST_ALLOW_IPS", [])
+
+        allowed = []
+        if env_allow:
+            allowed.extend([p.strip() for p in env_allow.split(",") if p.strip()])
+        if isinstance(json_allow, list):
+            allowed.extend([str(p).strip() for p in json_allow if str(p).strip()])
+
+        # No allowlist configured => allow all IPs.
+        if not allowed:
+            return True
+
+        forwarded = request.headers.get("X-Forwarded-For", "")
+        client_ip = forwarded.split(",")[0].strip() if forwarded else (request.remote_addr or "")
+        return client_ip in allowed
+
+    @staticmethod
+    def _check_ingest_auth():
+        # Keep this simple for microcontroller firmware: token in header or query.
+        expected = webserver._get_ingest_token()
+        if not expected:
+            return False, ("ingest token not configured", 503)
+
+        provided = (request.headers.get("X-API-Key") or request.args.get("key") or "").strip()
+        if not provided or not hmac.compare_digest(provided, expected):
+            return False, ("unauthorized", 401)
+
+        if not webserver._is_ip_allowed():
+            return False, ("forbidden", 403)
+
+        return True, None
+
+    @staticmethod
+    def _read_limited_body(max_bytes: int):
+        if request.content_length is not None and request.content_length > max_bytes:
+            return None, ("payload too large", 413)
+
+        data = request.get_data(cache=False, as_text=False)
+        if len(data) > max_bytes:
+            return None, ("payload too large", 413)
+
+        return data, None
+
     @staticmethod
     def init_sql_table():
         sql_db.create_stat_table()
@@ -1034,6 +1110,39 @@ class webserver:
             200,
         )
 
+    @app.route("/config/ai", methods=["GET", "POST"])
+    @login_required
+    @role_required("dev")
+    def config_ai():
+        error = None
+        message = None
+        settings = get_ai_settings()
+
+        if request.method == "POST":
+            active_model = (request.form.get("active_model") or "speciesnet-default").strip()
+            custom_model_path = (request.form.get("custom_model_path") or "").strip()
+
+            try:
+                settings = set_ai_settings(active_model, custom_model_path)
+                message = t("config_ai.saved")
+                sql_db.log_event(
+                    event_type="ai_config_updated",
+                    description=f"AI model changed to {settings.get('active_model')} by {session.get('user')}",
+                    cam_id=None,
+                    image_id=None,
+                )
+            except ValueError as e:
+                error = str(e)
+            except Exception as e:
+                error = f"Unexpected error while saving AI config: {e}"
+
+        return render_template(
+            "config_ai.html",
+            settings=settings,
+            error=error,
+            message=message,
+        )
+
     # Data reception routes
     properties = get_properties()
     METADATA_PATH = properties.get("METADATA_PATH")
@@ -1042,6 +1151,13 @@ class webserver:
 
     @app.route(METADATA_PATH, methods=["POST"])
     def receive_metadata():
+        auth_ok, auth_err = webserver._check_ingest_auth()
+        if not auth_ok:
+            if auth_err is None:
+                return "unauthorized", 401
+            msg, code = auth_err
+            return msg, code
+
         # logging.info(request.headers)
         # logging.info(request.data)  # raw bytes
         champ_data = [
@@ -1063,7 +1179,12 @@ class webserver:
         ]
         # champ_data = []
         try:
-            data = request.data
+            data, read_err = webserver._read_limited_body(webserver._INGEST_MAX_METADATA_BYTES)
+            if read_err:
+                msg, code = read_err
+                return msg, code
+            if data is None:
+                return "invalid payload", 400
 
             for champ in champ_data:
                 if champ not in data.decode().strip():
@@ -1079,8 +1200,20 @@ class webserver:
 
     @app.route(METAIMAGE_PATH, methods=["POST"])
     def receive_image():
+        auth_ok, auth_err = webserver._check_ingest_auth()
+        if not auth_ok:
+            if auth_err is None:
+                return "unauthorized", 401
+            msg, code = auth_err
+            return msg, code
+
         logging.info(f"{'NEW RECEPTION':=^50}")
-        img_data = request.data  # raw bytes
+        img_data, read_err = webserver._read_limited_body(webserver._INGEST_MAX_IMAGE_BYTES)
+        if read_err:
+            msg, code = read_err
+            return msg, code
+        if img_data is None:
+            return "No data received", 400
         logging.info(f"Received {len(img_data)} bytes")
         # logging.info(f"Received {img_data}")
         logging.info(f"Received type {type(img_data)}")

@@ -8,6 +8,7 @@
   "nav.battery": "Batterie",
   "nav.journal": "Journal",
   "nav.hidden": "Masquées",
+  "nav.config": "Configuration",
   "nav.logged_in_as": "Connecté en tant que",
   "nav.logout": "Déconnexion",
 
@@ -122,6 +123,20 @@
 
   "error.title": "Erreur",
   "error.h2": "Une erreur est survenue",
-  "error.text": "Une erreur est survenue lors du chargement de la page."
+  "error.text": "Une erreur est survenue lors du chargement de la page.",
+
+  "config_ai.title": "Configuration IA",
+  "config_ai.header": "Configuration du modèle de reconnaissance",
+  "config_ai.subtitle": "Choisissez le modèle utilisé pour analyser les images entrantes.",
+  "config_ai.active_model": "Modèle actif",
+  "config_ai.model_speciesnet_default": "Modèle par défaut SpeciesNet",
+  "config_ai.model_speciesnet_custom": "Chemin personnalisé du modèle SpeciesNet",
+  "config_ai.model_yolo_default": "Modèle YOLO par défaut",
+  "config_ai.model_yolo_custom": "Chemin personnalisé du modèle YOLO",
+  "config_ai.model_disabled": "Désactiver la reconnaissance IA",
+  "config_ai.custom_path": "Chemin du modèle personnalisé",
+  "config_ai.custom_path_help": "Utilisé uniquement lorsqu'une option de chemin personnalisé est sélectionnée.",
+  "config_ai.save": "Enregistrer la configuration",
+  "config_ai.saved": "Configuration enregistrée avec succès."
 }
 

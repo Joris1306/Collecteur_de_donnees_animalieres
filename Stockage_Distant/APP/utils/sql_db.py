@@ -309,6 +309,7 @@ class sql_db:
             cursor = conn.cursor()
             cam_id = None
             img_path = None
+            img_processed_path = None
             cursor.execute(f"""
             SELECT * FROM {sql_db.MAIN_TABLE} WHERE ID=
             ?""", (img_id,))
@@ -316,9 +317,14 @@ class sql_db:
             if row:
                 cam_id = row["CAMERA_ID"]
                 img_path = row["IMAGE_REPERTOIRE"]
+                img_processed_path = row["IMAGE_TRAITEE"]
             else:
                 logging.error(f"Image with ID {img_id} not found.")
                 return
+            # Delete child rows first to satisfy IA(IMAGE_ID) -> MAIN(ID) FK.
+            cursor.execute(f"""
+            DELETE FROM {sql_db.IA_TABLE} WHERE IMAGE_ID=?
+            """, (img_id,))
             cursor.execute(f"""
             DELETE FROM {sql_db.MAIN_TABLE} WHERE ID=?
             """, (img_id,))
@@ -330,6 +336,14 @@ class sql_db:
             full_path = os.path.join(IMAGE_PATH, os.path.basename(img_path))
             if os.path.exists(full_path):
                 os.remove(full_path)
+
+            if img_processed_path:
+                processed_full_path = os.path.join(
+                    os.path.dirname(IMAGE_PATH),
+                    img_processed_path,
+                )
+                if os.path.exists(processed_full_path):
+                    os.remove(processed_full_path)
 
         except Exception as e:
             logging.error(f"Error in remove_img : {e}")

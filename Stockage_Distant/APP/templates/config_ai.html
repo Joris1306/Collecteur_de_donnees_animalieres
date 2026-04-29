@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="{{ lang|default('en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t("config_ai.title") }}</title>
+    {% include '_favicon.html' %}
+    {% include '_styles.html' %}
+
+    <style>
+        .config-wrap {
+            max-width: 860px;
+            margin: 32px auto;
+            padding: 0 20px 24px;
+        }
+
+        .panel {
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 22px;
+        }
+
+        .panel h1 {
+            margin: 0 0 8px 0;
+            color: var(--text);
+            font-size: 26px;
+        }
+
+        .panel p {
+            color: var(--muted);
+            margin: 0 0 20px 0;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .field select,
+        .field input[type="text"] {
+            width: 100%;
+            padding: 11px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.06);
+            color: var(--text);
+        }
+
+        .help {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .message {
+            margin: 10px 0 18px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .message.ok {
+            background: rgba(0, 255, 120, .08);
+            border-color: rgba(0, 255, 120, .2);
+            color: #76f0a4;
+        }
+
+        .message.err {
+            background: rgba(255, 0, 0, .08);
+            border-color: rgba(255, 0, 0, .2);
+            color: #ff8f8f;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    {% include '_navbar.html' %}
+
+    <div class="config-wrap">
+        <div class="panel">
+            <h1>{{ t("config_ai.header") }}</h1>
+            <p>{{ t("config_ai.subtitle") }}</p>
+
+            {% if message %}
+              <div class="message ok">{{ message }}</div>
+            {% endif %}
+
+            {% if error %}
+              <div class="message err">{{ error }}</div>
+            {% endif %}
+
+            <form method="post" action="{{ url_for('config_ai') }}">
+                <div class="field">
+                    <label for="active_model">{{ t("config_ai.active_model") }}</label>
+                    <select id="active_model" name="active_model" onchange="toggleCustomPath()">
+                        <option value="speciesnet-default" {% if settings.active_model == 'speciesnet-default' %}selected{% endif %}>{{ t("config_ai.model_speciesnet_default") }}</option>
+                        <option value="speciesnet-custom" {% if settings.active_model == 'speciesnet-custom' %}selected{% endif %}>{{ t("config_ai.model_speciesnet_custom") }}</option>
+                        <option value="yolo-default" {% if settings.active_model == 'yolo-default' %}selected{% endif %}>{{ t("config_ai.model_yolo_default") }}</option>
+                        <option value="yolo-custom" {% if settings.active_model == 'yolo-custom' %}selected{% endif %}>{{ t("config_ai.model_yolo_custom") }}</option>
+                        <option value="disabled" {% if settings.active_model == 'disabled' %}selected{% endif %}>{{ t("config_ai.model_disabled") }}</option>
+                    </select>
+                </div>
+
+                <div class="field" id="customModelPathBlock">
+                    <label for="custom_model_path">{{ t("config_ai.custom_path") }}</label>
+                    <input
+                        type="text"
+                        id="custom_model_path"
+                        name="custom_model_path"
+                        value="{{ settings.custom_model_path }}"
+                        placeholder="/absolute/path/to/model.pt">
+                    <div class="help">{{ t("config_ai.custom_path_help") }}</div>
+                </div>
+
+                <div class="row">
+                    <button class="btn" type="submit">{{ t("config_ai.save") }}</button>
+                    <a class="btn" href="{{ url_for('home') }}">{{ t("common.back") }}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% include '_footer.html' %}
+
+    <script>
+      function toggleCustomPath() {
+        const select = document.getElementById('active_model');
+        const block = document.getElementById('customModelPathBlock');
+                if (select.value === 'speciesnet-custom' || select.value === 'yolo-custom') {
+          block.style.display = 'block';
+        } else {
+          block.style.display = 'none';
+        }
+      }
+      toggleCustomPath();
+    </script>
+</body>
+</html>

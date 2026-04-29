@@ -1,0 +1,5 @@
+{
+  "active_model": "yolo-default",
+  "custom_model_path": "",
+  "custom_model_path_speciesnet": "kaggle:google/speciesnet/pyTorch/v4.0.2b/1"
+}

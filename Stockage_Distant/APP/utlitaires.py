@@ -17,9 +17,16 @@ import time
 import socket
 import logging
 import secrets
+import sys
 
 
-logging.basicConfig(level=logging.INFO)
+# Force root logger setup so logs remain visible even if another library configured logging first.
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    stream=sys.stdout,
+    force=True,
+)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 logging.getLogger("pydot").setLevel(logging.WARNING)
 logging.getLogger("matplotlib").setLevel(logging.WARNING)

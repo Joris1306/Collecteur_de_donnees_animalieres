@@ -4,33 +4,37 @@
 
     {% if not hide_nav_links %}
       <!-- Navigation links -->
-      <a href="{{ url_for('home') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.home") }}
+      <a href="{{ url_for('home') }}" title="{{ t('nav.home') }}" aria-label="{{ t('nav.home') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        🏠
       </a>
 
-      <a href="{{ url_for('index') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.images") }}
+      <a href="{{ url_for('index') }}" title="{{ t('nav.images') }}" aria-label="{{ t('nav.images') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        🖼️
       </a>
 
-      <a href="{{ url_for('map') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.map") }}
+      <a href="{{ url_for('map') }}" title="{{ t('nav.map') }}" aria-label="{{ t('nav.map') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        🗺️
       </a>
 
-      <a href="{{ url_for('cam') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.cam") }}
+      <a href="{{ url_for('cam') }}" title="{{ t('nav.cam') }}" aria-label="{{ t('nav.cam') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        📷
       </a>
 
-      <a href="{{ url_for('battery') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.battery") }}
+      <a href="{{ url_for('battery') }}" title="{{ t('nav.battery') }}" aria-label="{{ t('nav.battery') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        🔋
       </a>
 
-      <a href="{{ url_for('journal') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-        {{ t("nav.journal") }}
+      <a href="{{ url_for('journal') }}" title="{{ t('nav.journal') }}" aria-label="{{ t('nav.journal') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+        📔
       </a>
 
       {% if current_role in ['dev','admin'] %}
-        <a href="{{ url_for('index_hidden') }}" class="btn" style="padding:8px 12px; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
-          {{ t("nav.hidden") }}
+        <a href="{{ url_for('index_hidden') }}" title="{{ t('nav.hidden') }}" aria-label="{{ t('nav.hidden') }}" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+          🗄️
+        </a>
+
+        <a href="{{ url_for('config_ai') }}" title="{{ t('nav.config') }}" aria-label="{{ t('nav.config') }}" rel="noopener" class="btn" style="padding:8px 10px; min-width:38px; text-align:center; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; background:linear-gradient(180deg, var(--panel2), var(--panel));">
+          ⚙️
         </a>
       {% endif %}
     {% endif %}
@@ -67,8 +71,10 @@
     </span>
 
     <a href="{{ url_for('logout') }}"
-       style="padding:10px 16px; background:linear-gradient(180deg, var(--panel2), var(--panel)); color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.2s ease;">
-      {{ t("nav.logout") }}
+       title="{{ t('nav.logout') }}"
+       aria-label="{{ t('nav.logout') }}"
+       style="padding:10px 12px; min-width:40px; text-align:center; background:linear-gradient(180deg, var(--panel2), var(--panel)); color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.2s ease;">
+      ↩️
     </a>
   </div>
 </nav>

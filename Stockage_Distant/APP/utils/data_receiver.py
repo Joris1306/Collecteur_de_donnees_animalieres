@@ -83,7 +83,7 @@ class data_receiver:
                         try:
                             metadata = ast.literal_eval(s)
                         except (ValueError, SyntaxError) as e:
-                            logging.error("metadata parse error:", e)
+                            logging.error(f"metadata parse error: {e}")
                             metadata = {}
 
                     if not isinstance(metadata, dict):
@@ -153,7 +153,7 @@ class data_receiver:
                 # logging.error(f"Received {item['data'][:16]}[...]{item['data'][-16:]}")
                 logging.error(f"received = {item['data']}")
                 # logging.error(f"data = {metadata}")
-                logging.error("I/O worker error:", e)
+                logging.error(f"I/O worker error: {e}")
             finally:
                 logging.info("task done")
                 data_receiver._io_queue.task_done()

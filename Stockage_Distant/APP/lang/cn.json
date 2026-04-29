@@ -8,6 +8,7 @@
   "nav.battery": "电量",
   "nav.journal": "日志",
   "nav.hidden": "已隐藏",
+  "nav.config": "配置",
   "nav.logged_in_as": "当前用户",
   "nav.logout": "退出",
 
@@ -122,6 +123,20 @@
 
   "error.title": "错误",
   "error.h2": "发生错误",
-  "error.text": "加载页面时发生了错误。"
+  "error.text": "加载页面时发生了错误。",
+
+  "config_ai.title": "AI 配置",
+  "config_ai.header": "识别模型配置",
+  "config_ai.subtitle": "选择用于新图像识别的模型。",
+  "config_ai.active_model": "当前模型",
+  "config_ai.model_speciesnet_default": "SpeciesNet 默认模型",
+  "config_ai.model_speciesnet_custom": "SpeciesNet 自定义模型路径",
+  "config_ai.model_yolo_default": "YOLO 默认模型",
+  "config_ai.model_yolo_custom": "YOLO 自定义模型路径",
+  "config_ai.model_disabled": "禁用 AI 识别",
+  "config_ai.custom_path": "自定义模型路径",
+  "config_ai.custom_path_help": "仅在选择自定义模型路径选项时使用。",
+  "config_ai.save": "保存配置",
+  "config_ai.saved": "配置已成功保存。"
 }
 

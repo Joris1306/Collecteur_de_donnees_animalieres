@@ -67,7 +67,7 @@ class metadata_trap:
         default_data['DATE.MINUTE'] = _date.minute
         default_data['DATE.SECOND'] = _date.second
         default_data['CAM.BATTERY'] = random.randrange(0,100)
-        default_data['CAM.ID'] = 2
+        default_data['CAM.ID'] = 3
 
         return default_data
 
@@ -85,7 +85,7 @@ class json_emitter:
     IMAGE_PATH = properties.get('IMAGE_PATH')
     @staticmethod
     def send_data(data):
-        url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}{json_emitter.METADATA_PATH}"
+        url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}{json_emitter.METADATA_PATH}?key={utlitaires.get_properties().get('INGEST_API_KEY')}"
 
 
         response = requests.post(url, data=data)
@@ -93,7 +93,7 @@ class json_emitter:
 
     @staticmethod
     def send_image(image_buff):
-        url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}{json_emitter.IMAGE_PATH}"
+        url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}{json_emitter.IMAGE_PATH}?key={utlitaires.get_properties().get('INGEST_API_KEY')}"
 
         response = requests.post(url, data=image_buff)
         print(response)

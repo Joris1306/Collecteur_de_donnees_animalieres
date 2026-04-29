@@ -8,6 +8,7 @@
   "nav.battery": "Battery",
   "nav.journal": "Journal",
   "nav.hidden": "Hidden",
+  "nav.config": "Configuration",
   "nav.logged_in_as": "Logged in as",
   "nav.logout": "Logout",
 
@@ -122,6 +123,20 @@
 
   "error.title": "Error",
   "error.h2": "An error occurred",
-  "error.text": "Something went wrong while loading this page."
+  "error.text": "Something went wrong while loading this page.",
+
+  "config_ai.title": "AI Configuration",
+  "config_ai.header": "Recognition Model Configuration",
+  "config_ai.subtitle": "Choose which recognition model is used for incoming images.",
+  "config_ai.active_model": "Active model",
+  "config_ai.model_speciesnet_default": "SpeciesNet default model",
+  "config_ai.model_speciesnet_custom": "SpeciesNet custom model path",
+  "config_ai.model_yolo_default": "YOLO default model",
+  "config_ai.model_yolo_custom": "YOLO custom model path",
+  "config_ai.model_disabled": "Disable AI recognition",
+  "config_ai.custom_path": "Custom model path",
+  "config_ai.custom_path_help": "Used only when a custom model path option is selected.",
+  "config_ai.save": "Save configuration",
+  "config_ai.saved": "Configuration saved successfully."
 }
 
