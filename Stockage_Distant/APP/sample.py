@@ -87,6 +87,7 @@ class json_emitter:
     def send_data(data):
         url = f"http://{json_emitter.RECEIVER_IP}:{json_emitter.RECEIVER_PORT}{json_emitter.METADATA_PATH}?key={utlitaires.get_properties().get('INGEST_API_KEY')}"
 
+        print(url)
 
         response = requests.post(url, data=data)
         print(response)

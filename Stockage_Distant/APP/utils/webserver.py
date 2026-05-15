@@ -370,7 +370,7 @@ class webserver:
             order = "DESC" if sort != "asc" else "ASC"
 
             # Show both ETAT=0 (no issue) and ETAT=2 (human detected - alert)
-            where = ["(ETAT = 0 OR ETAT = 2)"]
+            where = ["(ETAT IN (0, 2))"]
             params = []
 
             if cam_id:
@@ -724,7 +724,7 @@ class webserver:
 
             order = "DESC" if sort != "asc" else "ASC"
 
-            where = ["(ETAT <> 0 OR ETAT IS NULL)"]
+            where = ["(ETAT <> 0)"]
             params = []
 
             if cam_id:
