@@ -1,0 +1,205 @@
+\documentclass{param}
+
+\title{Solution Technologique - Choix du Microcontrôleur}
+\author{Collecteur de Données Animalières}
+\date{21 Octobre 2025}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Ce document présente l'analyse et la justification du choix du microcontrôleur retenu pour le projet de collecteur de données animalières. Nous détaillons les critères de sélection et comparons deux solutions plausibles : l'ESP32 et le Raspberry Pi Zero.
+\vspace{20px}
+
+\section{Historique}
+À la suite d'une phase de recherche concernant le contrôleur à utiliser pour ce projet, nous avons identifié deux solutions susceptibles de répondre à nos besoins : l'ESP32 et le Raspberry Pi Zero.
+
+\medskip
+\noindent
+Pour rappel, les besoins principaux concernant le contrôleur étaient les suivants :
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.9\textwidth}{>{\bfseries}l|X}
+\toprule
+\textbf{Critère} & \textbf{Description} \\
+\midrule
+Consommation énergétique & Minimiser la consommation pour un usage sur batterie. \\ 
+Performances & Garantir une puissance suffisante pour le traitement des données. \\ 
+Stockage & Disposer d’une capacité suffisante pour enregistrer temporairement les mesures locales et la photographie. \\ 
+Système & Offrir un environnement logiciel simple avec facilité sur les outils de développement utilisés. \\ 
+Interfaces & Proposer des entrées/sorties adaptées aux capteurs et modules externes. \\ 
+Connectivités & Intégrer ou supporter le Wi-Fi, le Bluetooth ou d'autres moyens de communication. \\ 
+Prix & Rester dans une gamme de coût compatible avec le budget du projet. \\ 
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\medskip
+Ces critères nous ont permis de comparer plusieurs solutions techniques lors de la phase de benchmark.
+\vspace{20px}
+
+\section{Critères de sélection}
+Les critères suivants ont été considérés lors du choix final du microcontrôleur :
+\begin{itemize}
+    \item Architecture matérielle
+    \item Connectivité
+    \item Consommation énergétique
+    \item Nombre et type de GPIO
+    \item Facilité de développement
+    \item Coût global
+\end{itemize}
+
+\subsection{Architecture matérielle}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\textwidth}{|>{\bfseries}l|X|X|}
+\hline
+\textbf{Caractéristique} & \textbf{ESP32 Dev Module} & \textbf{Raspberry Pi Zero (W / 2 W)} \\
+\hline
+Processeur & Dual-core Tensilica Xtensa LX6 à 240 MHz & Broadcom BCM2835 (Pi Zero) ou BCM2710A1 (Pi Zero 2 W), ARM Cortex-A53 quad-core 1 GHz \\
+\hline
+Architecture & 32 bits (microcontrôleur) & 64 bits (microprocesseur complet) \\
+\hline
+Mémoire RAM & 520 KB SRAM interne & 512 MB LPDDR2 SDRAM \\
+\hline
+Mémoire Flash / Stockage & 4 à 16 MB (selon le module) & Dépend de la carte microSD (jusqu’à 256 GB ou plus) \\
+\hline
+Système d’exploitation & Aucun (bare metal), FreeRTOS ou MicroPython & Linux (Raspberry Pi OS, Ubuntu, etc.) \\
+\hline
+\end{tabularx}
+\end{center}
+
+\noindent\textit{Commentaire :}  
+L’ESP32 offre une architecture légère idéale pour les tâches embarquées à faible consommation, tandis que le Raspberry Pi Zero dispose d’une puissance, d’une mémoire et d’une capacité de stockage nettement supérieures, mais au prix d’une complexité, d’une taille et d’une consommation accrues.
+
+
+\subsection{Connectivité}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\textwidth}{|>{\bfseries}l|X|X|}
+\hline
+\textbf{Type} & \textbf{ESP32} & \textbf{Raspberry Pi Zero (W / 2 W)} \\
+\hline
+Wi-Fi & Oui (2.4 GHz, 802.11 b/g/n) & Oui (Wi-Fi intégré sur version W et 2 W) \\
+\hline
+Bluetooth & Oui (v4.2 + BLE) & Oui (v4.1 sur Pi Zero W / BLE sur Pi Zero 2 W) \\
+\hline
+Ethernet & Non & Non (possible via adaptateur USB) \\
+\hline
+USB & Micro-USB (programmation et alimentation) & Micro-USB OTG (périphériques) + Mini-HDMI vidéo \\
+\hline
+\end{tabularx}
+\end{center}
+
+\noindent\textit{Commentaire :}  
+Les deux plateformes offrent une bonne connectivité sans fil, mais le Raspberry Pi Zero se distingue par sa polyvalence en périphériques tandis que l’ESP32 reste plus simple et compact.
+
+
+\subsection{Consommation énergétique}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\textwidth}{|>{\bfseries}l|X|X|}
+\hline
+\textbf{Situation} & \textbf{ESP32} & \textbf{Raspberry Pi Zero (W / 2 W)} \\
+\hline
+Repos (Deep Sleep) & Environ 10 µA à 150 µA & 100 mA \\
+\hline
+Actif & 100 – 250 mA & 120–200 mA (Pi Zero) / 300–400 mA (Pi Zero 2 W) \\
+\hline
+\end{tabularx}
+\end{center}
+
+\noindent\textit{Commentaire :}  
+L’ESP32 consomme beaucoup moins d’énergie, ce qui en fait une solution idéale pour un système sur batterie, contrairement au Raspberry Pi Zero plus énergivore.
+
+
+\subsection{Nombre et type de GPIO}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\textwidth}{|>{\bfseries}l|X|X|}
+\hline
+\textbf{Type} & \textbf{ESP32} & \textbf{Raspberry Pi Zero (W / 2 W)} \\
+\hline
+GPIO disponibles & = 30 broches (3.3 V) & 40 broches (3.3 V) \\
+\hline
+Fonctions & PWM, ADC, I2C, SPI, UART, Touch Sensor & PWM, I2C, SPI, UART, GPIO numériques \\
+\hline
+\end{tabularx}
+\end{center}
+
+\noindent\textit{Commentaire :}  
+Le Raspberry Pi Zero offre plus de broches, mais l’ESP32 propose une plus grande variété de fonctions intégrées comme l’ADC et les capteurs tactiles.
+
+
+\subsection{Facilité de développement}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\textwidth}{|>{\bfseries}l|X|X|}
+\hline
+\textbf{Aspect} & \textbf{ESP32} & \textbf{Raspberry Pi Zero (W / 2 W)} \\
+\hline
+Langages supportés & C / C++ (Arduino, ESP-IDF), MicroPython, Lua & Python, C/C++, Java, Node.js, etc. \\
+\hline
+Outils de développement & Arduino IDE, PlatformIO, Espressif IDF & Raspberry Pi OS, VS Code, SSH, Thonny, etc. \\
+\hline
+Programmation directe & Via USB (UART/Serial) & Via carte microSD ou connexion SSH \\
+\hline
+Communauté et ressources & Très étendue (Arduino, Espressif) & Très étendue (Raspberry Pi Foundation) \\
+\hline
+\end{tabularx}
+\end{center}
+
+\noindent\textit{Commentaire :}  
+L’ESP32 est plus simple à programmer pour des applications embarquées, tandis que le Raspberry Pi Zero offre un environnement Linux complet adapté à des projets plus complexes.
+
+
+\subsection{Coût global}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.8\textwidth}{|>{\bfseries}l|c|X|}
+\hline
+\textbf{Produit} & \textbf{Prix estimé (€)} & \textbf{Remarques} \\
+\hline
+ESP32 Dev Module & 4 – 20 € & Très bon rapport performance / prix, facilement disponible. \\
+\hline
+Raspberry Pi Zero W & 15 – 25 € & Bon compromis puissance / prix, mais disponibilité variable. \\
+\hline
+Raspberry Pi Zero 2 W & 20 – 35 € & Plus performant mais plus énergivore. \\
+\hline
+\end{tabularx}
+\end{center}
+
+\noindent\textit{Commentaire :}  
+L’ESP32 est nettement plus économique, tandis que le Raspberry Pi Zero coûte plus cher et peut être difficile à se procurer selon les périodes de disponibilité.
+\vspace{20px}
+
+\section{Technologies retenues}
+À l’issue de l’analyse comparative réalisée entre l’ESP32 et le Raspberry Pi Zero, le choix s’est porté sur l’\textbf{ESP32} comme microcontrôleur principal pour le collecteur de données animalières.
+\newline
+
+Ce choix est motivé par plusieurs facteurs clés. Tout d’abord, sa \textbf{faible consommation énergétique} constitue un avantage décisif pour une utilisation sur batterie dans un environnement isolé. L’ESP32 peut fonctionner plusieurs jours, voire semaines, en mode basse consommation, ce qui garantit une autonomie optimale sur le terrain.  
+\newline
+
+Ensuite, son \textbf{intégration native du Wi-Fi et du Bluetooth} simplifie la conception matérielle et réduit le besoin de modules externes, tout en permettant la transmission sans fil des données et la configuration à distance du système.  
+\newline
+
+Sur le plan du développement, l’ESP32 bénéficie d’un \textbf{écosystème logiciel très complet} (Arduino, ESP-IDF, MicroPython) et d’une large communauté d’utilisateurs, facilitant la mise en œuvre rapide du prototype et la maintenance future du système.  
+\newline
+
+Concernant le \textbf{stockage}, la mémoire interne de l’ESP32 reste limitée (quelques mégaoctets selon le module), ce qui peut poser problème lors de l’enregistrement d’images complètes issues d’un capteur photo. Dans ce cas, le microcontrôleur pourrait ne pas disposer de suffisamment d’espace pour stocker temporairement ces fichiers. Une solution d’amélioration consiste à \textbf{ajouter une carte microSD connectée via l’interface SPI}, permettant d’augmenter considérablement la capacité de stockage et de conserver localement les données avant leur transmission.  
+\newline
+
+Enfin, son \textbf{coût réduit et sa disponibilité} sur le marché en font une solution économique et accessible, sans compromis majeur sur les performances nécessaires au projet.  
+\newline
+
+En revanche, il est à noter que le Raspberry Pi Zero offre une puissance de calcul et une mémoire supérieures, mais celles-ci sont jugées excessives au regard des besoins du projet et pénalisantes en termes de consommation énergétique et de gestion logicielle.  
+\newline
+
+
+\medskip
+\noindent
+\textbf{En conclusion}, l’ESP32 répond pleinement aux exigences du projet en matière de consommation, de connectivité et de simplicité de déploiement, ce qui en fait la solution la plus adaptée pour le collecteur de données animalières.
+
+
+\end{document}

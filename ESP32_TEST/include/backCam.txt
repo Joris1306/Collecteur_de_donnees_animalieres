@@ -1,0 +1,97 @@
+bool CAM::captureToSD(const char* filename)
+{
+    File f = SD.open(filename, FILE_WRITE);
+    if (!f) return false;
+
+    Serial.println("Attente VSYNC bas...");
+    
+    // Attente plus longue pour VSYNC bas
+    unsigned long start = millis();
+    while (digitalRead(VSYNC_GPIO_NUM) == HIGH) {
+        if (millis() - start > 2000) {
+            Serial.println("Timeout attente VSYNC bas");
+            f.close();
+            return false;
+        }
+    }
+    
+    Serial.println("VSYNC bas détecté, attente VSYNC haut...");
+    
+    // Attente VSYNC haut
+    start = millis();
+    while (digitalRead(VSYNC_GPIO_NUM) == LOW) {
+        if (millis() - start > 2000) {
+            Serial.println("Timeout attente VSYNC haut");
+            f.close();
+            return false;
+        }
+    }
+    
+    Serial.println("VSYNC haut détecté, attente début frame...");
+    
+    // Maintenant attendre le début réel de la frame (VSYNC bas)
+    start = millis();
+    while (digitalRead(VSYNC_GPIO_NUM) == HIGH) {
+        if (millis() - start > 2000) {
+            Serial.println("Timeout attente début frame");
+            f.close();
+            return false;
+        }
+    }
+    
+    Serial.println("Début frame détecté, capture...");
+
+    // Petite attente pour stabilisation
+    delayMicroseconds(100);
+    
+    int pixels_captures = 0;
+    bool frame_terminee = false;
+    
+    for (int y = 0; y < height && !frame_terminee; y++)
+    {
+        // Attente HREF haut avec timeout
+        start = millis();
+        while (digitalRead(HREF_GPIO_NUM) == LOW) {
+            if (digitalRead(VSYNC_GPIO_NUM) == HIGH) {
+                Serial.printf("Frame terminée avant ligne %d\n", y);
+                frame_terminee = true;
+                break;
+            }
+            if (millis() - start > 100) {
+                Serial.printf("Timeout HREF ligne %d\n", y);
+                break;
+            }
+        }
+        
+        if (frame_terminee) break;
+        
+        // Capturer une ligne
+        for (int x = 0; x < width; x++)
+        {
+            // Vérifier VSYNC avant chaque pixel
+            if (digitalRead(VSYNC_GPIO_NUM) == HIGH) {
+                frame_terminee = true;
+                break;
+            }
+            
+            // Lecture avec moins d'attentes strictes
+            while (digitalRead(PCLK_GPIO_NUM) == LOW);
+            uint8_t msb = readByte();
+            
+            while (digitalRead(PCLK_GPIO_NUM) == HIGH);
+            uint8_t lsb = readByte();
+            
+            f.write(msb);
+            f.write(lsb);
+            pixels_captures++;
+        }
+        
+        // Attendre HREF bas
+        while (digitalRead(HREF_GPIO_NUM) == HIGH && digitalRead(VSYNC_GPIO_NUM) == LOW);
+    }
+    
+    f.close();
+    Serial.printf("Capture: %d/%d pixels\n", pixels_captures, width * height);
+    
+    return pixels_captures > 0;
+}

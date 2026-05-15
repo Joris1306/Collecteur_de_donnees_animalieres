@@ -1,0 +1,190 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usepackage{everypage}
+\usepackage{fancyhdr}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage[siunitx]{circuitikz}
+\usepackage[most]{tcolorbox}
+
+\pgfplotsset{compat=1.18}
+
+\usepackage[margin=3.2cm, top=3.5cm, bottom=4cm]{geometry}
+
+\lstdefinestyle{CStyle}{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{orange},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!5},
+    frame=single,
+    rulecolor=\color{gray},
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,
+    captionpos=b
+}
+
+\title{Compte Rendu Prototype - PIEGE CAMERA ( Sans Transmission )}
+\author{Nolan BUCHET}
+\date{Janvier 2026}
+
+% Configuration des en-têtes
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{Rapport de Prototype}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- DÉBUT DU DOCUMENT ---
+\begin{document}
+
+% Page de titre
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Large \textbf{RAPPORT DE PROTOTYPE}}
+    
+    \vspace{1cm}
+    {\Large Piège Caméra Sans Transmission}
+    
+    \vspace{3cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Date:} & Janvier 2026 \\
+        \textbf{Responsable:} & Nolan \\
+        \textbf{Projet:} & PTrans -- Polytech
+    \end{tabular}
+    
+    \vfill
+\end{titlepage}
+
+% Table des matières
+\tableofcontents
+\newpage
+
+% --- CHAPITRE 1: PRÉSENTATION ---
+\chapter{Présentation du prototype}
+
+Le prototype «~Piège Caméra~» a été développé durant la première semaine de rentrée, du 5 au 9 janvier, sous la responsabilité de Nolan. Les travaux ont impliqué plusieurs membres de l'équipe, notamment Xueying dans le cadre du WP 1.3, Jules pour le WP 1.1, ainsi que Nolan en tant que responsable des WP 1 et WP 1.2. L'objectif principal de ce prototype était de valider la faisabilité d'un système autonome capable de capturer des images et d'y associer des métadonnées environnementales, sans transmission initiale des données.
+
+\section{Architecture matérielle}
+
+L'architecture matérielle du prototype repose sur un microcontrôleur ESP32, une caméra OV2640, un capteur de température et d'humidité DHT22, ainsi qu'une carte SD destinée au stockage des données. Le système devait être en mesure de prendre dix photographies, chacune associée aux données du DHT22, puis de stocker l'ensemble sur la carte SD. Les résultats obtenus devaient ensuite être présentés oralement à l'équipe le 9 janvier, accompagnés d'un court rapport transmis aux coachs.
+
+\section{Objectifs et accomplissements}
+
+Les objectifs initiaux ont été atteints avec succès. Le prototype a permis la capture des dix photographies demandées, avec un enregistrement correct des images et des métadonnées sur la carte SD. L'intégration et la communication entre les différents modules matériels se sont révélées fonctionnelles et stables. En complément du cahier des charges initial, plusieurs fonctionnalités supplémentaires ont été implémentées, notamment un système d'horodatage ainsi que l'ajout de données de localisation aux métadonnées associées aux images.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Image/Espacil81.jpeg}
+    \caption{Prise de Photo - 1}
+    \label{fig:espacil81}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Image/Espacil_1.jpeg}
+    \caption{Prise de Photo - 2}
+    \label{fig:espacil1}
+\end{figure}
+
+\newpage
+
+% --- CHAPITRE 2: DÉFIS TECHNIQUES ---
+\chapter{Défis techniques et solutions}
+
+\section{Difficultés rencontrées}
+
+Plusieurs difficultés techniques ont été rencontrées au cours du développement. L'une des principales contraintes concernait le stockage des images, la résolution étant limitée par l'absence de PSRAM sur la carte ESP32 initialement utilisée. Cette limitation a imposé une réduction de la qualité des images. Des problèmes logiciels ont également été observés lors de l'implémentation de l'horodatage, en particulier dans l'utilisation du module RTC du système, nécessitant plusieurs phases de correction et de tests.
+
+\section{Solutions apportées}
+
+Par ailleurs, la mise en place du capteur PIR comme déclencheur de prise de vue a mis en évidence une sensibilité excessive aux mouvements, générant des déclenchements intempestifs. Afin de pallier ce problème, une solution mécanique a été adoptée avec l'ajout d'un cône de confinement permettant de limiter le champ de détection du capteur.
+
+Un système de gestion de l'alimentation a également été développé, permettant d'éteindre les modules non nécessaires lors des phases de mise en veille. Un mode \textit{Deep Sleep} a été intégré au système afin de réduire la consommation énergétique, avec un réveil déclenché par le capteur PIR.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Image/Cone.jpeg}
+    \caption{Cône de confinement pour le capteur PIR}
+    \label{fig:cone}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Image/Schema.png}
+    \caption{Cône de confinement pour le capteur PIR}
+    \label{fig:cone}
+\end{figure}
+
+
+\newpage
+
+% --- CHAPITRE 3: ÉVOLUTIONS ---
+\chapter{Évolutions et améliorations}
+
+\section{Transmission de données par Wi-Fi}
+
+Afin d'assurer l'avancement du prototype dans les délais impartis, une évolution majeure a été introduite avec l'ajout d'une transmission des données via Wi-Fi vers une base de données distante. Bien que cette fonctionnalité ne figure pas dans le cahier des charges initial, elle a considérablement amélioré les capacités du système.
+
+\section{Optimisation du matériel}
+
+À la suite de ces évolutions, le microcontrôleur ESP32 a été remplacé par un modèle disposant de PSRAM et d'un nombre plus important de broches GPIO. Ce changement a permis d'améliorer significativement les performances du système, notamment en autorisant la capture d'images en résolution 1600×1200 et leur transmission directe vers un serveur.
+
+Cette nouvelle architecture a rendu la carte SD obsolète, libérant ainsi des ressources matérielles supplémentaires et simplifiant l'organisation globale du système.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Image/image.png}
+    \caption{Prototype optimisé avec nouveau microcontrôleur}
+    \label{fig:optimized}
+\end{figure}
+
+\newpage
+
+% --- CHAPITRE 4: RÉSULTATS ---
+\chapter{Résultats et perspectives futures}
+
+\section{Validation du système}
+
+Plusieurs campagnes de tests ont permis de valider le bon fonctionnement global du prototype, tant sur le plan matériel que logiciel. Le système est désormais capable de capturer, horodater et transmettre des images de manière fiable.
+
+\section{Travaux futurs}
+
+Les travaux restants concernent principalement:
+
+\begin{enumerate}
+    \item Conception d'un système d'alimentation autonome sur batterie
+    \item Réalisation d'un schéma électrique complet et mis à jour
+    \item Conception d'un circuit imprimé (PCB)
+    \item Tests en conditions réelles en environnement extérieur
+\end{enumerate}
+
+Ces étapes sont envisagées afin de finaliser et valider définitivement le prototype.
+
+\end{document}

@@ -1,0 +1,184 @@
+\section{Rapport d’Avancement}
+
+\section{Introduction}
+Ce rapport présente l’avancement du Work Package (WP1), correspondant au module central du collecteur de données. Ce module a pour rôle de regrouper et de coordonner les différents sous-systèmes du projet, à savoir le module de transmission, le module caméra et les modules additionnels.
+
+\section{Choix du microcontrôleur}
+Avant de démarrer les tests des différents sous-systèmes, nous avons réalisé un benchmark complet des microcontrôleurs disponibles. Cette analyse portait sur plusieurs critères tels que la performance, la consommation énergétique, la compatibilité avec les capteurs et la facilité d’intégration. À l’issue de cette étude, le choix s’est porté sur l’ESP32, qui répond le mieux aux besoins du projet. Un document détaillé présentant les comparatifs et les critères de sélection est disponible en annexe.
+
+\section{Gestion de la luminosité}
+La première phase de conception a porté sur la mise en place d’un système de gestion de la luminosité, permettant la capture d’images même dans des conditions de faible éclairage. Une photorésistance (LDR) a été retenue pour sa simplicité, son faible coût et sa fiabilité.
+
+Les premiers tests ont montré que le dispositif fonctionne correctement et ont permis de définir un seuil de luminosité pour l’activation des LEDs infrarouges. Les mesures réalisées sur la LDR selon différentes couleurs confirment les tendances théoriques : plus la surface est sombre, plus la tension et la luminosité mesurées sont faibles, et la résistance est élevée. Pour les surfaces claires, la tension augmente et la résistance diminue. Néanmoins, certaines limitations ont été observées pour les couleurs très sombres, où les mesures deviennent instables ou incohérentes.
+
+\subsection*{Tableau récapitulatif des mesures}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|X|X|X|}
+\hline
+\textbf{Couleur} &
+\textbf{Théorie (V / $\Omega$ / Lux)} &
+\textbf{Numérique (Code)} &
+\textbf{Pratique} \\
+\hline
+Noir (Torchon) & 0~V / 1~M$\Omega$ / 0.1 &
+0~V / 1~M$\Omega$ / 1 &
+0~V / 17.16~M$\Omega$ / 0 \\
+\hline
+Sombre & -- &
+0.69~V / 5668~$\Omega$ / 2636 &
+0.7~V / 5300~$\Omega$ / 100 \\
+\hline
+Gris & -- &
+2~V / 996~$\Omega$ / 10000 &
+2.13~V / 890~$\Omega$ / 500 \\
+\hline
+Lumière & -- &
+2.71~V / 329~$\Omega$ / 10000 &
+2.8~V / 237~$\Omega$ / 1900 \\
+\hline
+Flash & 3.3~V / 0.1~$\Omega$ / 10000 &
+3.3~V / 0~$\Omega$ / 10000 &
+3.22~V / 72.3~$\Omega$ / -- \\
+\hline
+\end{tabularx}
+\caption{Mesures de la LDR selon différentes conditions lumineuses.}
+\end{table}
+
+\textbf{Remarque :} les mesures pratiques de Lux sont peu fiables pour les valeurs extrêmes.
+
+\section{Optimisation énergétique}
+L’autonomie du système constitue un enjeu majeur, notamment pour un dispositif destiné à fonctionner dans un environnement isolé. Plusieurs stratégies d’optimisation de la consommation ont été étudiées sur l’ESP32 afin de réduire au maximum le courant consommé tout en maintenant les fonctionnalités critiques.
+
+\subsection*{Modes de fonctionnement testés}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|c|X|X|X|}
+\hline
+\textbf{Mode} & 
+\textbf{Conso typique} &
+\textbf{Éteint} &
+\textbf{Actif} &
+\textbf{Réveil} \\
+\hline
+Actif &
+40--240 mA &
+Rien &
+Tout &
+-- \\
+\hline
+Modem Sleep &
+$\sim$20 mA &
+WiFi, BT, Radio &
+CPU, Mémoire, Périphériques &
+Timer, Interruption \\
+\hline
+Light Sleep &
+$\sim$0.8 mA &
+CPU, PLL, Radio &
+RTC, Mémoire RTC, ULP &
+Timer, GPIO, UART, etc. \\
+\hline
+Deep Sleep &
+10--150 µA &
+CPU, WiFi, BT, RAM principale &
+RTC, Mémoire RTC lente (8 KB), ULP &
+Timer, RTC\_GPIO, Touch \\
+\hline
+Hibernation &
+2.5--5 µA &
+Tout (RTC ralenti) &
+Mémoire RTC lente (8 KB) &
+Timer RTC externe \\
+\hline
+\end{tabularx}
+\caption{Comparatif des modes de consommation de l'ESP32.}
+\end{table}
+
+
+Cette analyse permettra de déterminer le compromis optimal entre autonomie et performance selon les situations.
+
+\section{Chronogramme et séquencement}
+Un chronogramme simplifié a été élaboré pour visualiser le comportement global du système. Un premier diagramme d’état a également été défini afin d’optimiser la réactivité du collecteur de données.
+
+Les étapes critiques identifiées sont~:
+\begin{itemize}
+    \item détection d’un événement,
+    \item activation éventuelle de l’éclairage infrarouge,
+    \item prise de photo.
+\end{itemize}
+
+Le système reste en veille lorsque aucune action n’est requise, permettant de réduire significativement la consommation.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/images_nolan/Chronogramme.png}
+    \caption{Début Chronogramme simplifié du collecteur de données.}
+\end{figure}
+
+\section{Horodatage et localisation}
+Un module GPS a été retenu pour fournir les données d’horodatage et de localisation (latitude, longitude, altitude, vitesse, direction). Il supporte plusieurs systèmes GNSS (GPS, GLONASS, Galileo), améliorant la précision en environnement extérieur.
+
+Pour limiter la consommation, la position et l’heure ne seront récupérées qu’une fois toutes les 24~heures. Entre deux synchronisations, l’heure est maintenue via le RTC interne de l’ESP32. Le GPS intègre également un système de correction basé sur une moyenne glissante.
+
+Des tests seront menés pour valider la précision sur plusieurs cycles.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/images_nolan/Schema_GPS.png}
+    \caption{Schéma de traitement des données GPS.}
+\end{figure}
+
+\section{Système de Power UP/DOWN}
+Pour préserver l’autonomie, un circuit de mise sous/hors tension sera ajouté. Il permettra de contrôler précisément les modules alimentés.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/images_nolan/Schema_UD.png}
+    \caption{Schema principe Power UP/DOWN.}
+\end{figure}
+
+Le circuit envisagé repose sur~:
+\begin{itemize}
+    \item un MOSFET de puissance jouant le rôle d’interrupteur,
+    \item un transistor NPN jouant le rôle de driver, commandé par un GPIO,
+    \item des résistances assurant la polarisation adéquate.
+\end{itemize}
+
+Les résistances doivent encore être dimensionnées en tenant compte du temps de commutation, qui doit rester minimal.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/images_nolan/Schema_UD_2.png}
+    \caption{Première solution Power UP/DOWN.}
+\end{figure}
+
+\section{Architecture globale du système}
+L’architecture globale est en cours de définition et regroupera les liaisons électriques, logiques et logicielles entre~: ESP32, caméra, module radio, GPS, capteurs additionnels et stockage.
+
+Cette architecture servira de base pour les évolutions futures du collecteur, permettant l’ajout ou le remplacement de modules sans perturber l'ensemble.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/images_nolan/Schema_Bloc.png}
+    \caption{Architecture bloc du collecteur de données.}
+\end{figure}
+
+\section{Prochaines étapes}
+
+Les objectifs à court terme sont :
+\begin{itemize}
+    \item valider le système de gestion de la luminosité en interaction avec la caméra ;
+    \item valider l’horodatage et la localisation ;
+    \item intégrer un module carte SD pour des photos de meilleure qualité ;
+    \item finaliser le système de Power UP/DOWN ;
+    \item analyser les résultats des autres WP pour garantir la cohérence globale.
+\end{itemize}
+
+Ces travaux permettront d’affiner le chronogramme, l’architecture et l’automate du système afin d'assurer la fiabilité et les performances du collecteur de données.
+

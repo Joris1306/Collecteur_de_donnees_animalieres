@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "CollecteurDonneLIB")(type "KiCad")(uri "${KIPRJMOD}/CollecteurDonneLIB.kicad_sym")(options "")(descr ""))
+)
