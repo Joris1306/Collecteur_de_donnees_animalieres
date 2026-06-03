@@ -46,6 +46,8 @@ Découvrez les données récoltées et les résultats de la classification en te
 👉 **[Accéder à l'Interface Web du Projet](http://90.59.66.6:5050)**
 
 
+***
+
 # Camera Trap with AI Animal Classification (From Scratch)
 
 Welcome to the official repository for the **Camera Trap with AI Animal Classification** project. We are a team of six engineering students from **Polytech Nantes** who dedicated a full academic year to designing, building, and deploying this open-source solution. 
@@ -91,5 +93,5 @@ We now pass the torch to future generations of passionate students. This project
 Explore the captured data and classification metrics live here:
 👉 **[Access the Web Interface Dashboard](http://90.59.66.6:5050)**
 
-***
+
 
