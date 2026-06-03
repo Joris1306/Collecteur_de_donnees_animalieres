@@ -1,3 +1,51 @@
+**(English part below)**
+
+# Piège Caméra avec Classification Animale par IA (De A à Z)
+
+Bienvenue sur le dépôt officiel du projet **Piège Photographique avec Classification Animale par IA**. Nous sommes une équipe de six étudiants ingénieurs de **Polytech Nantes** ayant dédié une année universitaire complète à la conception, fabrication et au déploiement de cette solution open-source.
+
+Ce projet a été réalisé en partenariat étroit avec la **Mairie de Saint-Mars-du-Désert** et ses associations partenaires : le **WWF**, la **LPO** (Ligue pour la Protection des Oiseaux) et **Natura 2000**, qui ont gracieusement financé et soutenu notre démarche.
+
+---
+
+## 🌍 Contexte & Objectifs
+
+La préservation de la biodiversité et la conservation des espèces sont des enjeux plus que jamais urgents. Pour protéger efficacement notre faune locale, il est indispensable de mieux la connaître et de suivre son évolution.
+
+C'est là tout l'enjeu de notre projet : concevoir de A à Z un **piège photographique autonome couplé à une intelligence artificielle de classification**. Les données capturées sont envoyées vers un serveur centralisé et rendues accessibles à travers une interface web intuitive.
+
+**Le but ultime :** Automatiser le recensement de la faune locale pour enrichir l'**ABC (Atlas de la Biodiversité Communale)**.
+
+---
+
+## 🛠️ Architecture du Projet & Contenu du Dépôt
+
+Ce repository rassemble l'intégralité des ressources nécessaires pour reproduire et améliorer notre travail :
+
+* **⚡ Électronique & Conception :** Les codes ESP32 du piège caméra, Modélisations 3D du boîtier, schémas électriques et liste complète des composants (BOM).
+* **🧠 Intelligence Artificielle :** Algorithmes et scripts d'apprentissage pour la détection et la classification embarquée des animaux.
+* **🌐 Serveur & Interface Web :** Architecture backend pour le stockage des données et code de l'interface utilisateur.
+* **📄 Documentation :** Rapports techniques détaillés pour ceux qui souhaitent approfondir les choix d'ingénierie et méthodologies du projet.
+
+---
+
+## 🤝 Remerciements
+
+Nous tenons à exprimer notre profonde gratitude envers :
+* Nos professeurs de **Polytech Nantes** pour leur encadrement et leurs précieux conseils.
+* La **Mairie de Saint-Mars-du-Désert** ainsi que les associations partenaires pour leur confiance et leur soutien financier.
+* Les professionnels et chercheurs du milieu de l'environnement qui ont répondu avec enthousiasme à nos questions, prouvant que la recherche pour la biodiversité est avant tout une grande famille.
+
+Nous passons aujourd'hui le flambeau aux futurs groupes d'étudiants passionnés. Ce projet est entièrement **open-source**, et nous avons hâte de voir comment vous saurez le faire évoluer !
+
+---
+
+## 🔗 Démo en Ligne
+
+Découvrez les données récoltées et les résultats de la classification en temps réel :
+👉 **[Accéder à l'Interface Web du Projet](http://90.59.66.6:5050)**
+
+
 # Camera Trap with AI Animal Classification (From Scratch)
 
 Welcome to the official repository for the **Camera Trap with AI Animal Classification** project. We are a team of six engineering students from **Polytech Nantes** who dedicated a full academic year to designing, building, and deploying this open-source solution. 
@@ -45,47 +93,3 @@ Explore the captured data and classification metrics live here:
 
 ***
 
-# Piège Photographique avec Classification Animale par IA (De A à Z)
-
-Bienvenue sur le dépôt officiel du projet **Piège Photographique avec Classification Animale par IA**. Nous sommes une équipe de six étudiants ingénieurs de **Polytech Nantes** ayant dédié une année universitaire complète à la conception, fabrication et au déploiement de cette solution open-source.
-
-Ce projet a été réalisé en partenariat étroit avec la **Mairie de Saint-Mars-du-Désert** et ses associations partenaires : le **WWF**, la **LPO** (Ligue pour la Protection des Oiseaux) et **Natura 2000**, qui ont gracieusement financé et soutenu notre démarche.
-
----
-
-## 🌍 Contexte & Objectifs
-
-La préservation de la biodiversité et la conservation des espèces sont des enjeux plus que jamais urgents. Pour protéger efficacement notre faune locale, il est indispensable de mieux la connaître et de suivre son évolution.
-
-C'est là tout l'enjeu de notre projet : concevoir de A à Z un **piège photographique autonome couplé à une intelligence artificielle de classification**. Les données capturées sont envoyées vers un serveur centralisé et rendues accessibles à travers une interface web intuitive.
-
-**Le but ultime :** Automatiser le recensement de la faune locale pour enrichir l'**ABC (Atlas de la Biodiversité Communale)**.
-
----
-
-## 🛠️ Architecture du Projet & Contenu du Dépôt
-
-Ce repository rassemble l'intégralité des ressources nécessaires pour reproduire et améliorer notre travail :
-
-* **⚡ Électronique & Conception :** Les codes ESP32 du piège caméra, Modélisations 3D du boîtier, schémas électriques et liste complète des composants (BOM).
-* **🧠 Intelligence Artificielle :** Algorithmes et scripts d'apprentissage pour la détection et la classification embarquée des animaux.
-* **🌐 Serveur & Interface Web :** Architecture backend pour le stockage des données et code de l'interface utilisateur.
-* **📄 Documentation :** Rapports techniques détaillés pour ceux qui souhaitent approfondir les choix d'ingénierie et méthodologies du projet.
-
----
-
-## 🤝 Remerciements
-
-Nous tenons à exprimer notre profonde gratitude envers :
-* Nos professeurs de **Polytech Nantes** pour leur encadrement et leurs précieux conseils.
-* La **Mairie de Saint-Mars-du-Désert** ainsi que les associations partenaires pour leur confiance et leur soutien financier.
-* Les professionnels et chercheurs du milieu de l'environnement qui ont répondu avec enthousiasme à nos questions, prouvant que la recherche pour la biodiversité est avant tout une grande famille.
-
-Nous passons aujourd'hui le flambeau aux futurs groupes d'étudiants passionnés. Ce projet est entièrement **open-source**, et nous avons hâte de voir comment vous saurez le faire évoluer !
-
----
-
-## 🔗 Démo en Ligne
-
-Découvrez les données récoltées et les résultats de la classification en temps réel :
-👉 **[Accéder à l'Interface Web du Projet](http://90.59.66.6:5050)**
