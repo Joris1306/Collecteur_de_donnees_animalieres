@@ -67,7 +67,7 @@ C'est là tout l'enjeu de notre projet : concevoir de A à Z un **piège photogr
 
 Ce repository rassemble l'intégralité des ressources nécessaires pour reproduire et améliorer notre travail :
 
-* **⚡ Électronique & Conception :** Modélisations 3D du boîtier, schémas électriques et liste complète des composants (BOM).
+* **⚡ Électronique & Conception :** Les codes ESP32 du piège caméra, Modélisations 3D du boîtier, schémas électriques et liste complète des composants (BOM).
 * **🧠 Intelligence Artificielle :** Algorithmes et scripts d'apprentissage pour la détection et la classification embarquée des animaux.
 * **🌐 Serveur & Interface Web :** Architecture backend pour le stockage des données et code de l'interface utilisateur.
 * **📄 Documentation :** Rapports techniques détaillés pour ceux qui souhaitent approfondir les choix d'ingénierie et méthodologies du projet.
