@@ -1,3 +1,4 @@
+# LaTeX/CDC files
 CDC/.vscode
 CDC/main.toc
 CDC/main.synctex.gz
@@ -13,16 +14,56 @@ CDC/main.glo
 CDC/main.gls
 CDC/main.glsdefs
 CDC/indent.log
-<<<<<<< HEAD
 CDC/main.aux
 CDC/main.ist
 CDC/main.lof
 CDC/main.lot
 CDC/main.pdf
-CDC/main.synctex.gz
-CDC/main.toc
-=======
-CDC/indent.log
-CDC/main.ist
-CDC/main.pdf
->>>>>>> Joris
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+*.venv-speciesnet
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# GitHub
+.github/
+
+# Environment variables
+.env
+.env.local
+
+# OS
+*.DS_Store
+.DS_Store

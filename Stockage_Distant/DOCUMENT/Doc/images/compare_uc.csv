@@ -1,0 +1,12 @@
+Microcontrôleur / Carte,Processeur,Fréquence,RAM,Flash,Connectivité,GPIO / I/O,Points forts,Points faibles,Prix indicatif,Puissance,Solution Retenue
+Arduino Uno (ATmega328P),AVR 8-bit,16 MHz,2 KB,32 KB,USB / UART,14 digital / 6 analog,"Très simple, stable, énorme support communauté","Faible puissance, mémoire limitée",20 €,0.30 W,
+Arduino Nano 33 BLE,ARM Cortex-M4,64 MHz,32 KB,256 KB,BLE,14 digital / 8 analog,"BLE intégré, faible consommation, compact",Plus cher que Nano classique,22.5 €,0.035 W,
+Arduino Mega 2560,AVR 8-bit,16 MHz,8 KB,256 KB,USB / UART,54 digital / 16 analog,"Beaucoup de GPIO, support shield","Lent, mémoire RAM limitée",25 €,0.357 W,
+SAMD21,ARM Cortex-M0+,48 MHz,32 KB,256 KB,USB / UART,14 digital / 6 analog,"Faible consommation, 32-bit",Moins répandu que Uno,20 €,0.025 W,Pas de module de COM
+STM32F103C8 (Blue Pill),ARM Cortex-M3,72 MHz,20 KB,64 KB,USB / UART / SPI / I²C,37 digital / 10 analog,"Puissant, rapide, compact, pas cher",Écosystème moins simple que Arduino,5 €,0.01 W,Pas de module de COM
+ESP32,Tensilica Xtensa dual-core 32-bit,240 MHz,520 KB,4 MB,Wi-Fi + BLE,34 digital / 18 analog,"Wi-Fi + BLE intégré, puissant",Plus complexe à programmer que Arduino classique,8 €,0.7 W,"OK, Pas de CAM"
+ESP32-CAM,Tensilica Xtensa 32-bit,240 MHz,520 KB,4 MB,Wi-Fi + BLE,Caméra + GPIO,"Caméra + Wi-Fi intégré, compact","Pas facile pour debugging, consommation plus élevée",9.5 €,1.25 W,"OK, Resolution pas ouf"
+ESP8266,Tensilica 32-bit,80–160 MHz,160 KB,4 MB,Wi-Fi,17 digital / 1 analog,"Wi-Fi intégré, petit, bon marché","Moins de GPIO, pas BLE",4 €,0.4 W,
+Raspberry Pi 4,ARM Cortex-A72 quad-core,1.5 GHz,2–8 GB,SD Card,"Ethernet, Wi-Fi, BLE",GPIO 40 broches,"Puissant, Linux, multi-tâches, HDMI, USB","Consommation élevée, pas microcontrôleur pur",55 €,4 W,
+Raspberry Pi Zero,ARM1176JZF-S,1 GHz,512 MB,SD Card,Wi-Fi/BLE (Zero W),GPIO 40 broches,"Petit, faible coût, Linux","Faible puissance CPU, Linux obligatoire",12.5 €,0.7 W,"Prix, Connecteur Cam"
+Raspberry Pi Pico,RP2040 dual-core ARM Cortex-M0+,133 MHz,264 KB,2 MB,USB,26 digital / 3 analog,"Très bon compromis prix/puissance, RP2040 programmable C / MicroPython",Pas de Wi-Fi natif,5 €,"0,135 W",

@@ -1,0 +1,65 @@
+\section{Reconstruction des images}
+
+\subsection{But}
+L'objectif de cette étape est de reconstruire les images à partir des données brutes reçues du capteur photo. 
+
+\subsection{Résumé des tests}
+\begin{itemize}
+  \item \hyperref[sec:formats_images]{étape 1 : lister  les formats d'images produits par le capteur photo}
+  \item \hyperref[sec:transformation_images]{étape 2 : mettre en oeuvre la fonction transformant les données brutes en image}
+  \item \hyperref[sec:validation_images]{étape 3 : comparer les images reconstruites avec des images de référence}
+\end{itemize}
+
+\subsection{Tests}
+
+\subsubsection{Liste des formats d'images}
+\label{sec:formats_images}
+
+Le capteur photo utilisé dans le projet peut produire des images dans les formats suivants :
+\begin{itemize}
+    \item PIXFORMAT\_RGB565 : 2BPP/RGB565 
+    \item PIXFORMAT\_YUV422 : 2BPP/YUV422
+    \item PIXFORMAT\_YUV420 : 1.5BPP/YUV420
+    \item PIXFORMAT\_GRAYSCALE : 1BPP/GRAYSCALE
+    \item PIXFORMAT\_JPEG : JPEG/COMPRESSED
+    \item PIXFORMAT\_RGB888 : 3BPP/RGB888
+    \item PIXFORMAT\_RAW : RAW (tres gros fichier)
+    \item PIXFORMAT\_RGB444 : 3BP2P/RGB444
+    \item PIXFORMAT\_RGB555 : 3BP2P/RGB555
+\end{itemize}
+
+pour les besoins de ce projet, seuls les formats JPEG, RGB565, GRAYSCALE et RGB888 seront retenus.
+
+\subsubsection{Fonction de transformation}
+\label{sec:transformation_images}
+
+La fonction de transformation sert à transformer les octets de données brutes en une image exploitable. 
+la fonction de transformation est dépendant du format des pixels.
+
+\subsubsection{Comparaison et validation}
+\label{sec:validation_images}
+
+Validation pour le format JPEG : 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{include/reconstructeur_image/CIBLE.PNG}
+    \caption{Image de référence}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{include/reconstructeur_image/OUTPUT.PNG}
+    \caption{Image reconstruite}
+\end{figure}
+
+l'images reconstruite est conforme à l'image de référence. Cependant, il y a une légère différence de luminosité entre les deux images.
+
+\subsection{Remarques}
+\begin{itemize}
+  \item valider le fonctionnement pour les formats d'image RGB565, GRAYSCALE et RGB888
+  \item il faudrait rajouter des corrections de luminosité et de contraste pour améliorer la qualité des images reconstruites
+\end{itemize}
+
+
+

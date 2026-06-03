@@ -1,0 +1,142 @@
+{
+  "app.title": "Système de surveillance des données",
+
+  "nav.home": "Accueil",
+  "nav.images": "Images",
+  "nav.map": "Carte",
+  "nav.cam": "Caméras",
+  "nav.battery": "Batterie",
+  "nav.journal": "Journal",
+  "nav.hidden": "Masquées",
+  "nav.config": "Configuration",
+  "nav.logged_in_as": "Connecté en tant que",
+  "nav.logout": "Déconnexion",
+
+  "footer.title": "Carte des caméras",
+  "footer.subtitle": "Tableau de bord de surveillance en temps réel",
+  "footer.article": "Article",
+
+  "home.title": "Accueil - Système de surveillance",
+  "home.hero_title": "Bienvenue sur votre tableau de bord",
+  "home.hero_subtitle": "Sélectionnez un module ci-dessous pour accéder aux fonctionnalités",
+
+  "home.cards.images.title": "Dernières images",
+  "home.cards.images.desc": "Consulter et gérer les images récemment envoyées par le système",
+  "home.cards.images.cta": "Voir les images →",
+
+  "home.cards.map.title": "Vue carte",
+  "home.cards.map.desc": "Explorer les emplacements surveillés sur une carte interactive",
+  "home.cards.map.cta": "Ouvrir la carte →",
+
+  "home.cards.cam.title": "Gestion des caméras",
+  "home.cards.cam.desc": "Consulter et gérer les caméras et leurs informations",
+  "home.cards.cam.cta": "Gérer les caméras →",
+
+  "home.cards.battery.title": "État de la batterie",
+  "home.cards.battery.desc": "Surveiller le niveau de batterie et les performances des appareils",
+  "home.cards.battery.cta": "Voir la batterie →",
+
+  "home.cards.journal.title": "Journal système",
+  "home.cards.journal.desc": "Consulter l’historique complet des événements du système",
+  "home.cards.journal.cta": "Voir le journal →",
+
+  "home.cards.hidden.title": "Images masquées",
+  "home.cards.hidden.desc": "Accéder aux images retirées du flux principal",
+  "home.cards.hidden.cta": "Voir les images masquées →",
+
+  "images.title": "Dernières images",
+  "images.header": "%(count)s images récemment importées",
+  "images.subtitle": "Système de surveillance de la faune — Images déclenchées par caméra et données environnementales",
+
+  "common.refresh": "Rafraîchir",
+  "common.toggle_layout": "Changer la disposition",
+  "common.export_xlsx": "Exporter XLSX",
+  "common.apply": "Appliquer",
+  "common.reset": "Réinitialiser",
+  "common.back": "Retour",
+  "common.id": "ID",
+
+  "filters.camera_id": "ID caméra",
+  "filters.camera_placeholder": "ex. 1",
+  "filters.from": "Du",
+  "filters.to": "Au",
+  "filters.sort": "Tri",
+  "filters.newest": "Plus récentes",
+  "filters.oldest": "Plus anciennes",
+
+  "actions.hide": "Masquer",
+  "actions.delete": "Supprimer",
+  "actions.confirm_delete": "Supprimer définitivement cette image ?",
+  "actions.human_detected": "⚠️ HUMAIN DÉTECTÉ",
+
+  "fields.temperature": "Température",
+  "fields.humidity": "Humidité",
+  "fields.date": "Date",
+
+  "login.title_page": "Connexion",
+  "login.username": "Nom d’utilisateur",
+  "login.password": "Mot de passe",
+  "login.username_placeholder": "Entrez votre nom d’utilisateur",
+  "login.password_placeholder": "Entrez votre mot de passe",
+  "login.submit": "Se connecter",
+  "login.footer": "Accès sécurisé au système de surveillance",
+
+  "battery.title": "Surveillance de la batterie",
+  "battery.h1": "Surveillance de la batterie",
+  "battery.subtitle": "Suivi en temps réel du niveau de batterie de toutes les caméras",
+  "battery.camera": "Caméra",
+  "battery.graph_title_prefix": "Batterie — Caméra",
+  "battery.dataset_label": "Niveau de batterie (%)",
+
+  "cam.title": "Liste des caméras",
+  "cam.h1": "Caméras enregistrées",
+  "cam.subtitle": "Système de surveillance de la faune — Aperçu des caméras actives",
+  "cam.name": "Nom",
+  "cam.location": "Localisation",
+
+  "journal.title": "Journal système",
+  "journal.h1": "Journal système",
+  "journal.subtitle": "Historique des événements et activités du système",
+
+  "journal.event.image_received": "Image reçue",
+  "journal.event.image_hidden": "Image masquée",
+  "journal.event.image_deleted": "Image supprimée",
+  "journal.event.generic": "Événement",
+
+  "journal.camera": "Caméra",
+
+  "journal.empty.title": "Aucun événement",
+  "journal.empty.text": "Les événements apparaîtront ici lorsque le système enregistrera des activités",
+
+  "pagination.first": "« Première",
+  "pagination.previous": "‹ Précédente",
+  "pagination.next": "Suivante ›",
+  "pagination.last": "Dernière »",
+  "pagination.page": "Page",
+  "pagination.of": "sur",
+
+  "unauthorized.title": "Non autorisé",
+  "unauthorized.h1": "Accès refusé",
+  "unauthorized.text": "Vous n’avez pas l’autorisation d’accéder à cette page.",
+  "unauthorized.go_home": "Retour à l’accueil",
+  "unauthorized.go_login": "Aller à la connexion",
+
+  "error.title": "Erreur",
+  "error.h2": "Une erreur est survenue",
+  "error.text": "Une erreur est survenue lors du chargement de la page.",
+
+  "config_ai.title": "Configuration IA",
+  "config_ai.header": "Configuration du modèle de reconnaissance",
+  "config_ai.subtitle": "Choisissez le modèle utilisé pour analyser les images entrantes.",
+  "config_ai.active_model": "Modèle actif",
+  "config_ai.model_speciesnet_default": "Modèle par défaut SpeciesNet",
+  "config_ai.model_speciesnet_custom": "Chemin personnalisé du modèle SpeciesNet",
+  "config_ai.model_yolo_default": "Modèle YOLO par défaut",
+  "config_ai.model_yolo_custom": "Chemin personnalisé du modèle YOLO",
+  "config_ai.model_disabled": "Désactiver la reconnaissance IA",
+  "config_ai.custom_path": "Chemin du modèle personnalisé",
+  "config_ai.custom_path_help": "Utilisé uniquement lorsqu'une option de chemin personnalisé est sélectionnée.",
+  "config_ai.save": "Enregistrer la configuration",
+  "config_ai.saved": "Configuration enregistrée avec succès."
+}
+

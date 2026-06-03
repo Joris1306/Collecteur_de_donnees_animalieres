@@ -1,0 +1,165 @@
+#include <Arduino.h>
+#include "SDM.h"
+#include "CAM.hpp"
+#include <DHT.h>
+#include "RTC.hpp"
+#include "GPS.hpp"
+#include "BAT.hpp"
+#include "SENDWIFI.hpp"
+
+#include <Adafruit_NeoPixel.h>
+#define LED_PIN 48 // ta pin NeoPixel
+#define NUM_LEDS 1 // 1 LED RGB intégrée
+Adafruit_NeoPixel strip(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+BAT bat(BAT_PIN);
+RTC rtc;
+GPS gps(GPS_RX_PIN, GPS_TX_PIN);
+CAM cam;
+DHT dht(DHT_PIN, DHT22);
+SendData send;
+
+RTC_DATA_ATTR bool activate = false;
+RTC_DATA_ATTR int lastRefreshDay;
+
+#define WIDTH 1600
+#define HEIGHT 1200
+
+void WakeUpLoop()
+{
+    setCpuFrequencyMhz(240);
+
+    digitalWrite(PWR_U_D, HIGH);   // Alimentation ON
+    digitalWrite(GPS_PWR_UD, LOW); // Alimentation GPS OFF
+    digitalWrite(LED_IR, HIGH);    // Alimentation LED IR ON
+
+    delay(250); // Attente stabilisation
+
+    cam.begin();
+    dht.begin();
+
+    delay(250); // Attente stabilisation
+
+    cam.takePhoto();
+
+    digitalWrite(LED_IR, LOW); // Alimentation LED IR OFF
+
+    delay(2000);
+
+    float temperature = dht.readTemperature();
+    float humidity = dht.readHumidity();
+    float batteryPercent = bat.ReadPercent();
+
+    rtc.getDateTime();
+    int currentDay = rtc.getDay().toInt();
+
+    Serial.println(lastRefreshDay);
+    Serial.println(currentDay);
+
+    if (!activate || (currentDay != lastRefreshDay))
+    {
+        setCpuFrequencyMhz(80);
+
+        digitalWrite(GPS_PWR_UD, HIGH); // Alimentation GPS ON
+        activate = true;
+        Serial.println("Recherche GPS");
+
+        while (!gps.gpsready())
+        {
+            Serial.println("En attente GPS...");
+            delay(1000);
+        }
+
+        gps.update();
+
+        rtc.updateFromGPS(
+            gps.getLatitude(),
+            gps.getLongitude(),
+            gps.getHours(),
+            gps.getMinutes(),
+            gps.getSeconds(),
+            gps.getDay(),
+            gps.getMonth(),
+            gps.getYear());
+
+        rtc.getDateTime();
+
+        // Mise à jour du timestamp du dernier refresh GPS
+        lastRefreshDay = gps.getDay().toInt();
+        Serial.println(lastRefreshDay);
+
+        setCpuFrequencyMhz(240);
+    }
+    else
+    {
+        Serial.println("RTC interne uniquement");
+        rtc.getDateTime();
+    }
+
+    Serial.println("=============================================");
+    Serial.println("Température: " + String(temperature) + " °C");
+    Serial.println("Humidité: " + String(humidity) + " %");
+    Serial.println("Batterie: " + String(batteryPercent) + " %");
+    Serial.println("Lat: " + String(rtc.getLat()));
+    Serial.println("Long: " + String(rtc.getLon()));
+    Serial.println("Date: " + String(rtc.getDay()) + "/" + String(rtc.getMonth()) + "/" + String(rtc.getYear()));
+    Serial.println("Heure: " + String(rtc.getHours()) + ":" + String(rtc.getMinutes()) + ":" + String(rtc.getSeconds()));
+    Serial.println("=============================================");
+
+    // Variable Interne RTC
+
+    String savedLat = rtc.getLat();
+    String savedLon = rtc.getLon();
+    String year = rtc.getYear();
+    String month = rtc.getMonth();
+    String day = rtc.getDay();
+    String hours = rtc.getHours();
+    String minutes = rtc.getMinutes();
+    String seconds = rtc.getSeconds();
+
+    send.SendAllDataPSRAM(cam.getImage(), cam.getImageSize(), WIDTH, HEIGHT, temperature, humidity, savedLat, savedLon, year, month, day, hours, minutes, seconds, batteryPercent);
+
+    setCpuFrequencyMhz(80);
+
+    digitalWrite(PWR_U_D, LOW); // Alimentation OFF
+}
+
+void setup()
+{
+    Serial.begin(115200);
+
+    setCpuFrequencyMhz(80);
+
+    strip.begin();
+    strip.show();                    // initialise toutes les LED à off
+    strip.setPixelColor(0, 0, 0, 0); // RGB off
+    strip.show();                    // applique
+
+    pinMode(PWR_U_D, OUTPUT);
+    pinMode(WAKE_UP, INPUT);
+    pinMode(GPS_PWR_UD, OUTPUT);
+    pinMode(LED_IR, OUTPUT);
+
+    esp_sleep_wakeup_cause_t cause = esp_sleep_get_wakeup_cause();
+
+    if (cause == ESP_SLEEP_WAKEUP_EXT1)
+    {
+        WakeUpLoop();
+
+        while (digitalRead(WAKE_UP) == HIGH)
+        {
+            delay(1000);
+            Serial.println("Attente que PIR retombe ...");
+        }
+        Serial.println("PIR retombé, mise en veille profonde.");
+    }
+
+    esp_sleep_enable_ext1_wakeup(1ULL << WAKE_UP, ESP_EXT1_WAKEUP_ANY_HIGH);
+
+    esp_deep_sleep_start();
+}
+
+void loop()
+{
+    // Rien ici
+}

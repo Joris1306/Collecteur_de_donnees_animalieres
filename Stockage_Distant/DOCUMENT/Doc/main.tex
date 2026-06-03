@@ -1,0 +1,68 @@
+\documentclass{param}
+
+\begin{document}
+
+\numberwithin{table}{section}
+
+%======================================================
+% INFORMATIONS DU RAPPORT
+%======================================================
+\fairepagedegarde
+
+%======================================================
+% NUMÉROTATION DES SECTIONS
+%======================================================
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\hspace*{0.1cm} \arabic{subsection}}
+\renewcommand{\thesubsubsection}{\hspace*{0.2cm} \arabic{subsection}.\arabic{subsubsection}}
+
+%======================================================
+% TABLE DES MATIÈRES
+%======================================================
+\clearpage
+\setcounter{page}{2} % commence la numérotation à 2 (page de garde = page 1)
+\fairemargesintro % active le style Page X/Y
+\tableofcontents
+
+% %======================================================
+% % LISTE DES FIGURES
+% %======================================================
+% \newpage
+% \pagestyle{fancy}  % idem pour la liste des figures
+% \listoffigures
+% \newpage
+% \pagestyle{fancy}  % idem pour la liste des figures
+% \listoftables
+
+%======================================================
+% CORPS DU RAPPORT
+%======================================================
+\fairemarges
+
+\newpage
+\include{include/json_receiver}
+
+\newpage
+\include{include/reconstruction}
+
+\newpage
+\include{include/sql_db}
+
+% \newpage
+% \include{include/http_viewer}
+
+
+%======================================================
+% DERNIÈRE PAGE
+%======================================================
+\label{LastPage} % important pour que Page X/Y fonctionne
+
+
+%======================================================
+% BIBLIOGRAPHIE (optionnelle)
+%======================================================
+% \newpage
+% \bibliographystyle{unsrt}
+% \bibliography{bibs/export}
+
+\end{document}

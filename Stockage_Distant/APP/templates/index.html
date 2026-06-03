@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="{{ lang|default('en') }}">
+<head>
+    <title>{{ t("images.title") }}</title>
+    {% include '_favicon.html' %}
+    {% include '_styles.html' %}
+</head>
+<body>
+
+{% include '_navbar.html' %}
+
+<div class="container">
+  <div class="topbar">
+    <div class="title">
+      <h1>{{ t("images.header", count=images|length) }}</h1>
+      <div class="subtitle">
+        {{ t("images.subtitle") }}
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick="window.location.reload()" id="btnRefresh">{{ t("common.refresh") }}</button>
+      <button class="btn" id="btnToggle">{{ t("common.toggle_layout") }}</button>
+      <button class="btn" onclick="window.location.href='{{ url_for('export_csv', cam_id=cam_id, from=date_from, to=date_to, sort=sort, format='xlsx') }}'">
+        {{ t("common.export_xlsx") }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <form method="get" class="filter-form">
+    <label>
+      {{ t("filters.camera_id") }}
+      <input type="number" name="cam_id" min="0" value="{{ cam_id|default('') }}" placeholder="{{ t('filters.camera_placeholder') }}">
+    </label>
+
+    <label>
+      {{ t("filters.from") }}
+      <input type="date" name="from" value="{{ date_from|default('') }}">
+    </label>
+
+    <label>
+      {{ t("filters.to") }}
+      <input type="date" name="to" value="{{ date_to|default('') }}">
+    </label>
+
+    <label>
+      {{ t("filters.sort") }}
+      <select name="sort">
+        <option value="desc" {% if sort|default('desc') == 'desc' %}selected{% endif %}>{{ t("filters.newest") }}</option>
+        <option value="asc"  {% if sort|default('desc') == 'asc' %}selected{% endif %}>{{ t("filters.oldest") }}</option>
+      </select>
+    </label>
+
+    <button class="btn" type="submit">{{ t("common.apply") }}</button>
+    <a class="btn" href="{{ url_for('index') }}">{{ t("common.reset") }}</a>
+  </form>
+
+  <div class="grid" id="grid">
+
+    {% for img in images %}
+      <article class="card">
+        <div class="thumb">
+          <img src="{{ url_for('static', filename=img['CHEMIN_IMAGE']) }}"
+               alt="Image {{ img['ID'] }}"
+               onclick="openLightbox('{{ url_for('static', filename=img['CHEMIN_IMAGE']) }}')">
+        </div>
+
+        <div class="content">
+          <div class="badge">ID {{ img['ID'] }}</div>
+
+          <!-- ALERT: Human detected (ETAT=2) -->
+          {% if img['ETAT'] == 2 %}
+            <div class="badge" style="background: linear-gradient(180deg, rgba(255, 100, 50, 0.4), rgba(255, 70, 20, 0.3)); border: 1px solid rgba(255, 100, 50, 0.6); color: #ff6432; font-weight: 600; margin-top: 6px;">
+              {{ t("actions.human_detected") }}
+            </div>
+          {% endif %}
+
+          {% if img.get('DETECTED_ANIMALS') and img['DETECTED_ANIMALS']|length > 0 %}
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
+              {% for det in img['DETECTED_ANIMALS'] %}
+                <div class="badge">
+                  {{ det['ANIMAL'] }}
+                  {% if det['CONFIANCE'] is not none %}
+                    {{ "%.2f"|format(det['CONFIANCE']) }}%
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% elif img['NOM_ANIMAL'] %}
+            <div class="badge">{{ img['NOM_ANIMAL'] }}</div>
+          {% else %}
+            <div class="badge">No detection</div>
+          {% endif %}
+
+          <!-- Actions: Hide / Delete -->
+          <div style="display:flex; gap:10px; margin:10px 0; flex-wrap:wrap;">
+            {% if img['ETAT'] == 0 %}
+              <form method="post" action="{{ url_for('hide_image', image_id=img['ID']) }}">
+                <button class="btn" type="submit">{{ t("actions.hide") }}</button>
+              </form>
+            {% endif %}
+
+            <form method="post"
+                  action="{{ url_for('delete_image', image_id=img['ID']) }}"
+                  onsubmit="return confirm('{{ t('actions.confirm_delete') }}');">
+              <button class="btn" type="submit">{{ t("actions.delete") }}</button>
+            </form>
+          </div>
+
+          <div class="meta">
+            <div>
+              <div class="k">{{ t("fields.temperature") }}</div>
+              <div class="v">{{ "%.2f"|format(img['TEMPERATURE']) }} °C</div>
+            </div>
+
+            <div>
+              <div class="k">{{ t("fields.humidity") }}</div>
+              <div class="v">{{ img['HUMIDITE'] }}%</div>
+            </div>
+
+            <div style="grid-column:1/-1">
+              <div class="k">{{ t("fields.date") }}</div>
+              <div class="v">{{ img['DATE_SERVER'] }}</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img class="lightbox-img" id="lightboxImg">
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+{% include '_footer.html' %}
+
+</html>
+

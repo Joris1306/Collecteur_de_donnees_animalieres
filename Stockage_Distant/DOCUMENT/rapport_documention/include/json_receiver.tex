@@ -1,0 +1,84 @@
+\section{Rapport des tests du récepteur JSON}
+
+\subsection{But}
+Vérifier la validité d'un fichier JSON et l'intégrité des données reçues.
+
+\subsection{Résumé des tests}
+\begin{itemize}
+  \item \hyperref[sec:json_example]{Étape 1 : créer un fichier JSON exemple}
+  \item \hyperref[sec:json_receiver_code]{Étape 2 : créer un script de test qui importe le récepteur JSON et valide le JSON}
+  \item \hyperref[sec:json_sender_code]{Étape 3 : créer un pseudo émetteur qui envoie le JSON au récepteur}
+  \item \hyperref[sec:json_compare]{Étape 4 : comparer les données reçues avec les données envoyées}
+\end{itemize}
+
+\subsection{Tests}
+
+\subsubsection{fichier json}
+\label{sec:json_example}
+
+Dans un premier temps, un fichier JSON exemple a été créé avec les données (spécifié lors de réunions) suivantes :
+\begin{itemize}
+    \item IMG : buffer de l'image en sortie de la caméra
+    \item TEMPÉRATURE : température en degrés Celsius
+    \item HUMIDITÉ : humidité en pourcentage
+    \item LONGITUDE : longitude
+    \item LATITUDE : latitude
+    \item HORODATAGE : date et heure
+    \item NIVEAU DE BATTERIE : niveau de batterie en pourcentage
+\end{itemize}
+or, d'autres champs ont été rajoutés pour les besoins de reconstruction d'image
+les champs suivant ont été ajoutés :
+\begin{itemize}
+    \item TYPE : type de format de l'image (jpeg, png, etc.)
+    \item WIDTH : largeur de l'image
+    \item HEIGHT : hauteur de l'image
+\end{itemize}
+
+ce fichier json est disponible à : \texttt{include/code\_json\_receiver/data.json}
+
+\subsubsection{Recepteur JSON}
+\label{sec:json_receiver_code}
+
+le récepteur JSON est disponible à : \texttt{include/code\_json\_receiver/receiver.py}
+
+ce script permet de recevoir un objet JSON depuis une page web avec la méthode POST
+
+\subsubsection{Émetteur de test}
+\label{sec:json_sender_code}
+
+le récepteur JSON est disponible à : \texttt{include/code\_json\_receiver/emitter.py}
+
+ce script permet d'envoyer l'objet JSON (défini dans \hyperref[sec:json_example]{Étape 1}) à une page web avec la méthode POST
+
+\subsubsection{Comparaison des données}
+\label{sec:json_compare}
+
+pour vérifier l'intégrité des données reçues, des JSON simples ont été créés.
+
+JSON envoyé :
+\begin{verbatim}
+{
+  "TEMP": 25,
+  "HUMIDITY": 60
+}
+\end{verbatim}
+
+JSON reçu :
+\begin{verbatim}
+{
+  "TEMP": 25,
+  "HUMIDITY": 60
+}
+\end{verbatim}
+
+\subsection{Validation}
+
+les données reçues sont identiques aux données envoyées, le test est donc concluant.
+
+\subsection{Remarques}
+\begin{itemize}
+  \item Le récepteur JSON a correctement validé les fichiers JSON envoyés.
+\end{itemize}
+
+
+

@@ -1,0 +1,880 @@
+2025-10-05 17:15:51.780653 ===============================================START================================================
+2025-10-05 17:15:51.780971 [INFO]     initialisation
+2025-10-05 17:17:49.010264 ===============================================START================================================
+2025-10-05 17:17:49.010619 [INFO]     initialisation
+2025-10-05 17:17:52.168219 [DEBUG]    autre_capteur_curselection = ()
+2025-10-05 17:17:52.171869 [DEBUG]    autre_capteur_curselection = ()
+2025-10-05 17:17:53.905015 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:17:53.905101 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:17:53.905121 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:17:53.905136 [INFO]     | Compte |   1    |   2    |    0    |   0    |
+2025-10-05 17:17:53.905149 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:17:53.905162 ================================================END=================================================
+2025-10-05 17:19:20.459325 ===============================================START================================================
+2025-10-05 17:19:20.459692 [INFO]     initialisation
+2025-10-05 17:19:21.261652 [DEBUG]    autre_capteur_curselection = (2,)
+2025-10-05 17:19:21.263642 [DEBUG]    autre_capteur_curselection = (2,)
+2025-10-05 17:19:21.830658 [DEBUG]    autre_capteur_curselection = (2, 6)
+2025-10-05 17:19:21.836870 [DEBUG]    autre_capteur_curselection = (2, 6)
+2025-10-05 17:19:22.628620 [DEBUG]    autre_capteur_curselection = (0, 2, 6)
+2025-10-05 17:19:22.632770 [DEBUG]    autre_capteur_curselection = (0, 2, 6)
+2025-10-05 17:19:24.277159 [DEBUG]    autre_capteur_curselection = ()
+2025-10-05 17:19:24.280532 [DEBUG]    autre_capteur_curselection = ()
+2025-10-05 17:19:24.280710 [DEBUG]    autre_capteur_curselection = ()
+2025-10-05 17:19:24.283256 [DEBUG]    autre_capteur_curselection = ()
+2025-10-05 17:19:25.434538 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:19:25.434615 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:19:25.434637 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:19:25.434667 [INFO]     | Compte |   1    |   10   |    0    |   0    |
+2025-10-05 17:19:25.434683 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:19:25.434700 ================================================END=================================================
+2025-10-05 17:21:07.535950 ===============================================START================================================
+2025-10-05 17:21:07.536297 [INFO]     initialisation
+2025-10-05 17:21:08.512192 [DEBUG]    __main__ : autre_capteur_curselection = (0,)
+2025-10-05 17:21:08.516320 [DEBUG]    __main__ : autre_capteur_curselection = (0,)
+2025-10-05 17:21:08.893447 [DEBUG]    __main__ : autre_capteur_curselection = (0, 3)
+2025-10-05 17:21:08.896904 [DEBUG]    __main__ : autre_capteur_curselection = (0, 3)
+2025-10-05 17:21:09.394792 [DEBUG]    __main__ : autre_capteur_curselection = (0, 3, 6)
+2025-10-05 17:21:09.401524 [DEBUG]    __main__ : autre_capteur_curselection = (0, 3, 6)
+2025-10-05 17:21:11.159036 [DEBUG]    __main__ : autre_capteur_curselection = ()
+2025-10-05 17:21:11.162226 [DEBUG]    __main__ : autre_capteur_curselection = ()
+2025-10-05 17:21:11.162448 [DEBUG]    __main__ : autre_capteur_curselection = ()
+2025-10-05 17:21:11.164786 [DEBUG]    __main__ : autre_capteur_curselection = ()
+2025-10-05 17:21:14.207014 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:21:14.207269 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:21:14.207305 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:21:14.207327 [INFO]     | Compte |   1    |   10   |    0    |   0    |
+2025-10-05 17:21:14.207346 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:21:14.207367 ================================================END=================================================
+2025-10-05 17:25:45.826442 ===============================================START================================================
+2025-10-05 17:25:45.826960 [INFO]     initialisation
+2025-10-05 17:25:46.915453 [DEBUG]    222 : autre_capteur_curselection = (1,)
+2025-10-05 17:25:46.918182 [DEBUG]    222 : autre_capteur_curselection = (1,)
+2025-10-05 17:25:47.791862 [DEBUG]    222 : autre_capteur_curselection = (1, 5)
+2025-10-05 17:25:47.795350 [DEBUG]    222 : autre_capteur_curselection = (1, 5)
+2025-10-05 17:25:49.511990 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:25:49.515438 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:25:49.515724 [DEBUG]    222 : autre_capteur_curselection = ()
+2025-10-05 17:25:49.518209 [DEBUG]    222 : autre_capteur_curselection = ()
+2025-10-05 17:25:50.531954 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:25:50.532038 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:25:50.532061 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:25:50.532082 [INFO]     | Compte |   1    |   8    |    0    |   0    |
+2025-10-05 17:25:50.532098 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:25:50.532116 ================================================END=================================================
+2025-10-05 17:26:36.481929 ===============================================START================================================
+2025-10-05 17:26:36.482241 [INFO]     initialisation
+2025-10-05 17:26:37.490167 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:26:37.494514 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:26:37.939383 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:26:37.944219 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:26:38.573869 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-05 17:26:38.580143 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-05 17:26:47.670478 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:26:47.672810 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:26:47.672942 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:26:47.674496 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:26:48.698716 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:26:48.698796 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:26:48.698820 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:26:48.698835 [INFO]     | Compte |   1    |   10   |    0    |   0    |
+2025-10-05 17:26:48.698848 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:26:48.698865 ================================================END=================================================
+2025-10-05 17:27:10.324087 ===============================================START================================================
+2025-10-05 17:27:10.324484 [INFO]     initialisation
+2025-10-05 17:27:11.223130 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (6,)
+2025-10-05 17:27:11.226589 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (6,)
+2025-10-05 17:27:11.907497 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (2, 6)
+2025-10-05 17:27:11.910648 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (2, 6)
+2025-10-05 17:27:12.573382 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (2, 3, 6)
+2025-10-05 17:27:12.577887 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (2, 3, 6)
+2025-10-05 17:27:14.700512 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:14.703737 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:14.703915 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:14.706859 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:16.915268 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:27:16.915843 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:27:16.915872 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:27:16.915890 [INFO]     | Compte |   1    |   10   |    0    |   0    |
+2025-10-05 17:27:16.915906 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:27:16.915923 ================================================END=================================================
+2025-10-05 17:27:26.357702 ===============================================START================================================
+2025-10-05 17:27:26.357995 [INFO]     initialisation
+2025-10-05 17:27:26.940377 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-05 17:27:26.952118 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-05 17:27:27.473145 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:27:27.478215 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:27:27.940284 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3, 9)
+2025-10-05 17:27:27.943856 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3, 9)
+2025-10-05 17:27:30.855106 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:30.858287 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:30.858478 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:30.861174 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:27:32.899415 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:27:32.899521 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:27:32.899550 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:27:32.899575 [INFO]     | Compte |   1    |   10   |    0    |   0    |
+2025-10-05 17:27:32.899593 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:27:32.899612 ================================================END=================================================
+2025-10-05 17:30:07.788515 ===============================================START================================================
+2025-10-05 17:30:07.788823 [INFO]     initialisation
+2025-10-05 17:30:08.904208 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-05 17:30:08.907835 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-05 17:30:10.919967 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:30:10.923382 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:30:10.923596 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:30:10.926308 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:30:13.445420 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:30:13.445559 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:30:13.445592 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:30:13.445610 [INFO]     | Compte |   1    |   6    |    0    |   0    |
+2025-10-05 17:30:13.445625 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:30:13.445640 ================================================END=================================================
+2025-10-05 17:33:04.870242 ===============================================START================================================
+2025-10-05 17:33:04.870595 [INFO]     initialisation
+2025-10-05 17:33:06.020005 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (8,)
+2025-10-05 17:33:06.024444 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (8,)
+2025-10-05 17:33:07.888245 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:33:07.893058 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:33:07.893211 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:33:07.895416 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-05 17:33:09.863366 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:33:09.863455 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:33:09.863483 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:33:09.863504 [INFO]     | Compte |   1    |   6    |    0    |   0    |
+2025-10-05 17:33:09.863543 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:33:09.863563 ================================================END=================================================
+2025-10-05 17:35:12.160150 ===============================================START================================================
+2025-10-05 17:35:12.160368 [INFO]     initialisation
+2025-10-05 17:35:12.900580 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:35:12.903542 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:35:13.336228 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-05 17:35:13.341056 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-05 17:35:14.979261 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-05 17:35:14.981316 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-05 17:35:14.981435 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-05 17:35:14.983151 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-05 17:35:17.708983 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:35:17.709059 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:35:17.709082 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:35:17.709097 [INFO]     | Compte |   1    |   8    |    0    |   0    |
+2025-10-05 17:35:17.709110 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:35:17.709125 ================================================END=================================================
+2025-10-05 17:36:48.813912 ===============================================START================================================
+2025-10-05 17:36:48.814248 [INFO]     initialisation
+2025-10-05 17:36:58.162634 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:36:58.163209 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:36:58.163270 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:36:58.163294 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-05 17:36:58.163314 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:36:58.163335 ================================================END=================================================
+2025-10-05 17:37:34.111380 ===============================================START================================================
+2025-10-05 17:37:34.111676 [INFO]     initialisation
+2025-10-05 17:37:34.732453 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:34.734470 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:37.069468 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:37.069705 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:37.072469 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:39.095422 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:39.095666 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:39.097766 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:42.330804 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:42.331264 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:42.332701 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:37:51.183501 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 8)
+2025-10-05 17:37:51.188601 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 8)
+2025-10-05 17:37:51.834058 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 7, 8)
+2025-10-05 17:37:51.839824 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 7, 8)
+2025-10-05 17:37:53.683606 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 8)
+2025-10-05 17:37:53.689304 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 8)
+2025-10-05 17:37:54.216420 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 6, 8)
+2025-10-05 17:37:54.220664 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 6, 8)
+2025-10-05 17:37:56.930796 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:37:56.930901 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:37:56.930930 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:37:56.930950 [INFO]     | Compte |   1    |   19   |    0    |   0    |
+2025-10-05 17:37:56.930969 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:37:56.930991 ================================================END=================================================
+2025-10-05 17:39:55.200645 ===============================================START================================================
+2025-10-05 17:39:55.200943 [INFO]     initialisation
+2025-10-05 17:39:56.281437 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:39:56.284281 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-05 17:39:57.098167 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:39:57.101228 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:00.294279 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:00.294393 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:00.295916 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:01.979802 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:01.980356 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:01.983131 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:03.716682 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:03.716952 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:03.719703 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-05 17:40:09.045591 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:40:09.046021 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:40:09.046054 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:40:09.046073 [INFO]     | Compte |   1    |   13   |    0    |   0    |
+2025-10-05 17:40:09.046088 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:40:09.046115 ================================================END=================================================
+2025-10-05 17:43:40.347807 ===============================================START================================================
+2025-10-05 17:43:40.348142 [INFO]     initialisation
+2025-10-05 17:43:51.845838 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (7,)
+2025-10-05 17:43:51.849423 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (7,)
+2025-10-05 17:43:52.612900 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4, 7)
+2025-10-05 17:43:52.618516 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4, 7)
+2025-10-05 17:43:58.456761 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:43:58.457761 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 17:43:58.457793 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:43:58.457811 [INFO]     | Compte |   1    |   4    |    0    |   0    |
+2025-10-05 17:43:58.457826 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 17:43:58.457843 ================================================END=================================================
+2025-10-05 17:46:37.896429 ===============================================START================================================
+2025-10-05 17:46:37.896823 [INFO]     initialisation
+2025-10-05 17:46:44.261406 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-05 17:46:44.266062 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-05 17:46:45.776903 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:46:45.780764 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:47:23.861761 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:47:23.862682 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:47:23.864740 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:47:26.190741 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:47:26.190995 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 17:47:26.193403 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 3)
+2025-10-05 20:22:11.925989 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 20:22:11.929898 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-05 20:22:11.930337 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 20:22:11.930548 [INFO]     | Compte |   1    |   10   |    0    |   0    |
+2025-10-05 20:22:11.930576 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-05 20:22:11.930662 ================================================END=================================================
+2025-10-06 08:12:51.100450 ===============================================START================================================
+2025-10-06 08:12:51.100915 [INFO]     initialisation
+2025-10-06 08:13:11.941212 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 08:13:11.945038 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 08:13:13.822401 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 08:13:13.822612 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 08:13:13.824699 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 08:13:31.105465 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 08:13:31.106407 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 08:13:31.106439 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 08:13:31.106457 [INFO]     | Compte |   1    |   5    |    0    |   0    |
+2025-10-06 08:13:31.106476 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 08:13:31.106498 ================================================END=================================================
+2025-10-06 10:52:05.447911 ===============================================START================================================
+2025-10-06 10:52:05.448414 [INFO]     initialisation
+2025-10-06 10:53:09.621432 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (6,)
+2025-10-06 10:53:09.627312 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (6,)
+2025-10-06 10:53:11.570023 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-06 10:53:11.573932 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-06 10:53:13.003240 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 10:53:13.007765 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 10:53:17.152176 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4, 37)
+2025-10-06 10:53:17.156065 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4, 37)
+2025-10-06 11:00:03.862064 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:00:03.863656 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:00:03.863677 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:00:03.863691 [INFO]     | Compte |   1    |   8    |    0    |   0    |
+2025-10-06 11:00:03.863703 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:00:03.863727 ================================================END=================================================
+2025-10-06 11:03:21.162538 ===============================================START================================================
+2025-10-06 11:03:21.163259 [INFO]     initialisation
+2025-10-06 11:03:36.113406 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:03:36.113613 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:03:36.113636 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:03:36.113648 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-06 11:03:36.113658 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:03:36.113678 ================================================END=================================================
+2025-10-06 11:05:47.445040 ===============================================START================================================
+2025-10-06 11:05:47.445589 [INFO]     initialisation
+2025-10-06 11:05:48.716523 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-06 11:05:48.719381 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-06 11:05:55.535476 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:05:55.539898 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:05:57.860891 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:05:57.861005 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:05:57.861035 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:05:57.861055 [INFO]     | Compte |   1    |   4    |    0    |   0    |
+2025-10-06 11:05:57.861077 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:05:57.861099 ================================================END=================================================
+2025-10-06 11:06:05.897711 ===============================================START================================================
+2025-10-06 11:06:05.898052 [INFO]     initialisation
+2025-10-06 11:06:06.515898 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-06 11:06:06.517548 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-06 11:06:10.100774 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 3)
+2025-10-06 11:06:10.104373 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 3)
+2025-10-06 11:06:19.027678 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:06:19.027763 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:06:19.027883 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:06:19.027918 [INFO]     | Compte |   1    |   4    |    0    |   0    |
+2025-10-06 11:06:19.027938 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:06:19.027959 ================================================END=================================================
+2025-10-06 11:08:39.114330 ===============================================START================================================
+2025-10-06 11:08:39.114701 [INFO]     initialisation
+2025-10-06 11:08:40.450171 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-06 11:08:40.454549 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-06 11:08:43.916622 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:43.920630 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:48.405491 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:48.405662 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:48.407521 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:51.681823 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:51.682044 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:51.684095 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:54.898667 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:54.898904 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:08:54.901247 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-06 11:09:02.709066 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:09:02.709984 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:09:02.710009 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:09:02.710022 [INFO]     | Compte |   1    |   13   |    0    |   0    |
+2025-10-06 11:09:02.710034 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:09:02.710046 ================================================END=================================================
+2025-10-06 11:10:06.874327 ===============================================START================================================
+2025-10-06 11:10:06.874688 [INFO]     initialisation
+2025-10-06 11:10:22.283465 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 11:10:22.288043 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-06 11:10:31.446932 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:10:31.447900 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:10:31.447939 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:10:31.447959 [INFO]     | Compte |   1    |   2    |    0    |   0    |
+2025-10-06 11:10:31.447978 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:10:31.447996 ================================================END=================================================
+2025-10-06 11:11:43.518838 ===============================================START================================================
+2025-10-06 11:11:43.519279 [INFO]     initialisation
+2025-10-06 11:11:50.159278 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:11:50.159775 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:11:50.159817 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:11:50.159838 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-06 11:11:50.159854 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:11:50.159874 ================================================END=================================================
+2025-10-06 11:12:07.167908 ===============================================START================================================
+2025-10-06 11:12:07.168543 [INFO]     initialisation
+2025-10-06 11:12:44.633218 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-06 11:12:44.637164 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-06 11:12:46.566370 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-06 11:12:46.570684 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2)
+2025-10-06 11:12:47.899767 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:47.903737 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:50.298763 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 4)
+2025-10-06 11:12:50.303281 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 4)
+2025-10-06 11:12:51.315542 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:51.319895 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:52.800119 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 3, 4)
+2025-10-06 11:12:52.804572 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 3, 4)
+2025-10-06 11:12:53.433123 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:53.438184 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:54.315207 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 3, 4)
+2025-10-06 11:12:54.319183 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 3, 4)
+2025-10-06 11:12:55.082921 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:55.087069 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 4)
+2025-10-06 11:12:56.116233 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 3, 4)
+2025-10-06 11:12:56.119770 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 3, 4)
+2025-10-06 11:13:00.989771 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:13:00.989838 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:13:00.989854 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:13:00.989865 [INFO]     | Compte |   1    |   20   |    0    |   0    |
+2025-10-06 11:13:00.989875 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:13:00.989886 ================================================END=================================================
+2025-10-06 11:13:03.665757 ===============================================START================================================
+2025-10-06 11:13:03.666078 [INFO]     initialisation
+2025-10-06 11:13:04.699828 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-06 11:13:04.702803 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-06 11:13:05.649389 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:13:05.652657 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:14:39.325202 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:14:39.325725 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:14:39.326777 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 5)
+2025-10-06 11:14:41.380350 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:14:41.380459 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-06 11:14:41.380490 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:14:41.380513 [INFO]     | Compte |   1    |   7    |    0    |   0    |
+2025-10-06 11:14:41.380532 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-06 11:14:41.380633 ================================================END=================================================
+2025-10-07 14:03:08.570477 ===============================================START================================================
+2025-10-07 14:03:08.570783 [INFO]     initialisation
+2025-10-07 14:03:18.241436 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-07 14:03:18.243615 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-07 14:03:18.923092 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 4)
+2025-10-07 14:03:18.925760 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 4)
+2025-10-07 14:04:13.559322 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:04:13.559664 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:04:13.559714 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:04:13.559740 [INFO]     | Compte |   1    |   4    |    0    |   0    |
+2025-10-07 14:04:13.559762 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:04:13.559784 ================================================END=================================================
+2025-10-07 14:07:16.399778 ===============================================START================================================
+2025-10-07 14:07:16.400539 [INFO]     initialisation
+2025-10-07 14:07:23.273411 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:07:23.273923 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:07:23.273957 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:07:23.273979 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:07:23.273998 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:07:23.274018 ================================================END=================================================
+2025-10-07 14:07:58.451277 ===============================================START================================================
+2025-10-07 14:07:58.451578 [INFO]     initialisation
+2025-10-07 14:08:00.650868 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:08:00.650965 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:08:00.650994 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:08:00.651015 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:08:00.651034 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:08:00.651054 ================================================END=================================================
+2025-10-07 14:08:15.697897 ===============================================START================================================
+2025-10-07 14:08:15.698330 [INFO]     initialisation
+2025-10-07 14:08:18.831079 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:08:18.831198 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:08:18.831228 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:08:18.831250 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:08:18.831268 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:08:18.831288 ================================================END=================================================
+2025-10-07 14:32:35.765641 ===============================================START================================================
+2025-10-07 14:32:35.765984 [INFO]     initialisation
+2025-10-07 14:35:25.728988 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:35:25.729592 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:35:25.729616 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:35:25.729629 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:35:25.729639 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:35:25.729683 ================================================END=================================================
+2025-10-07 14:36:32.324534 ===============================================START================================================
+2025-10-07 14:36:32.324828 [INFO]     initialisation
+2025-10-07 14:36:35.047244 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:36:35.047348 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:36:35.047373 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:36:35.047392 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:36:35.047407 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:36:35.047423 ================================================END=================================================
+2025-10-07 14:37:39.284341 ===============================================START================================================
+2025-10-07 14:37:39.284654 [INFO]     initialisation
+2025-10-07 14:37:42.662413 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:37:42.662765 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:37:42.662801 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:37:42.662819 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:37:42.662833 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:37:42.662848 ================================================END=================================================
+2025-10-07 14:37:57.076444 ===============================================START================================================
+2025-10-07 14:37:57.076771 [INFO]     initialisation
+2025-10-07 14:37:59.078985 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:37:59.079076 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:37:59.079100 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:37:59.079118 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:37:59.079134 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:37:59.079152 ================================================END=================================================
+2025-10-07 14:38:42.572608 ===============================================START================================================
+2025-10-07 14:38:42.573048 [INFO]     initialisation
+2025-10-07 14:38:45.879339 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:38:45.879431 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:38:45.879453 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:38:45.879469 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:38:45.879481 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:38:45.879493 ================================================END=================================================
+2025-10-07 14:39:07.172103 ===============================================START================================================
+2025-10-07 14:39:07.172463 [INFO]     initialisation
+2025-10-07 14:39:08.926908 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:39:08.926972 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:39:08.926990 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:39:08.927003 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:39:08.927014 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:39:08.927026 ================================================END=================================================
+2025-10-07 14:39:15.404497 ===============================================START================================================
+2025-10-07 14:39:15.404907 [INFO]     initialisation
+2025-10-07 14:39:17.394669 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:39:17.394818 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:39:17.394840 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:39:17.394856 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:39:17.394870 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:39:17.394885 ================================================END=================================================
+2025-10-07 14:40:48.298349 ===============================================START================================================
+2025-10-07 14:40:48.298764 [INFO]     initialisation
+2025-10-07 14:41:05.835931 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-07 14:41:05.839651 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-07 14:41:06.502246 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1)
+2025-10-07 14:41:06.506016 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1)
+2025-10-07 14:41:07.086587 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 3)
+2025-10-07 14:41:07.090695 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 3)
+2025-10-07 14:41:08.519299 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1)
+2025-10-07 14:41:08.522892 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1)
+2025-10-07 14:41:09.169669 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 5)
+2025-10-07 14:41:09.174095 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 5)
+2025-10-07 14:41:13.270428 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 3, 5)
+2025-10-07 14:41:13.274983 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 3, 5)
+2025-10-07 14:41:22.749313 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:41:22.750222 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:41:22.750254 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:41:22.750272 [INFO]     | Compte |   1    |   12   |    0    |   0    |
+2025-10-07 14:41:22.750289 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:41:22.750306 ================================================END=================================================
+2025-10-07 14:42:31.724503 ===============================================START================================================
+2025-10-07 14:42:31.724877 [INFO]     initialisation
+2025-10-07 14:42:37.327591 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:42:37.327670 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:42:37.327693 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:42:37.327711 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:42:37.327727 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:42:37.327742 ================================================END=================================================
+2025-10-07 14:42:48.703674 ===============================================START================================================
+2025-10-07 14:42:48.704010 [INFO]     initialisation
+2025-10-07 14:42:56.761822 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:42:56.761922 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:42:56.761946 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:42:56.761965 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:42:56.761981 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:42:56.761998 ================================================END=================================================
+2025-10-07 14:43:09.403833 ===============================================START================================================
+2025-10-07 14:43:09.404194 [INFO]     initialisation
+2025-10-07 14:43:26.713063 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:43:26.713336 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:43:26.713372 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:43:26.713394 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:43:26.713408 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:43:26.713422 ================================================END=================================================
+2025-10-07 14:44:12.969813 ===============================================START================================================
+2025-10-07 14:44:12.970216 [INFO]     initialisation
+2025-10-07 14:44:21.679081 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:44:21.680060 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:44:21.680085 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:44:21.680100 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:44:21.680114 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:44:21.680127 ================================================END=================================================
+2025-10-07 14:44:33.407212 ===============================================START================================================
+2025-10-07 14:44:33.407530 [INFO]     initialisation
+2025-10-07 14:44:41.946478 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:44:41.946587 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:44:41.946617 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:44:41.946641 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:44:41.946660 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:44:41.946681 ================================================END=================================================
+2025-10-07 14:45:09.000035 ===============================================START================================================
+2025-10-07 14:45:09.000358 [INFO]     initialisation
+2025-10-07 14:45:15.189802 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:45:15.190090 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:45:15.190118 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:45:15.190135 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:45:15.190152 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:45:15.190165 ================================================END=================================================
+2025-10-07 14:46:07.863101 ===============================================START================================================
+2025-10-07 14:46:07.863522 [INFO]     initialisation
+2025-10-07 14:46:23.966264 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-07 14:46:23.969192 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-07 14:46:25.351116 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-07 14:46:25.354985 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-07 14:46:27.072959 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4, 6)
+2025-10-07 14:46:27.075957 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4, 6)
+2025-10-07 14:46:34.051149 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-07 14:46:34.056616 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 4)
+2025-10-07 14:46:34.850286 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-07 14:46:34.854427 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-07 14:46:35.667132 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-07 14:46:35.671126 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-07 14:46:38.713591 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:46:38.713662 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:46:38.713682 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:46:38.713696 [INFO]     | Compte |   1    |   12   |    0    |   0    |
+2025-10-07 14:46:38.713707 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:46:38.713720 ================================================END=================================================
+2025-10-07 14:47:01.598333 ===============================================START================================================
+2025-10-07 14:47:01.598684 [INFO]     initialisation
+2025-10-07 14:47:49.029411 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:47:49.030006 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:47:49.030033 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:47:49.030049 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:47:49.030063 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:47:49.030077 ================================================END=================================================
+2025-10-07 14:48:42.341197 ===============================================START================================================
+2025-10-07 14:48:42.341635 [INFO]     initialisation
+2025-10-07 14:49:02.977744 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:49:02.978042 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-07 14:49:02.978079 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:49:02.978096 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-07 14:49:02.978111 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-07 14:49:02.978125 ================================================END=================================================
+2025-10-13 14:35:30.968753 ===============================================START================================================
+2025-10-13 14:35:30.969070 [INFO]     initialisation
+2025-10-13 14:35:32.939811 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-13 14:35:33.872519 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 3)
+2025-10-13 14:35:35.019190 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 3, 5)
+2025-10-13 14:35:36.674701 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:35:36.674762 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 14:35:36.674780 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:35:36.674792 [INFO]     | Compte |   1    |   3    |    0    |   0    |
+2025-10-13 14:35:36.674803 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:35:36.674814 ================================================END=================================================
+2025-10-13 14:35:50.259881 ===============================================START================================================
+2025-10-13 14:35:50.260402 [INFO]     initialisation
+2025-10-13 14:36:03.921643 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:36:03.921739 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 14:36:03.921765 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:36:03.921783 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 14:36:03.921799 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:36:03.921815 ================================================END=================================================
+2025-10-13 14:40:46.609938 ===============================================START================================================
+2025-10-13 14:40:46.610479 [INFO]     initialisation
+2025-10-13 14:40:48.806691 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:40:48.806769 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 14:40:48.806796 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:40:48.806818 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 14:40:48.806836 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:40:48.806854 ================================================END=================================================
+2025-10-13 14:41:20.749421 ===============================================START================================================
+2025-10-13 14:41:20.749838 [INFO]     initialisation
+2025-10-13 14:42:23.036896 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:42:23.037645 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 14:42:23.037684 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:42:23.037707 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 14:42:23.037726 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:42:23.037745 ================================================END=================================================
+2025-10-13 14:54:23.277045 ===============================================START================================================
+2025-10-13 14:54:23.277518 [INFO]     initialisation
+2025-10-13 14:54:26.464170 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:54:26.464236 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 14:54:26.464252 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:54:26.464264 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 14:54:26.464275 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:54:26.464285 ================================================END=================================================
+2025-10-13 14:54:36.552034 ===============================================START================================================
+2025-10-13 14:54:36.552361 [INFO]     initialisation
+2025-10-13 14:54:46.401372 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:54:46.401503 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 14:54:46.401531 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:54:46.401549 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 14:54:46.401565 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 14:54:46.401582 ================================================END=================================================
+2025-10-13 15:00:38.047891 ===============================================START================================================
+2025-10-13 15:00:38.048544 [INFO]     initialisation
+2025-10-13 15:00:44.194330 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:00:44.194684 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:00:44.194789 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:00:44.194888 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 15:00:44.194941 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:00:44.194968 ================================================END=================================================
+2025-10-13 15:01:05.740452 ===============================================START================================================
+2025-10-13 15:01:05.740819 [INFO]     initialisation
+2025-10-13 15:01:08.450912 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (14,)
+2025-10-13 15:01:12.112951 [DEBUG]    ihm.combo_event_handler : autre_capteur_curselection = (14,)
+2025-10-13 15:01:12.113305 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (14,)
+2025-10-13 15:01:13.919981 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = ()
+2025-10-13 15:01:17.944012 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:01:17.944087 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:01:17.944110 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:01:17.944127 [INFO]     | Compte |   1    |   4    |    0    |   0    |
+2025-10-13 15:01:17.944142 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:01:17.944158 ================================================END=================================================
+2025-10-13 15:02:21.596364 ===============================================START================================================
+2025-10-13 15:02:21.596701 [INFO]     initialisation
+2025-10-13 15:02:26.320646 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:02:26.321545 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:02:26.321578 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:02:26.321596 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 15:02:26.321610 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:02:26.321624 ================================================END=================================================
+2025-10-13 15:02:50.791332 ===============================================START================================================
+2025-10-13 15:02:50.791679 [INFO]     initialisation
+2025-10-13 15:03:43.275463 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:03:43.276306 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:03:43.276339 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:03:43.276357 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 15:03:43.276372 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:03:43.276388 ================================================END=================================================
+2025-10-13 15:04:38.252730 ===============================================START================================================
+2025-10-13 15:04:38.253229 [INFO]     initialisation
+2025-10-13 15:04:42.520837 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:04:42.521521 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:04:42.521653 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:04:42.521788 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-13 15:04:42.521844 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:04:42.521926 ================================================END=================================================
+2025-10-13 15:04:57.596779 ===============================================START================================================
+2025-10-13 15:04:57.597063 [INFO]     initialisation
+2025-10-13 15:04:58.625082 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-13 15:04:59.340847 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 5)
+2025-10-13 15:05:00.239494 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 5, 8)
+2025-10-13 15:05:01.562267 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:01.563958 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:05:01.563996 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:01.564141 [INFO]     | Compte |   1    |   3    |    0    |   0    |
+2025-10-13 15:05:01.564158 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:01.564172 ================================================END=================================================
+2025-10-13 15:05:30.265960 ===============================================START================================================
+2025-10-13 15:05:30.266355 [INFO]     initialisation
+2025-10-13 15:05:31.144916 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (5,)
+2025-10-13 15:05:32.744312 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:32.744391 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:05:32.744407 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:32.744418 [INFO]     | Compte |   1    |   1    |    0    |   0    |
+2025-10-13 15:05:32.744427 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:32.744438 ================================================END=================================================
+2025-10-13 15:05:51.213908 ===============================================START================================================
+2025-10-13 15:05:51.214254 [INFO]     initialisation
+2025-10-13 15:05:51.988924 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (8,)
+2025-10-13 15:05:52.855659 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4, 8)
+2025-10-13 15:05:55.513750 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:55.513861 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:05:55.513886 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:55.513904 [INFO]     | Compte |   1    |   2    |    0    |   0    |
+2025-10-13 15:05:55.513919 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:05:55.513937 ================================================END=================================================
+2025-10-13 15:06:13.713423 ===============================================START================================================
+2025-10-13 15:06:13.713800 [INFO]     initialisation
+2025-10-13 15:06:15.753819 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-13 15:06:18.017456 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:06:18.017528 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:06:18.017549 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:06:18.017565 [INFO]     | Compte |   1    |   1    |    0    |   0    |
+2025-10-13 15:06:18.017578 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:06:18.017593 ================================================END=================================================
+2025-10-13 15:06:30.068477 ===============================================START================================================
+2025-10-13 15:06:30.068793 [INFO]     initialisation
+2025-10-13 15:06:32.189173 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (4,)
+2025-10-13 15:06:34.295459 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:06:34.295529 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:06:34.295549 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:06:34.295567 [INFO]     | Compte |   1    |   1    |    0    |   0    |
+2025-10-13 15:06:34.295582 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:06:34.295599 ================================================END=================================================
+2025-10-13 15:07:05.861462 ===============================================START================================================
+2025-10-13 15:07:05.861891 [INFO]     initialisation
+2025-10-13 15:07:06.935306 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-13 15:07:06.936953 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3,)
+2025-10-13 15:07:07.658281 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 7)
+2025-10-13 15:07:07.660492 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (3, 7)
+2025-10-13 15:07:10.749017 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:07:10.749075 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-13 15:07:10.749092 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:07:10.749142 [INFO]     | Compte |   1    |   4    |    0    |   0    |
+2025-10-13 15:07:10.749155 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-13 15:07:10.749168 ================================================END=================================================
+2025-10-14 19:50:26.873249 ===============================================START================================================
+2025-10-14 19:50:26.873427 [INFO]     initialisation
+2025-10-14 19:50:28.849947 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (5,)
+2025-10-14 19:50:28.853587 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (5,)
+2025-10-14 19:50:37.817794 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-14 19:50:37.822436 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 5)
+2025-10-14 19:50:46.587123 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 5)
+2025-10-14 19:50:46.592632 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 1, 5)
+2025-10-14 19:50:51.375810 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-14 19:50:51.375884 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-14 19:50:51.376166 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-14 19:50:51.376200 [INFO]     | Compte |   1    |   6    |    0    |   0    |
+2025-10-14 19:50:51.376218 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-14 19:50:51.376235 ================================================END=================================================
+2025-10-14 20:07:14.091793 ===============================================START================================================
+2025-10-14 20:07:14.092254 [INFO]     initialisation
+2025-10-14 20:08:00.685595 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-14 20:08:00.690845 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-14 20:08:02.868708 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 5)
+2025-10-14 20:08:02.874481 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 5)
+2025-10-14 20:08:06.800406 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 5, 9)
+2025-10-14 20:08:06.804791 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 5, 9)
+2025-10-14 20:08:25.173790 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-14 20:08:25.174049 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-14 20:08:25.174088 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-14 20:08:25.174108 [INFO]     | Compte |   1    |   6    |    0    |   0    |
+2025-10-14 20:08:25.174126 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-14 20:08:25.174147 ================================================END=================================================
+2025-10-20 14:12:32.169946 ===============================================START================================================
+2025-10-20 14:12:32.170225 [INFO]     initialisation
+2025-10-20 14:13:21.034233 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-20 14:13:21.038122 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-10-20 14:13:21.450804 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 8)
+2025-10-20 14:13:21.454897 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 8)
+2025-10-20 14:13:22.053164 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 8)
+2025-10-20 14:13:22.057216 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 8)
+2025-10-20 14:13:22.617784 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 5, 8)
+2025-10-20 14:13:22.622180 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 5, 8)
+2025-10-20 14:13:23.968339 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 8)
+2025-10-20 14:13:23.972218 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 8)
+2025-10-20 14:13:25.001811 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 4, 8)
+2025-10-20 14:13:25.005621 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 2, 4, 8)
+2025-10-20 14:28:42.206134 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-20 14:28:42.207924 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-20 14:28:42.207945 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-20 14:28:42.207958 [INFO]     | Compte |   1    |   12   |    0    |   0    |
+2025-10-20 14:28:42.207970 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-20 14:28:42.207981 ================================================END=================================================
+2025-10-20 15:42:39.787901 ===============================================START================================================
+2025-10-20 15:42:39.788072 [INFO]     initialisation
+2025-10-21 07:37:20.040648 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-21 07:37:20.042524 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-21 07:37:20.042544 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-21 07:37:20.042558 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-10-21 07:37:20.042569 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-21 07:37:20.042584 ================================================END=================================================
+2025-10-22 10:49:15.271638 ===============================================START================================================
+2025-10-22 10:49:15.272657 [INFO]     initialisation
+2025-10-22 10:49:31.178151 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-22 10:49:31.181891 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0,)
+2025-10-22 10:49:31.594784 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 6)
+2025-10-22 10:49:31.598731 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 6)
+2025-10-22 10:49:32.311732 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 6)
+2025-10-22 10:49:32.315947 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 6)
+2025-10-22 10:49:33.111599 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 6, 9)
+2025-10-22 10:49:33.116507 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (0, 2, 6, 9)
+2025-10-22 10:49:38.554750 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-22 10:49:38.555003 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-10-22 10:49:38.555032 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-22 10:49:38.555046 [INFO]     | Compte |   1    |   8    |    0    |   0    |
+2025-10-22 10:49:38.555056 [INFO]     +--------+--------+--------+---------+--------+
+2025-10-22 10:49:38.555069 ================================================END=================================================
+2025-11-05 14:33:55.557930 ===============================================START================================================
+2025-11-05 14:33:55.558831 [INFO]     initialisation
+2025-11-05 14:38:25.488870 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-11-05 14:38:25.492546 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1,)
+2025-11-05 14:38:27.069402 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 7)
+2025-11-05 14:38:27.074430 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 7)
+2025-11-05 14:38:30.488992 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 7, 15)
+2025-11-05 14:38:30.495202 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 7, 15)
+2025-11-05 14:38:32.402450 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 7, 15, 17)
+2025-11-05 14:38:32.407443 [DEBUG]    ihm.listbox_event_handler : autre_capteur_curselection = (1, 7, 15, 17)
+2025-11-05 15:08:33.474417 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-05 15:08:33.477755 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-05 15:08:33.477789 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-05 15:08:33.477809 [INFO]     | Compte |   1    |   8    |    0    |   0    |
+2025-11-05 15:08:33.477822 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-05 15:08:33.478051 ================================================END=================================================
+2025-11-07 10:54:25.913621 ===============================================START================================================
+2025-11-07 10:54:25.913921 [INFO]     initialisation
+2025-11-07 10:54:28.116233 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 10:54:28.116338 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-07 10:54:28.116368 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 10:54:28.116392 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-11-07 10:54:28.116411 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 10:54:28.116431 ================================================END=================================================
+2025-11-07 11:06:41.421768 ===============================================START================================================
+2025-11-07 11:06:41.422137 [INFO]     initialisation
+2025-11-07 11:06:41.422614 [ERROR]    bad geometry specifier "1680.0x1050.0+0.0+0.0"
+2025-11-07 11:06:41.422645 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:06:41.422660 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-07 11:06:41.422672 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:06:41.422683 [INFO]     | Compte |   1    |   0    |    0    |   1    |
+2025-11-07 11:06:41.422692 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:06:41.422703 ================================================END=================================================
+2025-11-07 11:06:47.924579 ===============================================START================================================
+2025-11-07 11:06:47.924866 [INFO]     initialisation
+2025-11-07 11:06:47.925357 [ERROR]    bad geometry specifier "1680.0x1050.0+0.0+0.0"
+2025-11-07 11:06:47.925385 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:06:47.925400 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-07 11:06:47.925412 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:06:47.925422 [INFO]     | Compte |   1    |   0    |    0    |   1    |
+2025-11-07 11:06:47.925435 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:06:47.925446 ================================================END=================================================
+2025-11-07 11:07:33.882315 ===============================================START================================================
+2025-11-07 11:07:33.882819 [INFO]     initialisation
+2025-11-07 11:07:35.502576 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:07:35.502641 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-07 11:07:35.502661 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:07:35.502676 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-11-07 11:07:35.502689 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:07:35.502702 ================================================END=================================================
+2025-11-07 11:07:41.234428 ===============================================START================================================
+2025-11-07 11:07:41.234933 [INFO]     initialisation
+2025-11-07 11:07:42.855050 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:07:42.855142 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-07 11:07:42.855264 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:07:42.855285 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-11-07 11:07:42.855301 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:07:42.855318 ================================================END=================================================
+2025-11-07 11:08:39.943677 ===============================================START================================================
+2025-11-07 11:08:39.944146 [INFO]     initialisation
+2025-11-07 11:08:42.069077 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:08:42.069152 [INFO]     |        |  INFO  | DEBUG  | WARNING | ERROR  |
+2025-11-07 11:08:42.069175 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:08:42.069190 [INFO]     | Compte |   1    |   0    |    0    |   0    |
+2025-11-07 11:08:42.069207 [INFO]     +--------+--------+--------+---------+--------+
+2025-11-07 11:08:42.069221 ================================================END=================================================

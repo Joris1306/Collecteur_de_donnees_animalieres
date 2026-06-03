@@ -1,0 +1,36 @@
+{
+    "filepath": "resized.jpg",
+    "classifications": {
+        "classes": [
+            "a70c87e9-62bc-41c2-9e36-96fed9136046;mammalia;carnivora;mustelidae;lontra;canadensis;north american river otter",
+            "0f132580-6fc9-4ffa-8e6d-39cdc00c359e;mammalia;carnivora;mustelidae;lutra;lutra;eurasian otter",
+            "07709a39-6d4b-4973-bc8e-3543ce208611;mammalia;carnivora;mustelidae;pteronura;brasiliensis;giant otter",
+            "47271bc2-de1a-4ee4-8353-9039a1847f11;mammalia;carnivora;mustelidae;lontra;longicaudis;neotropical otter",
+            "7c82313a-008c-41c3-84ac-171e5796bd4a;mammalia;carnivora;mustelidae;neovison;vison;american mink"
+        ],
+        "scores": [
+            0.9386230111122131,
+            0.05016670376062393,
+            0.005653418600559235,
+            0.0032801455818116665,
+            0.0005059723625890911
+        ]
+    },
+    "detections": [
+        {
+            "category": "1",
+            "label": "animal",
+            "conf": 0.9419280886650085,
+            "bbox": [
+                0.5197916626930237,
+                0.3657407611608505,
+                0.47604167461395264,
+                0.4481481611728668
+            ]
+        }
+    ],
+    "prediction": "a70c87e9-62bc-41c2-9e36-96fed9136046;mammalia;carnivora;mustelidae;lontra;canadensis;north american river otter",
+    "prediction_score": 0.9386230111122131,
+    "prediction_source": "classifier",
+    "model_version": "4.0.1a"
+}

@@ -1,0 +1,217 @@
+    #ifndef CAM_HPP
+    #define CAM_HPP
+
+    #include <Arduino.h>
+    #include "esp_camera.h"
+    #include "SD.h"
+    #include "SPI.h"
+    #include "CONFIG.h"
+
+    class CAM {
+    private:
+        int _pictureCount;
+        camera_fb_t * _fb;  // Stocke le framebuffer
+        bool _initialized;
+
+    public:
+        CAM() : _pictureCount(0), _fb(nullptr), _initialized(false) {}
+
+        /**
+         * Initialise le capteur avec les réglages optimisés trouvés
+         */
+        bool begin() {
+            // Avoid ESP_ERR_INVALID_STATE when begin is called multiple times.
+            if (_initialized) {
+                // Libérer le framebuffer AVANT le deinit pour éviter les erreurs DMA
+                if (_fb) {
+                    esp_camera_fb_return(_fb);
+                    _fb = nullptr;
+                    delay(100);  // Attendre que la libération soit complète
+                }
+                esp_camera_deinit();
+                _initialized = false;
+                delay(200);  // Augmenté pour éviter les conflits DMA
+            }
+
+
+
+            camera_config_t config;
+            config.ledc_channel = LEDC_CHANNEL_0;
+            config.ledc_timer = LEDC_TIMER_0;
+            config.pin_d0 = D0_GPIO;
+            config.pin_d1 = D1_GPIO;
+            config.pin_d2 = D2_GPIO;
+            config.pin_d3 = D3_GPIO;
+            config.pin_d4 = D4_GPIO;
+            config.pin_d5 = D5_GPIO;
+            config.pin_d6 = D6_GPIO;
+            config.pin_d7 = D7_GPIO;
+            config.pin_xclk = XCLK_GPIO;
+            config.pin_pclk = PCLK_GPIO;
+            config.pin_vsync = VSYNC_GPIO;
+            config.pin_href = HREF_GPIO;
+            config.pin_sccb_sda = SIOD_GPIO_NUM;
+            config.pin_sccb_scl = SIOC_GPIO_NUM;
+            config.pin_pwdn = -1;
+            config.pin_reset = RST_GPIO;
+            config.xclk_freq_hz = 20000000;  // 20 MHz pour ESP32-S3
+            config.pixel_format = PIXFORMAT_JPEG;
+
+            // On garde ta configuration limite optimisée
+            if (psramFound()) 
+            {
+                config.frame_size = FRAMESIZE_UXGA;
+                config.jpeg_quality = 10;         // Qualité maximale
+                config.fb_count = 1;
+                config.fb_location = CAMERA_FB_IN_PSRAM;
+            } else {
+                config.frame_size = FRAMESIZE_QVGA; // 800x600
+                config.jpeg_quality = 8;           // Ton réglage limite
+                config.fb_count = 2;               // Augmenter à 2 buffers pour éviter les problèmes DMA
+                config.fb_location = CAMERA_FB_IN_DRAM;
+            }
+
+            esp_err_t err = esp_camera_init(&config);
+            if (err != ESP_OK) {
+                Serial.printf("Erreur Init Caméra: 0x%x\n", err);
+                return false;
+            }
+
+            _initialized = true;
+            
+            delay(500);  // Attendre l'initialisation complète de la caméra
+
+            sensor_t * s = esp_camera_sensor_get();
+
+            if (!s) {
+                Serial.println("Caméra non détectée !");
+            } else {
+                Serial.println("Caméra détectée !");
+                Serial.printf("ID : 0x%x\n", s->id.PID);
+            }
+
+            s->set_brightness(s, 0);      // Augmenter légèrement (+1 ou +2)
+            s->set_contrast(s, 0);        // Augmenter pour la netteté (+1)
+            s->set_saturation(s, 0);     // Baisser un peu pour réduire le bruit de couleur rouge
+            return true;
+        }
+
+        /**
+         * Prend une photo et la sauvegarde sur la SD
+         */
+        bool takeAndSavePhoto(String filename) {
+            Serial.println("Capture en cours...");
+
+            // 1. Vidage du buffer pour garantir une image fraîche
+            camera_fb_t * fb = esp_camera_fb_get();
+            if (fb) {
+                esp_camera_fb_return(fb);
+                delay(100);
+            }
+
+            // 2. Capture réelle
+            fb = esp_camera_fb_get();
+            if (!fb) {
+                Serial.println("ERREUR : Impossible de récupérer le framebuffer (DMA)");
+                return false;
+            }
+
+            // 3. Écriture sur SD
+            //String path = "/pic" + String(_pictureCount++) + ".jpg";
+            File file = SD.open(filename, FILE_WRITE);
+            
+            if (!file) {
+                Serial.println("ERREUR : Impossible d'ouvrir le fichier sur SD");
+                esp_camera_fb_return(fb);
+                return false;
+            }
+
+            size_t written = file.write(fb->buf, fb->len);
+            file.close();
+            
+            Serial.printf("Photo sauvegardée: %s (%u bytes)\n", filename, written);
+
+            esp_camera_fb_return(fb);
+            return (written == fb->len);
+        }
+
+        bool takePhoto() 
+        {
+            Serial.println("Capture en cours...");
+
+            // 1. Libérer l'ancien buffer s'il existe
+            if (_fb) {
+                esp_camera_fb_return(_fb);
+                _fb = nullptr;
+            }
+
+            // 2. Vidage du buffer pour garantir une image fraîche
+            camera_fb_t * fb = esp_camera_fb_get();
+            if (fb) {
+                esp_camera_fb_return(fb);
+                delay(100);
+            }
+
+            // 3. Capture réelle et stockage en PSRAM
+            _fb = esp_camera_fb_get();
+            if (!_fb) {
+                Serial.println("ERREUR : Impossible de récupérer le framebuffer (DMA)");
+                return false;
+            }
+            
+            Serial.printf("Photo capturée : %u bytes en PSRAM\n", _fb->len);
+            return true;
+        }
+
+        /**
+         * Récupère le pointer de l'image en PSRAM
+         */
+        uint8_t* getImage() 
+        {
+            if (!_fb) {
+                Serial.println("ERREUR : Aucune image capturée");
+                return nullptr;
+            }
+            return _fb->buf;
+        }
+
+        /**
+         * Récupère la taille de l'image capturée
+         */
+        size_t getImageSize() 
+        {
+            if (!_fb) {
+                Serial.println("ERREUR : Aucune image capturée");
+                return 0;
+            }
+            return _fb->len;
+        }
+
+        /**
+         * Libère la mémoire du framebuffer
+         */
+        void releaseImage()
+        {
+            if (_fb) {
+                esp_camera_fb_return(_fb);
+                _fb = nullptr;
+                Serial.println("Image libérée");
+            }
+        }
+
+        void end()
+        {
+            if (_fb) {
+                esp_camera_fb_return(_fb);
+                _fb = nullptr;
+                delay(100);
+            }
+            if (_initialized) {
+                esp_camera_deinit();
+                _initialized = false;
+                delay(200);
+            }
+        }
+    };
+
+    #endif

@@ -1,0 +1,142 @@
+{
+  "app.title": "数据监控系统",
+
+  "nav.home": "首页",
+  "nav.images": "图片",
+  "nav.map": "地图",
+  "nav.cam": "相机",
+  "nav.battery": "电量",
+  "nav.journal": "日志",
+  "nav.hidden": "已隐藏",
+  "nav.config": "配置",
+  "nav.logged_in_as": "当前用户",
+  "nav.logout": "退出",
+
+  "footer.title": "相机地图",
+  "footer.subtitle": "实时监控仪表盘",
+  "footer.article": "新闻报道",
+
+  "home.title": "首页 - 数据监控系统",
+  "home.hero_title": "欢迎来到监控面板",
+  "home.hero_subtitle": "请选择下方模块进入系统功能",
+
+  "home.cards.images.title": "最新图片",
+  "home.cards.images.desc": "查看并管理系统最新上传的图片",
+  "home.cards.images.cta": "查看图片 →",
+
+  "home.cards.map.title": "地图视图",
+  "home.cards.map.desc": "在交互式地图上查看监控点位",
+  "home.cards.map.cta": "打开地图 →",
+
+  "home.cards.cam.title": "相机管理",
+  "home.cards.cam.desc": "查看并管理相机设备及其信息",
+  "home.cards.cam.cta": "管理相机 →",
+
+  "home.cards.battery.title": "电量状态",
+  "home.cards.battery.desc": "监控设备电量变化与性能指标",
+  "home.cards.battery.cta": "查看电量 →",
+
+  "home.cards.journal.title": "系统日志",
+  "home.cards.journal.desc": "查看系统全部事件与操作记录",
+  "home.cards.journal.cta": "查看日志 →",
+
+  "home.cards.hidden.title": "已隐藏图片",
+  "home.cards.hidden.desc": "查看从主列表中隐藏的图片",
+  "home.cards.hidden.cta": "查看隐藏 →",
+
+  "images.title": "最新图片",
+  "images.header": "最近上传 %(count)s 张图片",
+  "images.subtitle": "野生动物监测系统 — 相机触发图片与环境数据",
+
+  "common.refresh": "刷新",
+  "common.toggle_layout": "切换布局",
+  "common.export_xlsx": "导出 XLSX",
+  "common.apply": "应用",
+  "common.reset": "重置",
+  "common.back": "返回",
+  "common.id": "ID",
+
+  "filters.camera_id": "相机ID",
+  "filters.camera_placeholder": "例如 1",
+  "filters.from": "从",
+  "filters.to": "到",
+  "filters.sort": "排序",
+  "filters.newest": "最新",
+  "filters.oldest": "最旧",
+
+  "actions.hide": "隐藏",
+  "actions.delete": "删除",
+  "actions.confirm_delete": "确定永久删除这张图片吗？",
+  "actions.human_detected": "⚠️ 检测到人类",
+
+  "fields.temperature": "温度",
+  "fields.humidity": "湿度",
+  "fields.date": "时间",
+
+  "login.title_page": "登录",
+  "login.username": "用户名",
+  "login.password": "密码",
+  "login.username_placeholder": "请输入用户名",
+  "login.password_placeholder": "请输入密码",
+  "login.submit": "登录",
+  "login.footer": "安全访问数据监控系统",
+
+  "battery.title": "电池监控",
+  "battery.h1": "电池监控",
+  "battery.subtitle": "所有相机电池电量的实时追踪",
+  "battery.camera": "相机",
+  "battery.graph_title_prefix": "电池 — 相机",
+  "battery.dataset_label": "电量 (%)",
+
+  "cam.title": "相机列表",
+  "cam.h1": "已注册相机",
+  "cam.subtitle": "野生动物监测系统 — 活跃相机概览",
+  "cam.name": "名称",
+  "cam.location": "位置",
+
+  "journal.title": "系统日志",
+  "journal.h1": "系统日志",
+  "journal.subtitle": "系统所有活动的事件记录",
+
+  "journal.event.image_received": "接收到图片",
+  "journal.event.image_hidden": "图片已隐藏",
+  "journal.event.image_deleted": "图片已删除",
+  "journal.event.generic": "事件",
+
+  "journal.camera": "相机",
+
+  "journal.empty.title": "暂无事件",
+  "journal.empty.text": "系统记录活动后，事件将显示在这里",
+
+  "pagination.first": "« 首页",
+  "pagination.previous": "‹ 上一页",
+  "pagination.next": "下一页 ›",
+  "pagination.last": "末页 »",
+  "pagination.page": "第",
+  "pagination.of": "页 / 共",
+
+  "unauthorized.title": "无权限",
+  "unauthorized.h1": "拒绝访问",
+  "unauthorized.text": "你没有权限访问此页面。",
+  "unauthorized.go_home": "回到首页",
+  "unauthorized.go_login": "去登录",
+
+  "error.title": "错误",
+  "error.h2": "发生错误",
+  "error.text": "加载页面时发生了错误。",
+
+  "config_ai.title": "AI 配置",
+  "config_ai.header": "识别模型配置",
+  "config_ai.subtitle": "选择用于新图像识别的模型。",
+  "config_ai.active_model": "当前模型",
+  "config_ai.model_speciesnet_default": "SpeciesNet 默认模型",
+  "config_ai.model_speciesnet_custom": "SpeciesNet 自定义模型路径",
+  "config_ai.model_yolo_default": "YOLO 默认模型",
+  "config_ai.model_yolo_custom": "YOLO 自定义模型路径",
+  "config_ai.model_disabled": "禁用 AI 识别",
+  "config_ai.custom_path": "自定义模型路径",
+  "config_ai.custom_path_help": "仅在选择自定义模型路径选项时使用。",
+  "config_ai.save": "保存配置",
+  "config_ai.saved": "配置已成功保存。"
+}
+
