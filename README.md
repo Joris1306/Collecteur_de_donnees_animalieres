@@ -20,7 +20,7 @@ Our project tackles this challenge from the ground up by building an autonomous 
 
 This repository contains everything needed to replicate, understand, and build upon our work from scratch:
 
-* **⚡ Hardware & Electronics:** 3D CAD modeling files for the enclosure, electrical schematics, and a complete Bill of Materials (BOM).
+* **⚡ Hardware & Electronics:** ESP32 principal code, 3D CAD modeling files for the enclosure, electrical schematics, and a complete Bill of Materials (BOM).
 * **🧠 Artificial Intelligence:** Embedded AI models and scripts optimized for real-time edge animal classification.
 * **🌐 Server & Web Interface:** Backend architecture for data collection and frontend dashboard code for visualization.
 * **📄 Documentation:** Deep-dive technical reports detailing our engineering choices, challenges, and methodologies.
